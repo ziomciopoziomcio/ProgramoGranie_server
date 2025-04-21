@@ -54,3 +54,5 @@ target_link_libraries(project1
 
     with open(cmake_file_path, "w") as cmake_file:
         cmake_file.write(cmake_content)
+
+    return cmake_file_path
