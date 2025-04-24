@@ -10,13 +10,30 @@ app = Flask(__name__)
 def home():
     return "Hello World!"
 
+
 @app.route('/login')
 def login():
-    return render_template('templates/login_page.html')
+    return render_template('login_page.html')
+
 
 @app.route('/index')
 def index():
-    return render_template('templates/main_menu_page.html')
+    return render_template('main_menu_page.html')
+
+
+@app.route('/index/game')
+def game():
+    return render_template('game_page.html')
+
+
+@app.route('/index/pp1/stats')
+def pp1_stats():
+    return render_template('pp1_stats_page.html')
+
+
+@app.route('/index/profile')
+def profile():
+    return render_template('profile_page.html')
 
 
 if __name__ == '__main__':
