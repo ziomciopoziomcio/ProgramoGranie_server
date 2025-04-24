@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>SO2 stats</title>
+</head>
+
+<body>
+    <div class="menuBar">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon">
+    </div>
+
+    <div id="StatsContent">
+
+        <div class="container" id="topicStatsContainer">
+            <h1>Statystyki tematów</h1>
+
+
+        </div>
+
+        <div class="container" id="subjectStatsContainer"></div>
+
+        <div class="container" id="subjectLabelContainer"></div>
+
+        <div class="container" id="completionContainer"></div>
+
+        <div class="container" id="acheievementsContainer"></div>
+
+        <div class="container" id="commitsContainer"></div>
+
+    </div>
+
+
+</body>
+
+</html>
+

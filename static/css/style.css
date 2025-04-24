@@ -10,6 +10,13 @@ body {
 h1{
     font-family: "Roboto", serif;
 }
+.container h1{
+    text-align: center;
+}
+
+p{
+    font-family: "Roboto", serif;
+}
 
 .menuBar {
     width: 100%;
@@ -67,7 +74,7 @@ h1{
     border-radius: 12px;
     background: #1A9E0E;
 
-    border-width: 0px;
+    border-width: 0;
     margin: 3% auto;
 
     font-family: "Roboto", Sans-Serif, serif;
@@ -116,7 +123,6 @@ h1{
 }
 
 .subjectTitle h1{
-    text-align: center;
     font-size: 1em;
 }
 
@@ -137,16 +143,63 @@ h1{
 }
 
 /* STATS PAGES OVERALL */
+#StatsContent{
+    display: grid;
+    height: 92%;
+}
 
 #topicStatsContainer{
-    width: 100px;
-    height: 100px;
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 7;
 
-    display: block;
-
-    /*border: 1px solid red;*/
-
+    display: flex;
+    flex-direction: column;
 }
-#subjextStatsContainer{
 
+#topicStatsContainer h1{
+    text-align: center;
+}
+
+.topic{
+    flex: 1;
+    margin: 0 3%;
+    /*border: 1px solid blue;*/
+}
+
+.topic .progressbar{
+    min-height: 5px;
+    height: 40%;
+    width: 75%;
+    border-radius: 12px;
+    background: #1A9E0E;
+}
+
+.topic p{
+    font-size: small;
+    margin: 0;
+}
+
+#subjectStatsContainer{
+    grid-column: 4 / span 2;
+    grid-row: 1 / span 5;
+}
+
+#subjectLabelContainer{
+    grid-column: 6;
+    grid-row: 1;
+}
+
+#completionContainer{
+    grid-column: 6;
+    grid-row: 2;
+}
+
+#acheievementsContainer{
+    grid-column: 6;
+    grid-row: 3 / span 3;
+}
+
+#commitsContainer{
+    grid-column: 4 / span 3;
+    grid-row: 6 / span 2;
 }
