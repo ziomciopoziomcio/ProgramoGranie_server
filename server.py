@@ -1,25 +1,23 @@
 import socket
 import threading
 import json
+from flask import Flask, request, jsonify, render_template
 
-def handle_client(client_socket):
-    try:
-        try:
-            data_original = client_socket.recv(1024).decode('utf-8')
-            data = json.loads(data_original)
-        except Exception as e:
-            return
-        # FUNCTIONALITY
-        return
-    finally:
-        client_socket.close()
+app = Flask(__name__)
 
 
-def start_server(host = '', port = 12345):
-    # REMEMBER TO CREATE CLEANUP MECHANISM
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind((host, port))
-    server_socket.listen()
-    while True:
-        client_socket, _ = server_socket.accept()
-        threading.Thread(target=handle_client, args=(client_socket,)).start()
+@app.route('/')
+def home():
+    return "Hello World!"
+
+@app.route('/login')
+def login():
+    return render_template('templates/login_page.html')
+
+@app.route('/index')
+def index():
+    return render_template('templates/main_menu_page.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
