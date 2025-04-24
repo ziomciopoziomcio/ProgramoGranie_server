@@ -21,8 +21,8 @@ body {
 /* LOGIN PAGE */
 .loginForm {
     margin: 0 30%;
-    padding-top: 5%;
-    /* border: 1px solid red; */
+    /*padding-top: 5%;*/
+    /*border: 1px solid red;*/
 }
 
 .loginInput {
