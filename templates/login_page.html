@@ -11,22 +11,22 @@
         href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <link rel="icon" type="image/x-icon" href="assets/fire_1.png">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
     <title>Login</title>
 </head>
 
 <body>
     <div class="menuBar">
-        <img src="assets/dante_main_logo.png" id="menuBarIcon">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon">
     </div>
 
     <div class="loginForm">
 
-        <img src="assets/dante_main_logo.png" id="loginLogo">
-        <img src="assets/profile_photo.svg" id="loginProfilePicture">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="loginLogo">
+        <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="loginProfilePicture">
 
         <form>
             <input type="text" placeholder="Login" required class="loginInput">
