@@ -3,19 +3,34 @@ html,
 body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    height: 100vh;
+    /*box-sizing: border-box;*/
+}
+
+h1{
+    font-family: "Roboto", serif;
 }
 
 .menuBar {
     width: 100%;
+    height: 8%;
     background: #343A40;
     /* border: 1px solid green; */
 }
 
 #menuBarIcon {
-    margin: 0.5% auto 0.5% 1%;
+    margin: 0.5% 0.5% 0.5% 1%;
     max-width: 100%;
-    height: 40px;
+    height: 80%;
+}
+
+.container{
+    border-radius: 12px;
+    background: #D9D9D9;
+    min-height: 20px;
+    margin: 5px;
+    /*padding: 10px;*/
+
 }
 
 /* LOGIN PAGE */
@@ -32,9 +47,9 @@ body {
     margin: 15px auto;
     padding-left: 15px;
 
-    border-width: 0px;
+    border-width: 0;
 
-    font-family: "Roboto";
+    font-family: "Roboto", serif;
     font-size: medium;
 
     width: 75%;
@@ -55,7 +70,7 @@ body {
     border-width: 0px;
     margin: 3% auto;
 
-    font-family: "Roboto";
+    font-family: "Roboto", Sans-Serif, serif;
     font-size: medium;
     color: white;
 }
@@ -71,66 +86,54 @@ body {
 
 #loginProfilePicture {
     display: block;
-    margin: 0% auto 3% auto;
+    margin: 0 auto 3% auto;
 }
 
 /* MAIN PAGE */
 
+#mainMenuContent{
+    height: 92%;
+    display: flex;
+    flex-direction: row;
+    /*border: 1px solid green;*/
+}
 
 #sideBar {
-    width: 33%;
-    float: left;
-    /* border: 1px solid red; */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid red;*/
 }
 
 .subjectContainer {
-    border-radius: 12px;
-    background: #D9D9D9;
-
-    width: auto;
-    height: 170px;
-
-    margin: 5px;
-    display: block;
+    flex: 5;
+    width: 97%;
 }
 
-#subjectTitle {
-    border-radius: 12px;
-    background: #D9D9D9;
+.subjectTitle {
+    flex: 1;
+    width: 97%;
+}
 
-    width: auto;
-    height: 60px;
-    margin: 15px 5px 5px 5px;
-
-    display: block;
+.subjectTitle h1{
+    text-align: center;
+    font-size: 1em;
 }
 
 #mainArea {
-    width: 66%;
     height: 100%;
-    float: right;
-
-    /* border: 1px solid blue; */
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    /*border: 1px solid blue;*/
 }
 
-#profileContainer {
-    width: auto;
-    height: 250px;
-
-    margin: 15px 5px 5px 5px;
-
-    border-radius: 12px;
-    background: #D9D9D9;
+.profileContainer {
+    flex: 8;
 }
 
-#competitionContainer {
-    width: auto;
-    height: 330px;
-
-    margin: 5px;
-
-    border-radius: 12px;
-    background: #D9D9D9;
+.competitionContainer {
+    flex: 13;
 }
 
 /* STATS PAGES OVERALL */
@@ -141,7 +144,9 @@ body {
 
     display: block;
 
-    border: 1px solid red;
-}
+    /*border: 1px solid red;*/
 
-#subjextStatsContainer
+}
+#subjextStatsContainer{
+
+}
