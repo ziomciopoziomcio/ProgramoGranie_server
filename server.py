@@ -35,6 +35,17 @@ def pp1_stats():
 def profile():
     return render_template('profile_page.html')
 
+@app.route('/index/pp2/stats')
+def pp2_stats():
+    return render_template('pp2_stats_page.html')
+
+@app.route('/index/so2/stats')
+def so2_stats():
+    return render_template('so2_stats_page.html')
+
+@app.route('/index/challenge')
+def challenge():
+    return render_template('challenge_page.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
