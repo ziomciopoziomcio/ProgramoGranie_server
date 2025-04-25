@@ -20,7 +20,9 @@
 
 <body>
     <div class="menuBar">
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon" alt="Site logo">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon" alt="Site logo">
+        </a>
     </div>
 
     <div id="StatsContent">
