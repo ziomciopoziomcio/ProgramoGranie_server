@@ -155,10 +155,12 @@ p{
 
     display: flex;
     flex-direction: column;
+
 }
 
 #topicStatsContainer h1{
     text-align: center;
+    font-size: 20px;
 }
 
 .topic{
@@ -170,7 +172,7 @@ p{
 .topic .progressbar{
     min-height: 5px;
     height: 40%;
-    width: 75%;
+    width: 100%;
     border-radius: 12px;
     background: #1A9E0E;
 }
@@ -185,9 +187,21 @@ p{
     grid-row: 1 / span 5;
 }
 
+#subjectStatsContainer h1 {
+    font-size: 16px;
+}
+
 #subjectLabelContainer{
-    grid-column: 6;
-    grid-row: 1;
+    /*grid-column: 6;*/
+    /*grid-row: 1;*/
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#subjectLabelContainer h1 {
+    text-align: right;
+    font-size: 20px;
 }
 
 #completionContainer{
@@ -195,9 +209,17 @@ p{
     grid-row: 2;
 }
 
-#acheievementsContainer{
+#completionContainer h1 {
+    font-size: 16px;
+}
+
+#achievementsContainer{
     grid-column: 6;
     grid-row: 3 / span 3;
+}
+
+#achievementsContainer h1 {
+    font-size: 16px;
 }
 
 #commitsContainer{
