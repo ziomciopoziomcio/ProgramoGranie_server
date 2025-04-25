@@ -116,6 +116,13 @@ p{
 .subjectContainer {
     flex: 5;
     width: 97%;
+    position: relative;
+    background: #D9D9D9;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.subjectContainer h1 {
+    font-size: 24px;
 }
 
 .subjectTitle {
@@ -124,7 +131,49 @@ p{
 }
 
 .subjectTitle h1{
-    font-size: 1em;
+    font-size: 16px;
+}
+
+.topicButton {
+    position: absolute;
+    bottom: 10px;
+    right: 60px;
+    background-color: #4579F9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.topicButton:hover {
+    background-color: #0056b3;
+}
+
+.infoButton {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #343A40;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.subjectContainer:has(.infoButton:hover) {
+    background: rgba(255, 255, 255, 0.8);
+    opacity: 0.9;
+    transition: background-color 0.3s, opacity 0.3s;
+}
+
+.subjectContainer:has(.infoButton:hover) * {
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
 #mainArea {
@@ -141,6 +190,14 @@ p{
 
 .competitionContainer {
     flex: 13;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.competitionLogo {
+    max-width: 375px;
+    max-height: 375px;
 }
 
 /* STATS PAGES OVERALL */
@@ -192,8 +249,8 @@ p{
 }
 
 #subjectLabelContainer{
-    /*grid-column: 6;*/
-    /*grid-row: 1;*/
+    grid-column: 6;
+    grid-row: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
