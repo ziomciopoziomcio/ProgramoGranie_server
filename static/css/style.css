@@ -20,7 +20,7 @@ p{
 
 .navbar {
     width: 100%;
-    height: 8%;
+    height: 7%;
     background: #343A40;
     /* border: 1px solid green; */
 }
@@ -32,7 +32,7 @@ p{
 }
 
 .main-content{
-    height: 91%;
+    height: 90%;
     margin: 15px;
     display: grid;
     gap: 15px;
@@ -50,10 +50,12 @@ p{
 }
 
 /* LOGIN PAGE */
-#login-form {
+
+#login-page-content{
+    display: flex;
+    flex-direction: column;
     margin: 0 30%;
-    /*padding-top: 5%;*/
-    /*border: 1px solid red;*/
+    /*background-color: pink;*/
 }
 
 .login-text-input {
@@ -92,17 +94,12 @@ p{
 }
 
 #login-main-logo {
-    max-width: 100%;
-    max-height: 240px;
     margin: 1% auto 8% auto;
-
     width: 70%;
-    display: block;
 }
 
 #login-main-pfp {
-    display: block;
-    margin: 0 auto 3% auto;
+    margin: 0 auto;
 }
 
 /* MAIN PAGE */
@@ -136,9 +133,9 @@ p{
 }
 
 .subject-topics-button {
-    position: absolute;
-    bottom: 10px;
-    right: 60px;
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    /*right: 60px;*/
     background-color: #4579F9;
     color: white;
     border: none;

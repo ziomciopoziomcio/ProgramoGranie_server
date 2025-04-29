@@ -23,12 +23,12 @@
         <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
     </div>
 
-    <div class="main-content">
+    <div class="main-content" id="login-page-content">
+
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
+            <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
 
         <div id="login-form">
-
-            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
-            <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
 
             <form>
                 <input type="text" placeholder="Login" required class="login-text-input">
