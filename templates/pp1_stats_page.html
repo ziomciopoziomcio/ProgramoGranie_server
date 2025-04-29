@@ -19,15 +19,15 @@
 </head>
 
 <body>
-    <div class="menuBar">
+    <div class="navbar">
         <a href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon" alt="Site logo">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
         </a>
     </div>
 
-    <div id="StatsContent">
+    <div class="main-content stats-overall-content" id="stats-pp1-content">
 
-        <div class="container" id="topicStatsContainer">
+        <div class="container" id="stats-topic-container">
             <h1>Statystyki tematów</h1>
 
             <div class="topic">
@@ -81,23 +81,23 @@
 
         </div>
 
-        <div class="container" id="subjectStatsContainer">
+        <div class="container" id="stats-subject-container">
             <h1>Statystyka przedmiotu</h1>
         </div>
 
-        <div class="container" id="subjectLabelContainer">
+        <div class="container" id="stats-subject-label-container">
             <h1>Podstawy Programowania 1</h1>
         </div>
 
-        <div class="container" id="completionContainer">
+        <div class="container" id="stats-completion-container">
             <h1>Stan zaliczenia</h1>
         </div>
 
-        <div class="container" id="achievementsContainer">
+        <div class="container" id="stats-achievements-container">
             <h1>Osiągnięcia do zdobycia</h1>
         </div>
 
-        <div class="container" id="commitsContainer"></div>
+        <div class="container" id="stats-commit-container"></div>
 
     </div>
 

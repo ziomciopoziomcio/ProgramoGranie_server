@@ -19,22 +19,26 @@
 </head>
 
 <body>
-    <div class="menuBar">
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="menuBarIcon" alt="Site logo">
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
     </div>
 
-    <div class="loginForm">
+    <div class="main-content">
 
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="loginLogo" alt="Site logo">
-        <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="loginProfilePicture" alt="Profile photo icon">
+        <div id="login-form">
 
-        <form>
-            <input type="text" placeholder="Login" required class="loginInput">
-            <input type="password" placeholder="Hasło" required class="loginInput">
-            <button type="submit" id="loginButton">Zaloguj</button>
-        </form>
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
+            <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
 
+            <form>
+                <input type="text" placeholder="Login" required class="login-text-input">
+                <input type="password" placeholder="Hasło" required class="login-text-input">
+                <button type="submit" id="login-submit-button">Zaloguj</button>
+            </form>
+
+        </div>
     </div>
+
 
 </body>
 
