@@ -358,4 +358,28 @@ p{
     grid-area: 1 / 4 / 3 / 5;
 }
 
-/*MINIGAME PAGE*/
+/*GAME PAGE*/
+
+#game-main-content{
+    height: 91%;
+    grid-template: 1fr 2fr / 1fr 1fr 2fr;
+    gap: 15px;
+    margin: 15px;
+    display: grid;
+}
+
+#game-label-container{
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+#game-leaderboard-container{
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#game-game-container{
+    grid-area: 1 / 2 / 3 / 3;
+}
+
+#game-items-container{
+    grid-area: 1 / 3 / 3 / 4;
+}
