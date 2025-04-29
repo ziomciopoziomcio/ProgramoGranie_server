@@ -1,4 +1,4 @@
-/* GENERAL */
+/* - - - - - - - - - - - - - - - - - - - - - GENERAL - - - - - - - - - - - - - - - - - - - - - */
 html,
 body {
     margin: 0;
@@ -43,13 +43,18 @@ p{
     border-radius: 12px;
     background: #D9D9D9;
     min-height: 20px;
+    padding: 10px;
     /*margin: 5px;*/
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     /*padding: 10px;*/
 
 }
 
-/* LOGIN PAGE */
+.secondary-container{
+
+}
+
+/* - - - - - - - - - - - - - - - - - - - - - LOGIN PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #login-page-content{
     display: flex;
@@ -102,40 +107,110 @@ p{
     margin: 0 auto;
 }
 
-/* MAIN PAGE */
+/* - - - - - - - - - - - - - - - - - - - - - MAIN PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #main-menu-main-content{
     grid-template: 1fr 3fr 3fr 3fr / 1fr 2fr;
 }
 
 .subject-container {
-    transition: background-color 0.3s, opacity 0.3s;
+    display: grid;
+    gap: 5px;
+    grid-template: 1fr 1fr / 1fr 2fr;
+    /*transition: background-color 0.3s, opacity 0.3s;*/
 }
 
-.subject-container h1 {
-    font-size: 24px;
-}
-
-#main-menu-subject-label-container {
+.main-menu-subject-code-container{
     grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#main-menu-subject-so2-container{
+.main-menu-subject-code{
+    background-color: #A2A4A3;
+    border-radius: 5px;
+
+    flex-shrink: 0;
+
+    min-width: 70%;
+    max-height: 90%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu-subject-code p{
+    font-size: 140%;
+}
+
+.main-menu-subject-name{
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu-subject-completion-container{
     grid-area: 2 / 1 / 3 / 2;
+    display: grid;
+    gap: 2px;
+    grid-template: 1fr 1fr 1fr / 3fr 1fr;
+}
+.main-menu-subject-badge-container{
+    grid-area: 1 / 1 / 4 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#main-menu-subject-pp2-container{
-    grid-area: 3 / 1 / 4 / 2;
+.main-menu-subject-badge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#main-menu-subject-pp1-container{
-    grid-area: 4 / 1 / 5 / 2;
+#main-menu-so2-badge-img,
+#main-menu-pp2-badge-img,
+#main-menu-pp1-badge-img{
+    flex-shrink: 0;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.main-menu-points-container{
+    /*background-color: #FFFFFF;*/
+    /*max-height: 40px;*/
+}
+
+#main-menu-so2-p1{
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+#main-menu-so2-p2{
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+#main-menu-so2-p3{
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.main-menu-points-container p{
+    font-size: 80%;
+    margin: 0;
+    padding: 0;
+}
+
+.main-menu-subject-buttons-container{
+    grid-area: 2 / 2 / 3 / 3;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+
 }
 
 .subject-topics-button {
-    /*position: absolute;*/
-    /*bottom: 10px;*/
-    /*right: 60px;*/
     background-color: #4579F9;
     color: white;
     border: none;
@@ -143,6 +218,8 @@ p{
     padding: 10px 25px;
     font-size: 16px;
     cursor: pointer;
+    max-width: 200px;
+    margin-right: 5px;
 }
 
 .subject-topics-button:hover {
@@ -150,9 +227,10 @@ p{
 }
 
 .subject-info-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+
+    /*position: absolute;*/
+    /*bottom: 10px;*/
+    /*right: 10px;*/
     background-color: #343A40;
     color: white;
     border: none;
@@ -174,6 +252,29 @@ p{
     transition: opacity 0.3s;
 }
 
+.subject-container h1 {
+    font-size: 24px;
+}
+
+#main-menu-subject-label-container {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-menu-subject-so2-container{
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+#main-menu-subject-pp2-container{
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+#main-menu-subject-pp1-container{
+    grid-area: 4 / 1 / 5 / 2;
+}
+
 #main-menu-profile-container{
     grid-area: 1 / 2 / 3 / 3;
 }
@@ -191,7 +292,7 @@ p{
     max-height: 375px;
 }
 
-/* STATS PAGES OVERALL */
+/* - - - - - - - - - - - - - - - - - - - - - STATS OVERALL PAGE - - - - - - - - - - - - - - - - - - - - - */
 .stats-overall-content{
     grid-template: 1fr 1fr 3fr 2fr / 3fr 2fr 1fr;
 }
@@ -267,7 +368,7 @@ p{
     grid-area: 4 / 2 / 5 / 4;
 }
 
-/* PROFILE PAGE*/
+/* - - - - - - - - - - - - - - - - - - - - - PROFILE PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #profile-content{
     grid-template: 35fr 33fr 21fr / 33fr 60fr 48fr 33fr;
@@ -301,7 +402,7 @@ p{
     grid-area: 2 / 4 / 4 / 5;
 }
 
-/*CHALLENGE PAGE*/
+/* - - - - - - - - - - - - - - - - - - - - - CHALLENGE PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #challenge-main-content{
     height: 91%;
@@ -331,7 +432,7 @@ p{
     grid-area: 1 / 4 / 3 / 5;
 }
 
-/*GAME PAGE*/
+/* - - - - - - - - - - - - - - - - - - - - - GAME PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #game-main-content{
     height: 91%;
