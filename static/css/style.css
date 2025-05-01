@@ -472,7 +472,7 @@ p{
 /* - - - - - - - - - - - - - - - - - - - - - GAME PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #game-main-content{
-    height: 91%;
+    height: 90%;
     grid-template: 1fr 2fr / 1fr 1fr 2fr;
 
     display: grid;
