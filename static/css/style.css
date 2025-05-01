@@ -241,14 +241,8 @@ p{
     cursor: pointer;
 }
 
-.subject-container:has(.infoButton:hover) {
-    background: rgba(255, 255, 255, 0.8);
-    opacity: 0.9;
-    transition: background-color 0.3s, opacity 0.3s;
-}
-
-.subject-container:has(.infoButton:hover) * {
-    opacity: 0.7;
+.subject-container:has(.subject-info-button:hover) * {
+    opacity: 0.2;
     transition: opacity 0.3s;
 }
 
