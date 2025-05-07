@@ -27,8 +27,9 @@
 
     <div class="main-content stats-overall-content" id="stats-pp1-content">
 
+{# STATYSTYKI TEMATÓW #}
         <div class="container stats-overall-topics-container" id="stats-pp1-topics-container">
-            <h1>Statystyki tematów</h1>
+            <h1 class="stats-header">Statystyki tematów</h1>
 
             <div class="topic">
                 <p>1. Wprowadzanie i wyświetlanie danych</p>
@@ -80,9 +81,9 @@
             </div>
 
         </div>
-
+{# STATYSTYKI PRZEDMIOTU #}
         <div class="container stats-overall-subject-container" id="stats-pp1-subject-container">
-            <h1>Statystyka przedmiotu</h1>
+            <h1 class="stats-header">Statystyka przedmiotu</h1>
 
             <div class="stats-overall-stat-item"><p>stat x</p></div>
             <div class="stats-overall-stat-item"><p>stat x</p></div>
@@ -93,19 +94,37 @@
 
 
         </div>
-
+{# LABEL #}
         <div class="container stats-overall-subject-label-container" id="stats-pp1-subject-label-container">
-            <h1>Podstawy Programowania 1</h1>
+            <h1 class="stats-header">Podstawy Programowania 1</h1>
         </div>
-
+{# STAN ZALICZENIA #}
         <div class="container stats-overall-completion-container" id="stats-pp1-completion-container">
-            <h1>Stan zaliczenia</h1>
+            <h1 class="stats-header">Stan zaliczenia</h1>
+            <div class="progressbar"></div>
         </div>
-
+{# OSIĄGNIĘCIA DO ZDOBYCIA #}
         <div class="container stats-overall-achievements-container" id="stats-pp1-achievements-container">
-            <h1>Osiągnięcia do zdobycia</h1>
-        </div>
+                <h1 class="stats-header">Osiągnięcia do zdobycia</h1>
 
+                    <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie1<br>postęp</p></div>
+                </div>
+
+                <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie2<br>postęp</p></div>
+                </div>
+
+                <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie3<br>postęp</p></div>
+                </div>
+
+
+        </div>
+{# COMMITY #}
         <div class="container stats-overall-commit-container" id="stats-pp1-commit-container"></div>
 
     </div>

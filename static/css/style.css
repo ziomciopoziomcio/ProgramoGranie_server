@@ -296,6 +296,7 @@ p{
 
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 }
 
 .stats-overall-topics-container h1{
@@ -309,11 +310,12 @@ p{
     /*border: 1px solid blue;*/
 }
 
-.topic .progressbar{
+.progressbar{
     min-height: 5px;
+    max-height: 30px;
     height: 40%;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 5px;
     background: #1A9E0E;
 }
 
@@ -339,10 +341,6 @@ p{
     border-radius: 5px;
 }
 
-.stats-overall-subject-container h1 {
-    font-size: 16px;
-}
-
 .stats-overall-subject-container p {
     margin: 3%;
 }
@@ -354,25 +352,24 @@ p{
     align-items: center;
 }
 
-.stats-overall-subject-label-container h1 {
-    text-align: right;
-    font-size: 20px;
-}
-
 .stats-overall-completion-container{
     grid-area: 2 / 3 / 3 / 4;
 }
 
-.stats-overall-completion-container h1 {
+.stats-header {
     font-size: 16px;
 }
 
 .stats-overall-achievements-container{
     grid-area: 3 / 3 / 4 / 4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.stats-overall-achievements-container h1 {
-    font-size: 16px;
+.stats-achievement-position{
+    display: flex;
 }
 
 .stats-overall-commit-container{
