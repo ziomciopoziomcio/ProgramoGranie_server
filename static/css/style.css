@@ -117,6 +117,8 @@ p{
     display: grid;
     gap: 5px;
     grid-template: 1fr 1fr / 1fr 2fr;
+    min-height: 170px;
+    min-width: 400px;
     /*transition: background-color 0.3s, opacity 0.3s;*/
 }
 
@@ -382,6 +384,10 @@ p{
     grid-template: 35fr 33fr 21fr / 33fr 60fr 48fr 33fr;
 }
 
+.profile-header{
+    font-size: 16px;
+}
+
 #profile-subjects-stats-container{
     grid-area: 1 / 1 / 2 / 2;
 }
@@ -404,11 +410,44 @@ p{
 
 #profile-showcase-container{
     grid-area: 1 / 4 / 1 / 5;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
+
+#profile-user-name, #profile-dante-coin, #profile-joker-points{
+    text-align: center;
+    margin: 5px 5px;
+}
+
+.profile-showcase-line{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 #profile-skins-container{
     grid-area: 2 / 4 / 4 / 5;
+    display: grid;
+    grid-template: 1fr 9fr/ 1fr;
 }
+
+#profile-header-fd{
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+#profile-skins-box{
+    grid-area: 2 / 1 / 3 / 4;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
 
 /* - - - - - - - - - - - - - - - - - - - - - CHALLENGE PAGE - - - - - - - - - - - - - - - - - - - - - */
 
