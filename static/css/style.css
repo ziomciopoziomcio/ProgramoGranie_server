@@ -288,6 +288,29 @@ p{
     max-height: 375px;
 }
 
+
+/* TODO: media query responsiveness (on every page) */
+
+/* Smartphones */
+@media (max-width: 480px) {
+
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - STATS OVERALL PAGE - - - - - - - - - - - - - - - - - - - - - */
 .stats-overall-content{
     grid-template: 1fr 1fr 3fr 2fr / 3fr 2fr 1fr;
