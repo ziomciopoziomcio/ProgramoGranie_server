@@ -7,9 +7,10 @@ body {
     /*box-sizing: border-box;*/
 }
 
-h1{
+h1, h2{
     font-family: "Roboto", serif;
 }
+
 .container h1{
     text-align: center;
 }
@@ -273,7 +274,42 @@ p{
 
 #main-menu-profile-container{
     grid-area: 1 / 2 / 3 / 3;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 }
+
+.page-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    text-decoration: none;
+}
+
+#main-menu-profile-achievements-container{
+    background-color: rgba(111, 111, 111, 0.23);
+    height: 90%;
+    min-width: 40px;
+    max-width: 350px;
+}
+
+#main-menu-profile-achievements-grid{
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+    gap: 5px;
+}
+
+.main-menu-profile-achievement-slot{
+    background: rgba(111, 111, 111, 0.23);
+    width: 35px;
+    height: 35px;
+}
+
 
 #main-menu-competition-container{
     grid-area: 3 / 2 / 5 / 3;
