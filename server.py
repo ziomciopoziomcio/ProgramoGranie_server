@@ -47,5 +47,9 @@ def so2_stats():
 def challenge():
     return render_template('challenge_page.html')
 
+@app.route('/game/flappy_bird')
+def flappy_bird():
+    return render_template('game/flappy_bird.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
