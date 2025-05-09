@@ -562,7 +562,7 @@ p{
     border: none;
     border-radius: 12px;
     font-family: Tiny5, fantasy;
-    font-size: medium;
+    font-size: larger;
     cursor: pointer;
     display: block;
     margin: 0 auto;
@@ -632,11 +632,44 @@ p{
 }
 
 #challenge-leaderboard-container {
-    grid-area: 2 / 3 / 4 / 4;
+    grid-area: 2 / 3 / 4 / 4;]
 }
 
 #challenge-game-container{
     grid-area: 1 / 4 / 4 / 5;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-image: url('/static/assets/fb_bg_1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#play-button {
+    justify-self: center;
+    width: 250px;
+    height: 100px;
+    background-image: url('/static/assets/play_button.png');
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: Tiny5, fantasy;
+    font-size: x-large;
+    cursor: pointer;
+}
+
+#play-button:hover {
+    opacity: 0.8;
+}
+
+#game-logo {
+    justify-self: center;
+    width: 250px;
+    height: auto;
+    margin-bottom: 10px;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - GAME PAGE - - - - - - - - - - - - - - - - - - - - - */
