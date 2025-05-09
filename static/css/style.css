@@ -550,12 +550,8 @@ p{
     grid-area: 1 / 1 / 2 / 4;
 }
 
-#challenge-file-container{
-    grid-area: 2 / 1 / 3 / 2;
-}
-
 #challenge-send-file-container{
-    grid-area: 3 / 1 / 4 / 2;
+    grid-area: 2 / 1 / 3 / 2;
 }
 
 #send-file-button {
@@ -574,6 +570,37 @@ p{
 
 #send-file-button:hover {
     background-color: #0056b3;
+}
+
+#challenge-file-container {
+    grid-area: 3 / 1 / 4 / 2;
+    place-content: center;
+}
+
+#challenge-file-container p {
+    font-size: 16px;
+    text-align: center;
+    color: #343A40;
+    margin: 10px 0;
+    font-family: Tiny5, fantasy;
+}
+
+#choose-file-button {
+    width: 200px;
+    height: 50px;
+    background-color: #343A40;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: Tiny5, fantasy;
+    font-size: medium;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+#choose-file-button:hover {
+    background-color: #50575D;
 }
 
 #challenge-unit-test-container{
