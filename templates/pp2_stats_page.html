@@ -25,7 +25,7 @@
             <div class="breadcrumb">
                 {% for item in breadcrumb %}
                     <a href="{{ item.url }}">{{ item.name }}</a>
-                    {% if not loop.last %} &gt; {% endif %}
+                    {% if not loop.last %} &gt;&nbsp; {% endif %}
                 {% endfor %}
             </div>
         </a>
