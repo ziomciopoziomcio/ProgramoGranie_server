@@ -341,7 +341,7 @@ p{
     }
 
     #main-menu-main-content{
-        /*grid-template: ;*/
+        /*grid-template: 1fr 1fr 1fr 1fr / 1fr;*/
     }
 }
 
@@ -352,7 +352,7 @@ p{
         background: orange;
     }
     #main-menu-main-content{
-        /*grid-template: ;*/
+        /*grid-template: 1fr 1fr 1fr / 1fr 1fr;*/
     }
 }
 
@@ -363,7 +363,7 @@ p{
         background: yellow;
     }
     #main-menu-main-content{
-        /*grid-template: ;*/
+        /*grid-template: 1fr 3fr 3fr 3fr / 1fr 2fr;*/
     }
 }
 
@@ -374,7 +374,7 @@ p{
         background: greenyellow;
     }
     #main-menu-main-content{
-        /*grid-template: ;*/
+        /*grid-template:  1fr 3fr 3fr 3fr / 1fr 2fr;*/
     }
 
 }
@@ -543,7 +543,7 @@ p{
 /* - - - - - - - - - - - - - - - - - - - - - CHALLENGE PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #challenge-main-content{
-    grid-template: 2fr 3fr / 1fr 1fr 1fr 1fr;
+    grid-template: 3fr 1fr 4fr / 1fr 1fr 1fr 1fr;
 }
 
 #challenge-instruction-container{
@@ -554,8 +554,12 @@ p{
     grid-area: 2 / 1 / 3 / 2;
 }
 
+#challenge-send-file-container{
+    grid-area: 3 / 1 / 4 / 2;
+}
+
 #challenge-unit-test-container{
-    grid-area: 2 / 2 / 3 / 3;
+    grid-area: 2 / 2 / 4 / 3;
 }
 
 #challenge-unit-test-container h1{
@@ -564,7 +568,7 @@ p{
 
 #challenge-unit-test-list{
     display: flex;
-    height: 80%;
+    height: 90%;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -583,11 +587,11 @@ p{
 }
 
 #challenge-leaderboard-container {
-    grid-area: 2 / 3 / 3 / 4;
+    grid-area: 2 / 3 / 4 / 4;
 }
 
 #challenge-game-container{
-    grid-area: 1 / 4 / 3 / 5;
+    grid-area: 1 / 4 / 4 / 5;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - GAME PAGE - - - - - - - - - - - - - - - - - - - - - */
