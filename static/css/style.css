@@ -118,7 +118,7 @@ p{
     display: grid;
     gap: 5px;
     grid-template: 1fr 2fr / 1fr 2fr;
-    min-height: 170px;
+    min-height: 155px;
     min-width: 400px;
     /*transition: background-color 0.3s, opacity 0.3s;*/
 }
