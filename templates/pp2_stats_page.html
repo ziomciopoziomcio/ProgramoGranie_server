@@ -22,6 +22,12 @@
     <div class="navbar">
         <a href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+            <div class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                    {% if not loop.last %} &gt; {% endif %}
+                {% endfor %}
+            </div>
         </a>
     </div>
 
