@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>Menu</title>
+</head>
+
+<body>
+
+{# PASEK NAWIGACYJNY #}
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+        </a>
+    </div>
+
+{# GŁÓWNA ZAWARTOŚĆ #}
+    <div class="main-content" id="main-menu-main-content">
+
+{# NAGŁÓWEK PRZEDMIOTÓW #}
+        <div class="container" id="main-menu-subject-label-container"><h1>Twoje przedmioty</h1></div>
+
+
+{# KAFELEK SO2 #}
+        <div class="container subject-container" id="main-menu-subject-so2-container">
+
+            <div class="main-menu-subject-code-container">
+                <div class="main-menu-subject-code"><p>kod</p></div>
+            </div>
+
+            <div class="main-menu-subject-name"><h2>Systemy operacyjne 2</h2></div>
+
+            <div class="main-menu-subject-buttons-container">
+                <a href="{{ url_for('so2_stats') }}"><button class="subject-topics-button" id="so2-topics-button">Tematy</button></a>
+                <button class="subject-info-button">i</button>
+            </div>
+
+            <div class="main-menu-subject-completion-container">
+                <div class="main-menu-subject-badge-container">
+                    <div class="main-menu-subject-badge">
+                        <img src="../static/assets/medal_empty.png" alt="empty badge" id="main-menu-so2-badge-img">
+                    </div>
+                </div>
+
+                <div class="main-menu-points-container" id="main-menu-so2-p1"><p>.../5</p></div>
+                <div class="main-menu-points-container" id="main-menu-so2-p2"><p>.../5</p></div>
+                <div class="main-menu-points-container" id="main-menu-so2-p3"><p>.../5</p></div>
+            </div>
+
+        </div>
+
+
+{# KAFELEK PP2 #}
+        <div class="container subject-container" id="main-menu-subject-pp2-container">
+
+            <div class="main-menu-subject-code-container">
+                <div class="main-menu-subject-code"><p>kod</p></div>
+            </div>
+
+            <div class="main-menu-subject-name"><h2>Podstawy programowania 2</h2></div>
+
+            <div class="main-menu-subject-buttons-container">
+                <a href="{{ url_for('pp2_stats') }}"><button class="subject-topics-button" id="pp2-topics-button">Tematy</button></a>
+                <button class="subject-info-button">i</button>
+            </div>
+
+            <div class="main-menu-subject-completion-container">
+                <div class="main-menu-subject-badge-container">
+                    <div class="main-menu-subject-badge">
+                        <img src="../static/assets/medal_empty.png" alt="empty badge" id="main-menu-pp2-badge-img">
+                    </div>
+                </div>
+
+                <div class="main-menu-points-container" id="main-menu-pp2-p1"><p>.../20</p></div>
+                <div class="main-menu-points-container" id="main-menu-pp2-p2"><p>.../150</p></div>
+            </div>
+
+        </div>
+
+
+{# KAFELEK PP1 #}
+        <div class="container subject-container" id="main-menu-subject-pp1-container">
+
+            <div class="main-menu-subject-code-container">
+                <div class="main-menu-subject-code"><p>kod</p></div>
+            </div>
+
+            <div class="main-menu-subject-name"><h2>Podstawy programowania 1</h2></div>
+
+            <div class="main-menu-subject-buttons-container">
+                <a href="{{ url_for('pp1_stats') }}"><button class="subject-topics-button" id="pp1-topics-button">Tematy</button></a>
+                <button class="subject-info-button">i</button>
+            </div>
+
+            <div class="main-menu-subject-completion-container">
+                <div class="main-menu-subject-badge-container">
+                    <div class="main-menu-subject-badge">
+                        <img src="../static/assets/medal_empty.png" alt="empty badge" id="main-menu-pp1-badge-img">
+                    </div>
+                </div>
+
+                <div class="main-menu-points-container" id="main-menu-pp1-p2"><p>.../154</p></div>
+            </div>
+
+        </div>
+
+{# KAFELEK PROFILU #}
+      <div class="container" id="main-menu-profile-container">
+           <a href="{{ url_for('profile') }}" class="page-link"></a>
+            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+            <h1>Jan Kowalski</h1>
+            <div class="mian-menu-profile-currency-container">
+                <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}" width="30" height="30" id="profile-dante-coin" alt="dante coin icon"><p id="profile-dante-coin">xx</p></div>
+                <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/fire_1.png') }}"  width="30" height="40" id="profile-joker-points" alt="joker point icon"><p id="profile-joker-points">xx</p></div>
+            </div>
+            <div class="container" id="main-menu-profile-achievements-container">
+                <h2>wyróznione osiągnięcia</h2>
+                <div id="main-menu-profile-achievements-grid">
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+                    <div class="container main-menu-profile-achievement-slot"></div>
+
+
+                </div>
+            </div>
+       </div>
+
+{# KAFELEK IGRZYSK #}
+        <div class="container" id="main-menu-competition-container">
+            <img src="../static/assets/logo_main_1.0.png" alt="Logo" id="main-menu-competition-logo">
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

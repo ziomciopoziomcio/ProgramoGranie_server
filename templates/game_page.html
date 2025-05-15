@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>Gra</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+            <div class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                    {% if not loop.last %} &gt;&nbsp; {% endif %}
+                {% endfor %}
+            </div>
+        </a>
+    </div>
+
+    <div class="main-content" id="game-main-content">
+
+        <div class="container" id="game-label-container"></div>
+
+        <div class="container" id="game-leaderboard-container"></div>
+
+        <div class="container" id="game-game-container">
+
+            <div id="game-container" style="width: 800px; height: 600px; border: 1px solid #ccc;">
+                <iframe src="{{ url_for('flappy_bird') }}" width="100%" height="100%" style="border: none;"></iframe>
+            </div>
+        </div>
+
+        <div class="container" id="game-items-container"></div>
+
+    </div>
+
+
+
+</body>
+
+</html>

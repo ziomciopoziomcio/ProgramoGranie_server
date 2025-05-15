@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>Profil</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+             <div class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                    {% if not loop.last %} &gt;&nbsp; {% endif %}
+                {% endfor %}
+            </div>
+        </a>
+    </div>
+
+    <div class="main-content" id="profile-content">
+
+        <div class="container" id="profile-subjects-stats-container"></div>
+
+        <div class="container" id="profile-featured-achievements-container"></div>
+
+        <div class="container" id="profile-all-achievements-container"></div>
+
+        <div class="container" id="profile-streak-container"></div>
+
+        <div class="container" id="profile-commit-container"></div>
+
+        <div class="container" id="profile-showcase-container">
+            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" width="80" height="80" id="profile-pfp" alt="Profile photo icon">
+            <div class="profile-showcase-line"><p id="profile-user-name">Jan Kowalski</p></div>
+            <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}" width="30" height="30" id="profile-dante-coin" alt="dante coin icon"><p id="profile-dante-coin">xx</p></div>
+            <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/fire_1.png') }}"  width="30" height="40" id="profile-joker-points" alt="joker point icon"><p id="profile-joker-points">xx</p></div>
+
+        </div>
+
+        <div class="container" id="profile-skins-container">
+            <h1 class="profile-header" id="profile-header-fd">Flappy Dante</h1>
+            <div id="profile-skins-box">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+                <img src="{{ url_for('static', filename='assets/skin_locked.png') }}"  width="70" height="50" alt="skin">
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>Wyzwanie</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+            <div class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                    {% if not loop.last %} &gt;&nbsp; {% endif %}
+                {% endfor %}
+            </div>
+        </a>
+    </div>
+
+    <div class="main-content" id="challenge-main-content">
+
+        <div class="container" id="challenge-instruction-container">
+            <p>Tekst polecenia <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar enim ac lorem mattis, porta pellentesque urna congue. Morbi et nunc risus. Quisque at accumsan nulla. Ut eu sodales nibh, et iaculis dolor. Pellentesque diam dolor, auctor quis congue lacinia, ultrices et erat. Cras tellus enim, posuere et hendrerit nec, condimentum eu magna. Nunc ac mollis risus. Phasellus sit amet mauris congue ante luctus suscipit ut sit amet nunc. Suspendisse vel diam non mi varius lobortis nec sed urna. Vestibulum in metus et quam feugiat tempus in ornare erat. </p>
+        </div>
+
+        <div class="container" id="challenge-send-file-container">
+             <button id="send-file-button">PRZEŚLIJ</button>
+        </div>
+        <div class="container" id="challenge-file-container">
+            <p>Upuść tutaj pliki źródłowe lub</p>
+            <button id="choose-file-button">Wybierz je z dysku</button>
+        </div>
+
+        <div class="container" id="challenge-unit-test-container">
+
+            <h1>Testy jednostkowe</h1>
+
+            <div id="challenge-unit-test-list">
+                <div class="challenge-unit-test-bar" id="unit-test-1-bar"><p>TEST 1</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-2-bar"><p>TEST 2</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-3-bar"><p>TEST 3</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-4-bar"><p>TEST 4</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-5-bar"><p>TEST 5</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-6-bar"><p>TEST 6</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-7-bar"><p>TEST 7</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 8</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 9</p></div>
+                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 10</p></div>
+
+            </div>
+
+        </div>
+
+        <div class="container" id="challenge-leaderboard-container"></div>
+
+        <div class="container" id="challenge-game-container">
+            <img src="{{ url_for('static', filename='assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
+            <button id="play-button">ZAGRAJ</button>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

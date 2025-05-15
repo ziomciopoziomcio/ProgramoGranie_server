@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>PP2 stats</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+            <div class="breadcrumb">
+                {% for item in breadcrumb %}
+                    <a href="{{ item.url }}">{{ item.name }}</a>
+                    {% if not loop.last %} &gt;&nbsp; {% endif %}
+                {% endfor %}
+            </div>
+        </a>
+    </div>
+
+    <div class="main-content stats-overall-content" id="stats-pp2-content">
+
+{# STATYSTYKI TEMATÓW #}
+        <div class="container stats-overall-topics-container" id="stats-pp2-topics-container">
+            <h1 class="stats-header">Statystyki tematów</h1>
+
+            <div class="topic">
+                <p>1. Pliki</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>2. Struktury</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>3. Unie</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>4. Dynamiczna alokacja pamięci I</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>5. Dynamiczna alokacja pamięci II</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>6. Dynamiczna alokacja pamięci - teksty i napisy</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>7. Wskaźniki do funkcji</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>8. Funkcje ze zmienną liczbą argumentów i argumenty funkcji main</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>9. Operacje bitowe oraz dyrektywy preprocesora</p>
+                <div class="progressbar"></div>
+            </div>
+            <div class="topic">
+                <p>10. Dynamiczne struktury danych</p>
+                <div class="progressbar"></div>
+            </div>
+
+        </div>
+{# STATYSTYKI PRZEDMIOTU #}
+        <div class="container stats-overall-subject-container" id="stats-pp2-subject-container">
+            <h1 class="stats-header">Statystyka przedmiotu</h1>
+
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+            <div class="stats-overall-stat-item"><p>stat x</p></div>
+
+
+        </div>
+{# LABEL #}
+        <div class="container stats-overall-subject-label-container" id="stats-pp2-subject-label-container">
+            <h1 class="stats-header">Podstawy Programowania 2</h1>
+        </div>
+{# STAN ZALICZENIA #}
+        <div class="container stats-overall-completion-container" id="stats-pp2-completion-container">
+            <h1 class="stats-header">Stan zaliczenia</h1>
+            <div class="progressbar"></div>
+        </div>
+{# OSIĄGNIĘCIA DO ZDOBYCIA #}
+        <div class="container stats-overall-achievements-container" id="stats-pp2-achievements-container">
+                <h1 class="stats-header">Osiągnięcia do zdobycia</h1>
+
+                    <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie1<br>postęp</p></div>
+                </div>
+
+                <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie2<br>postęp</p></div>
+                </div>
+
+                <div class="stats-achievement-position">
+                    <div class="ach-img-container"><img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}"  width="60" height="60" alt="Achievement"></div>
+                    <div class="ach-desc-container"><p>Osiągnięcie3<br>postęp</p></div>
+                </div>
+
+
+        </div>
+{# COMMITY #}
+        <div class="container stats-overall-commit-container" id="stats-pp2-commit-container"></div>
+
+    </div>
+
+
+</body>
+
+</html>
+

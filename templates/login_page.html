@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
+
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+    </div>
+
+    <div class="main-content" id="login-page-content">
+
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
+            <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
+
+        <div id="login-form">
+
+            <form>
+                <input type="text" placeholder="Login" required class="login-text-input">
+                <input type="password" placeholder="Hasło" required class="login-text-input">
+                <button type="submit" id="login-submit-button">Zaloguj</button>
+            </form>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
