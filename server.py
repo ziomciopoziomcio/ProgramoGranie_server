@@ -23,7 +23,7 @@ def index():
 def game():
     return render_template('game_page.html')
 
-@app.route('/index/pp1/stats')
+@app.route('/index/pp1')
 def pp1_stats():
     return render_template('pp1_stats_page.html')
 
@@ -31,11 +31,11 @@ def pp1_stats():
 def profile():
     return render_template('profile_page.html')
 
-@app.route('/index/pp2/stats')
+@app.route('/index/pp2')
 def pp2_stats():
     return render_template('pp2_stats_page.html')
 
-@app.route('/index/so2/stats')
+@app.route('/index/so2')
 def so2_stats():
     return render_template('so2_stats_page.html')
 
@@ -53,10 +53,9 @@ def generate_breadcrumb():
     custom_labels = {
         'index': 'Menu główne',
         'profile': 'Profil użytkownika',
-        'pp1': 'PP1',
-        'pp2': 'PP2',
-        'so2': 'SO2',
-        'stats': 'Statystyki',
+        'pp1': 'PP1 Statystyki',
+        'pp2': 'PP2 Statystyki',
+        'so2': 'SO2 Statystyki',
         'challenge': 'Wyzwanie',
         'game': 'Gra',
         'flappy_bird': 'Flappy Bird'
