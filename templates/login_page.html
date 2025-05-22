@@ -19,6 +19,17 @@
 </head>
 
 <body>
+    <div class="flash-messages">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message {{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
     <div class="navbar">
         <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
     </div>
@@ -26,19 +37,18 @@
     <div class="main-content" id="login-page-content">
 
         <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
-            <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
+        <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
 
         <div id="login-form">
 
-            <form>
-                <input type="text" placeholder="Login" required class="login-text-input">
-                <input type="password" placeholder="Hasło" required class="login-text-input">
+            <form action="{{ url_for('login') }}" method="POST">
+                <input type="email" name="email" placeholder="Login" required class="login-text-input">
+                <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
                 <button type="submit" id="login-submit-button">Zaloguj</button>
             </form>
 
         </div>
     </div>
-
 
 </body>
 

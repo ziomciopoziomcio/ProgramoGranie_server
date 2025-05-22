@@ -178,3 +178,5 @@ cython_debug/
 .idea/vcs.xml
 .idea/ProgramoGranie_server.iml
 /static/uploads
+config/credts/DB_credentials.json
+/.idea
