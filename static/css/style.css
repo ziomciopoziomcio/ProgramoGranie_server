@@ -147,6 +147,7 @@ p{
 }
 
 .subject-container {
+    position: relative;
     display: grid;
     gap: 5px;
     grid-template: 1fr 2fr / 1fr 2fr;
@@ -282,10 +283,40 @@ p{
     cursor: pointer;
 }
 
-.subject-container:has(.subject-info-button:hover) * {
-    opacity: 0.2;
-    transition: opacity 0.3s;
+.subject-hover-info {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    background:  transparent;
+    color: #000000;
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-size: 15px;
+    font-family: Roboto, Sans-Serif, serif;
+    /*z-index: 30;*/
+    text-align: center;
 }
+
+.subject-hover-info p {
+    color: #000000;
+    font-size: 15px;
+    font-family: Roboto, Sans-Serif, serif;
+    text-align: left;
+    margin: 8px 0;
+}
+
+/*.subject-container:has(.subject-info-button:hover) * {*/
+/*    opacity: 0.2;*/
+/*    transition: opacity 0.3s;*/
+/*}*/
+
+/*.subject-container:has(.subject-info-button:hover) .subject-hover-info {*/
+/*    display: block;*/
+/*    z-index: 10; !* opcjonalnie, jeśli coś się nakłada *!*/
+/*}*/
 
 .subject-container h1 {
     font-size: 20px;
