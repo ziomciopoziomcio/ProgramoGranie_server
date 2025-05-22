@@ -16,6 +16,8 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
     <title>Wyzwanie</title>
+
+    <script src="{{ url_for('static', filename='js/challenge.js') }}"></script>
 </head>
 
 <body>
@@ -37,13 +39,21 @@
             <p>Tekst polecenia <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar enim ac lorem mattis, porta pellentesque urna congue. Morbi et nunc risus. Quisque at accumsan nulla. Ut eu sodales nibh, et iaculis dolor. Pellentesque diam dolor, auctor quis congue lacinia, ultrices et erat. Cras tellus enim, posuere et hendrerit nec, condimentum eu magna. Nunc ac mollis risus. Phasellus sit amet mauris congue ante luctus suscipit ut sit amet nunc. Suspendisse vel diam non mi varius lobortis nec sed urna. Vestibulum in metus et quam feugiat tempus in ornare erat. </p>
         </div>
 
-        <div class="container" id="challenge-send-file-container">
-             <button id="send-file-button">PRZEŚLIJ</button>
-        </div>
         <div class="container" id="challenge-file-container">
-            <p>Upuść tutaj pliki źródłowe lub</p>
-            <button id="choose-file-button">Wybierz je z dysku</button>
-        </div>
+    <p>Upuść tutaj pliki źródłowe lub</p>
+    <div id="drag-drop-area" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+        Przeciągnij i upuść pliki tutaj
+    </div>
+    <button id="choose-file-button">Wybierz je z dysku</button>
+    <input type="file" id="file-input" style="display: none;" multiple>
+    <ul id="file-list">
+        <!-- Uploaded files will be dynamically added here -->
+    </ul>
+</div>
+
+<div class="container" id="challenge-send-file-container">
+    <button type="submit" id="send-file-button">Prześlij</button>
+</div>
 
         <div class="container" id="challenge-unit-test-container">
 
