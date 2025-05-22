@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const chooseFileButton = document.getElementById('choose-file-button');
     const dragDropArea = document.getElementById('drag-drop-area');
     const fileList = document.getElementById('file-list');
+    const sendFileButton = document.getElementById('send-file-button');
     const selectedFiles = new Set(); // To track unique files
+    const filesToUpload = []; // To store files for upload
 
     // Trigger file input when "Wybierz je z dysku" button is clicked
     chooseFileButton.addEventListener('click', () => {
@@ -36,10 +38,43 @@ document.addEventListener('DOMContentLoaded', () => {
         Array.from(files).forEach((file) => {
             if (!selectedFiles.has(file.name)) {
                 selectedFiles.add(file.name);
+                filesToUpload.push(file);
                 const li = document.createElement('li');
                 li.textContent = file.name;
                 fileList.appendChild(li);
             }
         });
     }
+
+    // Handle file upload
+    sendFileButton.addEventListener('click', async () => {
+        if (filesToUpload.length === 0) {
+            alert('Nie wybrano żadnych plików do przesłania.');
+            return;
+        }
+
+        const formData = new FormData();
+        filesToUpload.forEach((file) => {
+            formData.append('file', file);
+        });
+
+        try {
+            const response = await fetch('/index/challenge', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const uploadedFiles = await response.json();
+                alert('Pliki zostały pomyślnie przesłane!');
+                console.log('Uploaded files:', uploadedFiles);
+            } else {
+                const error = await response.json();
+                alert(`Błąd przesyłania plików: ${error.error}`);
+            }
+        } catch (error) {
+            alert('Wystąpił błąd podczas przesyłania plików.');
+            console.error(error);
+        }
+    });
 });
