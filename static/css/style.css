@@ -83,8 +83,38 @@ p{
 
 }
 
-.secondary-container{
+/* DEBUG NAVBAR COLOR (TODO: DELETE LATER) */
 
+/* Smartphones */
+@media (max-width: 480px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: red;
+    }
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: orange;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: yellow;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: greenyellow;
+    }
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - LOGIN PAGE - - - - - - - - - - - - - - - - - - - - - */
@@ -138,6 +168,48 @@ p{
 
 #login-main-pfp {
     margin: 0 auto;
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+    #login-page-content{
+        display: flex;
+        flex-direction: column;
+        margin: 0 5%;
+        /*background-color: pink;*/
+    }
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+    #login-page-content{
+        display: flex;
+        flex-direction: column;
+        margin: 0 15%;
+        /*background-color: pink;*/
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+    #login-page-content{
+        display: flex;
+        flex-direction: column;
+        margin: 0 25%;
+        /*background-color: pink;*/
+    }
+
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+    #login-page-content{
+        display: flex;
+        flex-direction: column;
+        margin: 0 30%;
+        /*background-color: pink;*/
+    }
+
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - MAIN PAGE - - - - - - - - - - - - - - - - - - - - - */
@@ -363,53 +435,7 @@ p{
 }
 
 
-/* TODO: media query responsiveness (on every page) */
 
-/* Smartphones */
-@media (max-width: 480px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: red;
-    }
-
-    #main-menu-main-content{
-        /*grid-template: 1fr 1fr 1fr 1fr / 1fr;*/
-    }
-}
-
-/* Tablets / large smartphones */
-@media (min-width: 481px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: orange;
-    }
-    #main-menu-main-content{
-        /*grid-template: 1fr 1fr 1fr / 1fr 1fr;*/
-    }
-}
-
-/* Laptops */
-@media (min-width: 769px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: yellow;
-    }
-    #main-menu-main-content{
-        /*grid-template: 1fr 3fr 3fr 3fr / 1fr 2fr;*/
-    }
-}
-
-/* Large desktops */
-@media (min-width: 1280px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: greenyellow;
-    }
-    #main-menu-main-content{
-        /*grid-template:  1fr 3fr 3fr 3fr / 1fr 2fr;*/
-    }
-
-}
 
 /* - - - - - - - - - - - - - - - - - - - - - STATS OVERALL PAGE - - - - - - - - - - - - - - - - - - - - - */
 .stats-overall-content{
