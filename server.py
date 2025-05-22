@@ -1,6 +1,7 @@
 import socket
 import threading
 import json
+import os
 from flask import Flask, request, jsonify, render_template, url_for, redirect, session, flash
 import mysql.connector
 import bcrypt
@@ -91,11 +92,38 @@ def pp2_stats():
 def so2_stats():
     return render_template('so2_stats_page.html')
 
+# FILE UPLOAD CONFIG
+# DO NOT TOUCH WITHOUT PERMISSION OF: ziomciopoziomcio pozderki
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+app.config['MAX_CONTENT_LENGTH'] = 24 * 1024 * 1024  # 24 MB limit
+if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 
-@app.route('/index/challenge')
+@app.route('/index/challenge', methods=['GET', 'POST'])
 def challenge():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return jsonify({'error': 'Nie wybrano pliku'}), 400
+        files = request.files.getlist('file')  # Get all files with the key 'file'
+        if not files:
+            return jsonify({'error': 'Nie wybrano plików'}), 400
+
+        uploaded_files = []
+        for file in files:
+            if file.filename == '':
+                continue
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+            file.save(file_path)
+            uploaded_files.append(file.filename)
+
+        if not uploaded_files:
+            return jsonify({'error': 'Nie zapisano żadnych plików'}), 400
+
+        return jsonify(uploaded_files)  # Return the list of uploaded files
+
     return render_template('challenge_page.html')
 
+# end of that stressful situation...
 
 @app.route('/game/flappy_bird')
 def flappy_bird():
