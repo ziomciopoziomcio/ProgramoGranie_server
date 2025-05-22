@@ -289,15 +289,8 @@ p{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 320px;
+    width: 100%;
     background:  transparent;
-    color: #000000;
-    border-radius: 8px;
-    padding: 20px 24px;
-    font-size: 15px;
-    font-family: Roboto, Sans-Serif, serif;
-    /*z-index: 30;*/
-    text-align: center;
 }
 
 .subject-hover-info p {
@@ -305,18 +298,9 @@ p{
     font-size: 15px;
     font-family: Roboto, Sans-Serif, serif;
     text-align: left;
+    padding-left: 20px;
     margin: 8px 0;
 }
-
-/*.subject-container:has(.subject-info-button:hover) * {*/
-/*    opacity: 0.2;*/
-/*    transition: opacity 0.3s;*/
-/*}*/
-
-/*.subject-container:has(.subject-info-button:hover) .subject-hover-info {*/
-/*    display: block;*/
-/*    z-index: 10; !* opcjonalnie, jeśli coś się nakłada *!*/
-/*}*/
 
 .subject-container h1 {
     font-size: 20px;
