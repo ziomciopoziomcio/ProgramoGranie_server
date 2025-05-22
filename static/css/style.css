@@ -173,43 +173,29 @@ p{
 /* Smartphones */
 @media (max-width: 480px) {
     #login-page-content{
-        display: flex;
-        flex-direction: column;
         margin: 0 5%;
-        /*background-color: pink;*/
     }
 }
 
 /* Tablets / large smartphones */
 @media (min-width: 481px) {
     #login-page-content{
-        display: flex;
-        flex-direction: column;
         margin: 0 15%;
-        /*background-color: pink;*/
     }
 }
 
 /* Laptops */
 @media (min-width: 769px) {
     #login-page-content{
-        display: flex;
-        flex-direction: column;
         margin: 0 25%;
-        /*background-color: pink;*/
     }
-
 }
 
 /* Large desktops */
 @media (min-width: 1280px) {
     #login-page-content{
-        display: flex;
-        flex-direction: column;
         margin: 0 30%;
-        /*background-color: pink;*/
     }
-
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - MAIN PAGE - - - - - - - - - - - - - - - - - - - - - */
