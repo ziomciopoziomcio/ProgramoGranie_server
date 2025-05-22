@@ -387,6 +387,10 @@ p{
     text-decoration: none;
 }
 
+#main-menu-profile-currency-container{
+    margin: 5px;
+}
+
 #main-menu-profile-achievements-container{
     background-color: rgba(111, 111, 111, 0.23);
     height: 90%;
@@ -394,10 +398,19 @@ p{
     max-width: 350px;
 }
 
+#main-menu-profile-achievements-container h2{
+    text-align: center;
+}
+
 #main-menu-profile-achievements-grid{
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
     gap: 5px;
+}
+
+.main-menu-profile-grid-cell{
+    display: flex;
+    justify-content: center;
 }
 
 .main-menu-profile-achievement-slot{
@@ -420,7 +433,127 @@ p{
     max-height: 375px;
 }
 
+/* Smartphones */
+@media (max-width: 480px) {
+    /* TODO (not necessary unless using small device) */
+}
 
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+
+
+    #main-menu-main-content{
+        grid-template: 4fr 1fr 3fr 3fr 3fr 5fr / 1fr;
+    }
+    #main-menu-subject-label-container {
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #main-menu-subject-so2-container{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    #main-menu-subject-pp2-container{
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+    #main-menu-subject-pp1-container{
+        grid-area: 5 / 1 / 6 / 2;
+    }
+
+    #main-menu-profile-container{
+        grid-area: 1 / 1 / 2 / 2;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 300px;
+    }
+
+    #main-menu-profile-achievements-grid{
+        display: grid;
+        grid-template: 1fr 1fr / 1fr 1fr 1fr;
+        gap: 5px;
+    }
+    #main-menu-competition-container{
+        grid-area: 6 / 1 / 7 / 2;
+        min-height: 300px;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+    #main-menu-main-content{
+        grid-template: 1fr 3fr 3fr 3fr 5fr / 1fr 1fr;
+    }
+    #main-menu-subject-label-container {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #main-menu-subject-so2-container{
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #main-menu-subject-pp2-container{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    #main-menu-subject-pp1-container{
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+    #main-menu-profile-container{
+        grid-area: 1 / 2 / 5 / 3;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #main-menu-profile-achievements-grid{
+        display: grid;
+        grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+        gap: 5px;
+    }
+    #main-menu-competition-container{
+        grid-area: 5 / 1 / 6 / 3;
+        min-height: 300px;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+    #main-menu-main-content{
+        grid-template: 1fr 3fr 3fr 3fr / 1fr 2fr;
+    }
+    #main-menu-subject-label-container {
+        grid-area: 1 / 1 / 2 / 2;
+    }
+
+    #main-menu-subject-so2-container{
+        grid-area: 2 / 1 / 3 / 2;
+    }
+
+    #main-menu-subject-pp2-container{
+        grid-area: 3 / 1 / 4 / 2;
+    }
+
+    #main-menu-subject-pp1-container{
+        grid-area: 4 / 1 / 5 / 2;
+    }
+
+    #main-menu-profile-container{
+        grid-area: 1 / 2 / 3 / 3;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #main-menu-profile-achievements-grid{
+        display: grid;
+        grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+        gap: 5px;
+    }
+    #main-menu-competition-container{
+        grid-area: 3 / 2 / 5 / 3;
+    }
+}
 
 
 /* - - - - - - - - - - - - - - - - - - - - - STATS OVERALL PAGE - - - - - - - - - - - - - - - - - - - - - */
