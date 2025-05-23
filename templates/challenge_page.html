@@ -89,21 +89,73 @@
 
             <div id="podium-container">
 
-                <div class="podium">
+                <div class="podium" id="second">
                     <div class="podium-user-icon">
-                        <div class="podium-user-icon-img"></div>
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
                         <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
                     </div>
 
                     <div class="podium-platform">
                         <div class="podium-platform-icon">
-                            <div class="podium-platform-icon-place"><p class="podium-label">1.</p></div>
-                            <div class="podium-platform-icon-img"></div>
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/cup_silver.png') }}" alt="2nd place cup">
+                            </div>
                         </div>
                     </div>
 
                     <div class="podium-progress-bar">
-                        <p class="podium-label">0/13</p>
+                        <p class="progress-bar-label">6/13</p>
+                        <div class="podium-progress-bar-done"></div>
+                        <div class="podium-progress-bar-base"></div>
+                    </div>
+
+                </div>
+                <div class="podium" id="first">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/cup_golden.png') }}" alt="winner cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">13/13</p>
+                        <div class="podium-progress-bar-done"></div>
+                        <div class="podium-progress-bar-base"></div>
+                    </div>
+
+                </div>
+                <div class="podium" id="third">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/cup_bronze.png') }}" alt="3rd place cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">2/13</p>
                         <div class="podium-progress-bar-done"></div>
                         <div class="podium-progress-bar-base"></div>
                     </div>
