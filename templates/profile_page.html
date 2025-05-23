@@ -38,17 +38,124 @@
 {# STATYSTYKI PRZEDMIOTÓW #}
         <div class="container" id="profile-subjects-stats-container">
             <h1 class="profile-header">Statystyki przedmiotów</h1>
+
             <div id="profile-subject-list">
+
                 <div class="profile-subject-list-position">
-                    <div class=""></div>
+                    <div class="profile-subject-code"><p>SO2<br>kod</p></div>
+                    <div class="profile-subject-content">
+                        <img src="{{ url_for('static', filename='assets/medal_empty.png') }}" alt="empty badge" class="subject-badge" id="main-menu-so2-badge-img">
+                        <a href="{{ url_for('so2_stats') }}"><button class="subject-stats-button" id="so2-topics-button">Statystyki</button></a>
+                    </div>
                 </div>
+
+                <div class="profile-subject-list-position">
+                    <div class="profile-subject-code"><p>PP2<br>kod</p></div>
+                    <div class="profile-subject-content">
+                        <img src="{{ url_for('static', filename='assets/medal_empty.png') }}" alt="empty badge" class="subject-badge" id="main-menu-pp2-badge-img">
+                        <a href="{{ url_for('pp2_stats') }}"><button class="subject-stats-button" id="pp2-topics-button">Statystyki</button></a>
+                    </div>
+                </div>
+
+                <div class="profile-subject-list-position">
+                    <div class="profile-subject-code"><p>PP1<br>kod</p></div>
+                    <div class="profile-subject-content">
+                        <img src="{{ url_for('static', filename='assets/medal_empty.png') }}" alt="empty badge" class="subject-badge" id="main-menu-pp1-badge-img">
+                        <a href="{{ url_for('pp1_stats') }}"><button class="subject-stats-button" id="pp1-topics-button">Statystyki</button></a>
+                    </div>
+                </div>
+
             </div>
 
         </div>
 {# WYRÓŻNIONE OSIĄGNIĘCIA (GABLOTA) #}
-        <div class="container" id="profile-featured-achievements-container"></div>
+        <div class="container" id="profile-featured-achievements-container">
+            <h1 class="profile-header">Wyróżnione osiągnięcia</h1>
+            <div id="profile-featured-achievements-list">
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+                <div class="profile-featured-slot-frame"><div class="profile-featured-slot"></div></div>
+
+            </div>
+
+        </div>
 {# WSZYSTKIE OSIĄGNIĘCIA #}
-        <div class="container" id="profile-all-achievements-container"></div>
+        <div class="container" id="profile-all-achievements-container">
+            <h1 class="profile-header">Wszystkie osiągnięcia</h1>
+            <div id="profile-all-achievements-list">
+
+                <div class="achievement-full" id="ach1">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach2">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach3">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach4">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach5">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach6">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+                <div class="achievement-full" id="ach7">
+                    <img src="{{ url_for('static', filename='assets/achievement_placeholder.png') }}" class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+                    <div class="achievement-progress-bar">
+                        <div class="progress-bar-done"></div>
+                        <div class="progress-bar-all"></div>
+                    </div>
+                    <div class="achievement-progress-stat"><p>1/2</p></div>
+                </div>
+
+            </div>
+        </div>
 {# SERIA #}
         <div class="container" id="profile-streak-container">
             <div id="streak-top-part">
