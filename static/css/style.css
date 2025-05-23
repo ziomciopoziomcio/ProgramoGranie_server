@@ -167,6 +167,7 @@ p{
 }
 
 .subject-container {
+    position: relative;
     display: grid;
     gap: 5px;
     grid-template: 1fr 2fr / 1fr 2fr;
@@ -302,9 +303,23 @@ p{
     cursor: pointer;
 }
 
-.subject-container:has(.subject-info-button:hover) * {
-    opacity: 0.2;
-    transition: opacity 0.3s;
+.subject-hover-info {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    background:  transparent;
+}
+
+.subject-hover-info p {
+    color: #000000;
+    font-size: 15px;
+    font-family: Roboto, Sans-Serif, serif;
+    text-align: left;
+    padding-left: 20px;
+    margin: 8px 0;
 }
 
 .subject-container h1 {
