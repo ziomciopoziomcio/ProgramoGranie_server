@@ -1078,6 +1078,10 @@ p{
     grid-template: 3fr 1fr 4fr / 1fr 1fr 1fr 1fr;
 }
 
+.challenge-header{
+    font-size: medium;
+}
+
 #challenge-instruction-container{
     grid-area: 1 / 1 / 2 / 4;
 }
@@ -1139,10 +1143,6 @@ p{
     grid-area: 2 / 2 / 4 / 3;
 }
 
-#challenge-unit-test-container h1{
-    font-size: medium;
-}
-
 #challenge-unit-test-list{
     display: flex;
     height: 90%;
@@ -1166,6 +1166,34 @@ p{
 #challenge-leaderboard-container {
     grid-area: 2 / 3 / 4 / 4;]
 }
+
+#podium-container{
+
+}
+
+.podium{
+
+}
+
+.podium-user-icon{}
+.podium-user-icon-img{}
+.podium-user-icon-name{}
+
+.podium-platform{}
+.podium-platform-icon{}
+.podium-platform-icon-place{}
+.podium-platform-icon-img{}
+
+.podium-progress-bar{}
+.podium-progress-bar-done{}
+.podium-progress-bar-base{}
+
+.podium-label{}
+
+
+
+
+
 
 #challenge-game-container{
     grid-area: 1 / 4 / 4 / 5;
