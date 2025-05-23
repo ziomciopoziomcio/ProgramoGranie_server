@@ -1088,6 +1088,26 @@ p{
 }
 
 
+/* Smartphones */
+@media (max-width: 480px) {
+
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+
+}
+
 
 /* - - - - - - - - - - - - - - - - - - - - - CHALLENGE PAGE - - - - - - - - - - - - - - - - - - - - - */
 
@@ -1319,6 +1339,26 @@ p{
     margin-bottom: 10px;
 }
 
+/* Smartphones */
+@media (max-width: 480px) {
+
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+
+}
+
 /* - - - - - - - - - - - - - - - - - - - - - GAME PAGE - - - - - - - - - - - - - - - - - - - - - */
 
 #game-main-content{
@@ -1452,6 +1492,7 @@ p{
     height: 35%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 #lock-img{
@@ -1483,6 +1524,13 @@ p{
     margin: 0 10px;
 }
 
+.purchase-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .small-flappy-coin{
     width: 10px;
     height: 10px;
@@ -1491,4 +1539,24 @@ p{
 .purchase-button{
     width: 100px;
     height: 33px;
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+
 }
