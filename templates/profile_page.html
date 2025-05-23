@@ -19,6 +19,8 @@
 </head>
 
 <body>
+
+{# PASEK NAWIGACYJNY #}
     <div class="navbar">
         <a href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
@@ -31,18 +33,39 @@
         </a>
     </div>
 
+{# GŁÓWNA ZAWARTOŚĆ #}
     <div class="main-content" id="profile-content">
+{# STATYSTYKI PRZEDMIOTÓW #}
+        <div class="container" id="profile-subjects-stats-container">
+            <h1 class="profile-header">Statystyki przedmiotów</h1>
+            <div id="profile-subject-list">
+                <div class="profile-subject-list-position">
+                    <div class=""></div>
+                </div>
+            </div>
 
-        <div class="container" id="profile-subjects-stats-container"></div>
-
+        </div>
+{# WYRÓŻNIONE OSIĄGNIĘCIA (GABLOTA) #}
         <div class="container" id="profile-featured-achievements-container"></div>
-
+{# WSZYSTKIE OSIĄGNIĘCIA #}
         <div class="container" id="profile-all-achievements-container"></div>
+{# SERIA #}
+        <div class="container" id="profile-streak-container">
+            <div id="streak-top-part">
+                <h1>12</h1>
+                <img src="{{ url_for('static', filename='assets/fire_streak.png') }}" id="streak-fire-img" alt="streak fire icon">
+            </div>
+            <div id="streak-bottom-part">
+                <p>Masz 12-dniową serię!</p>
+            </div>
+        </div>
 
-        <div class="container" id="profile-streak-container"></div>
+{# COMMITY #}
+        <div class="container" id="profile-commit-container">
+            <p>commit graph (TODO)</p>
+        </div>
 
-        <div class="container" id="profile-commit-container"></div>
-
+{# WIZYTÓWKA PROFILU #}
         <div class="container" id="profile-showcase-container">
             <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" width="80" height="80" id="profile-pfp" alt="Profile photo icon">
             <div class="profile-showcase-line"><p id="profile-user-name">Jan Kowalski</p></div>
@@ -51,6 +74,7 @@
 
         </div>
 
+{# GABLOTA SKINÓW #}
         <div class="container" id="profile-skins-container">
             <h1 class="profile-header" id="profile-header-fd">Flappy Dante</h1>
             <div id="profile-skins-box">
@@ -69,7 +93,6 @@
         </div>
 
     </div>
-
 
 </body>
 
