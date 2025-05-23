@@ -83,39 +83,39 @@ p{
 
 }
 
-/* DEBUG NAVBAR COLOR (TODO: DELETE LATER) */
 
-/* Smartphones */
-@media (max-width: 480px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: red;
-    }
-}
+/*!* Smartphones *!*/
+/*@media (max-width: 480px) {*/
+/*    !*DEBUG TEST*!*/
+/*    .navbar{*/
+/*        background: red;*/
+/*    }*/
+/*}*/
 
-/* Tablets / large smartphones */
-@media (min-width: 481px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: orange;
-    }
-}
+/*!* Tablets / large smartphones *!*/
+/*@media (min-width: 481px) {*/
+/*    !*DEBUG TEST*!*/
+/*    .navbar{*/
+/*        background: orange;*/
+/*    }*/
+/*}*/
 
-/* Laptops */
-@media (min-width: 769px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: yellow;
-    }
-}
+/*!* Laptops *!*/
+/*@media (min-width: 769px) {*/
+/*    !*DEBUG TEST*!*/
+/*    .navbar{*/
+/*        background: yellow;*/
+/*    }*/
+/*}*/
 
-/* Large desktops */
-@media (min-width: 1280px) {
-    /*DEBUG TEST*/
-    .navbar{
-        background: greenyellow;
-    }
-}
+/*!* Large desktops *!*/
+/*@media (min-width: 1280px) {*/
+/*    !*DEBUG TEST*!*/
+/*    .navbar{*/
+/*        background: greenyellow;*/
+/*    }*/
+/*}*/
+
 
 /* - - - - - - - - - - - - - - - - - - - - - LOGIN PAGE - - - - - - - - - - - - - - - - - - - - - */
 
