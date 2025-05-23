@@ -609,10 +609,12 @@ p{
 .stats-overall-stat-item{
     background-color: #c1c1c2;
     border-radius: 5px;
+    max-height: 50px;
+    display: flex;
+    align-items: center;
 }
-
-.stats-overall-subject-container p {
-    margin: 3%;
+.stats-overall-stat-item p{
+    margin-left: 10px;
 }
 
 .stats-overall-subject-label-container{
@@ -638,8 +640,13 @@ p{
     justify-content: space-between;
 }
 
-.stats-achievement-position{
+#stats-achievement-list{
     display: flex;
+    flex-direction: column;
+}
+
+.stats-achievement-position{
+
 }
 
 .stats-overall-commit-container{
@@ -656,51 +663,57 @@ p{
 
 
     .stats-overall-content{ /*main*/
-        grid-template: 1fr 1fr 3fr 2fr / 3fr 2fr 1fr;
+        grid-template: 1fr 5fr 7fr 3fr 2fr/ 1fr 1fr 1fr;
     }
     .stats-overall-topics-container{ /*statystyki tematow*/
-        grid-area: 1 / 1 / 5 / 2;
+        grid-area: 3 / 1 / 4 / 4;
+        min-height: 500px;
     }
-    .stats-overall-subject-container{ /*statystyki przedmiotow*/
-        grid-area: 1 / 2 / 4 / 3;
+    .stats-overall-subject-container{ /*statystyki przedmiotu*/
+        grid-area: 2 / 1 / 3 / 4;
+        min-height: 400px;
     }
     .stats-overall-subject-label-container{ /*nazwa przedmiotu*/
-        grid-area: 1 / 3 / 2 / 4;
+        grid-area: 1 / 1 / 2 / 2;
     }
     .stats-overall-completion-container{ /*stan zaliczenia*/
-        grid-area: 2 / 3 / 3 / 4;
+        grid-area: 1 / 2 / 2 / 4;
+        min-height: 60px;
     }
     .stats-overall-achievements-container{ /*osiagniecia*/
-        grid-area: 3 / 3 / 4 / 4;
+        grid-area: 4 / 1 / 5 / 4;
+        flex-direction: row;
     }
     .stats-overall-commit-container{ /*commity*/
-        grid-area: 4 / 2 / 5 / 4;
+        grid-area: 5 / 1 / 6 / 4;
     }
-
 }
 
 /* Laptops */
 @media (min-width: 769px) {
     .stats-overall-content{ /*main*/
-        grid-template: 1fr 5fr 7fr 2fr/ 3fr 2fr 1fr;
+        grid-template: 1fr 5fr 7fr 2fr/ 1fr 1fr 1fr;
     }
     .stats-overall-topics-container{ /*statystyki tematow*/
-        grid-area: 1 / 1 / 5 / 2;
+        grid-area: 3 / 1 / 4 / 4;
+        min-height: 500px;
     }
-    .stats-overall-subject-container{ /*statystyki przedmiotow*/
-        grid-area: 1 / 2 / 4 / 3;
+    .stats-overall-subject-container{ /*statystyki przedmiotu*/
+        grid-area: 2 / 1 / 3 / 3;
+        min-height: 400px;
     }
     .stats-overall-subject-label-container{ /*nazwa przedmiotu*/
-        grid-area: 1 / 3 / 2 / 4;
+        grid-area: 1 / 1 / 2 / 2;
     }
     .stats-overall-completion-container{ /*stan zaliczenia*/
-        grid-area: 2 / 3 / 3 / 4;
+        grid-area: 1 / 2 / 2 / 4;
+        min-height: 60px;
     }
     .stats-overall-achievements-container{ /*osiagniecia*/
-        grid-area: 3 / 3 / 4 / 4;
+        grid-area: 2 / 3 / 3 / 4;
     }
     .stats-overall-commit-container{ /*commity*/
-        grid-area: 4 / 2 / 5 / 4;
+        grid-area: 4 / 1 / 5 / 4;
     }
 }
 
