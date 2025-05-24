@@ -141,11 +141,33 @@
 {# SKLEP #}
         <div class="container" id="game-items-container">
 
-            <div class="game-sub-menu">
+            <div class="game-sub-menu" id="user-equipment">
+
                 <button id="game-eq-sign">EKWIPUNEK</button>
+
+                <div id="game-currency-area">
+                    <img class="big-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin">
+                    <h1 class="game-header">23</h1>
+                </div>
+
+                <div id="switching-area">
+                    <div class="item-choice-area">
+                        <button class="game-styled-arrow-button arrow-left"></button>
+                        <img id="game-background-preview" src="{{ url_for('static', filename='assets/fb_bg_regular_1_preview.png') }}" alt="tło">
+                        <button class="game-styled-arrow-button arrow-right"></button>
+                    </div>
+
+                    <div class="item-choice-area">
+                        <button class="game-styled-arrow-button arrow-left"></button>
+                        <img id="game-skin-preview" src="{{ url_for('static', filename='assets/fb_skin_flametail.png') }}" alt="ptak">
+                        <button class="game-styled-arrow-button arrow-right"></button>
+                    </div>
+                </div>
 
 
             </div>
+
+
             <div class="game-sub-menu" id="item-shop">
                 <button id="game-shop-sign">SKLEP</button>
 
@@ -156,7 +178,7 @@
                         <p class="item-description">Podejrzyj zawartość dowolnego testu i zobacz, co dzieli cię od zwycięstwa nad innymi! </p>
                     </div>
                     <div class="purchase-area">
-                        <button class="game-styled-button purchase-button">xx<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
+                        <button class="game-styled-button purchase-button">10<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
                     </div>
                 </div>
 
@@ -167,7 +189,7 @@
                         <p class="item-description">Uzyskaj podpowiedź napisaną przez autora zadania! (Max 3)</p>
                     </div>
                     <div class="purchase-area">
-                        <button class="game-styled-button purchase-button">xx<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
+                        <button class="game-styled-button purchase-button">25<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
                     </div>
                 </div>
 

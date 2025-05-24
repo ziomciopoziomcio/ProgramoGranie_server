@@ -1327,7 +1327,6 @@ p{
 
 .podium-platform{
     background-color: #8005E4;
-    height: 200px;
 }
 .podium-platform-icon{
     display: flex;
@@ -1379,18 +1378,35 @@ p{
     z-index: 3;
 }
 
+#first .podium-platform{
+    height: 200px;
+}
+#first .podium-progress-bar-done{
+    width: calc( (13/13)*100%);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+/*  TODO: AUTOMATE WITH A SCRIPT ACTIVATING BORDER RADIUS WHEN BAR COMPLETE  */
+}
+
 #second .podium-platform{
     height: 150px;
 }
+#second .podium-progress-bar-done{
+    width: calc( (6/13)*100%);
+}
+
 #third .podium-platform{
     height: 120px;
+}
+#third .podium-progress-bar-done{
+    width: calc( (2/13)*100%);
 }
 
 #challenge-game-container{
     grid-area: 1 / 4 / 4 / 5;
     display: grid;
     grid-template-rows: auto 1fr;
-    background-image: url('/static/assets/fb_bg_1.png');
+    background-image: url('/static/assets/fb_bg_regular_1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1601,6 +1617,29 @@ p{
     background: #868686;
 }
 
+#game-currency-area{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 10px;
+}
+
+#game-currency-area h1 {
+    font-size: xx-large;
+    margin: 0 0 0 8px;
+}
+
+.big-flappy-coin{
+    width: 40px;
+    height: 40px;
+}
+
+#switching-area{
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
 #game-eq-sign {
     justify-self: center;
     width: 210px;
@@ -1619,6 +1658,38 @@ p{
     position: absolute;
     top: -25px;
     right: -15px;
+}
+
+.item-choice-area{
+    display: flex;
+    align-items: center;
+}
+
+.game-styled-arrow-button{
+    justify-self: center;
+    width: 41px;
+    height: 40px;
+    margin: 5px;
+    background-size: cover;
+    background-position: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.game-styled-arrow-button:hover {
+    opacity: 0.8;
+}
+
+.arrow-left{
+    background-image: url('/static/assets/arrow_button_left.png');
+}
+.arrow-right{
+    background-image: url('/static/assets/arrow_button_right.png');
+}
+
+#game-background-preview, #game-skin-preview{
+    height: 100px;
+    width: 100px;
 }
 
 #game-shop-sign {
@@ -1696,13 +1767,13 @@ p{
 }
 
 .small-flappy-coin{
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
 }
 
 .purchase-button{
-    width: 100px;
-    height: 33px;
+    width: 150px;
+    height: 50px;
 }
 
 /* Smartphones */
