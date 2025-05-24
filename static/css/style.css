@@ -1637,7 +1637,7 @@ p{
     align-content: center;
     justify-content: space-evenly;
 
-    height: calc(100% - 85px);
+    height: calc(50%);
 }
 
 #game-eq-sign {
@@ -1690,6 +1690,11 @@ p{
 #game-background-preview, #game-skin-preview{
     height: 150px;
     width: 150px;
+}
+
+#game-eq-footer{
+    display: flex;
+    justify-content: center;
 }
 
 #game-shop-sign {
