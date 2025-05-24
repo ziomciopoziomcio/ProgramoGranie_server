@@ -78,3 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// play button navigates to the game page
+document.addEventListener('DOMContentLoaded', () => {
+    const playButton = document.getElementById('play-button');
+    if (playButton) {
+        playButton.addEventListener('click', () => {
+            window.location.href = '/index/game';
+        });
+    }
+});
