@@ -78,44 +78,40 @@ p{
     min-height: 20px;
     padding: 10px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    /*margin: 5px;*/
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    /*padding: 10px;*/
-
 }
 
 
-/*!* Smartphones *!*/
-/*@media (max-width: 480px) {*/
-/*    !*DEBUG TEST*!*/
-/*    .navbar{*/
-/*        background: red;*/
-/*    }*/
-/*}*/
+/* Smartphones */
+@media (max-width: 480px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: red;
+    }
+}
 
-/*!* Tablets / large smartphones *!*/
-/*@media (min-width: 481px) {*/
-/*    !*DEBUG TEST*!*/
-/*    .navbar{*/
-/*        background: orange;*/
-/*    }*/
-/*}*/
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: orange;
+    }
+}
 
-/*!* Laptops *!*/
-/*@media (min-width: 769px) {*/
-/*    !*DEBUG TEST*!*/
-/*    .navbar{*/
-/*        background: yellow;*/
-/*    }*/
-/*}*/
+/* Laptops */
+@media (min-width: 769px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: yellow;
+    }
+}
 
-/*!* Large desktops *!*/
-/*@media (min-width: 1280px) {*/
-/*    !*DEBUG TEST*!*/
-/*    .navbar{*/
-/*        background: greenyellow;*/
-/*    }*/
-/*}*/
+/* Large desktops */
+@media (min-width: 1280px) {
+    /*DEBUG TEST*/
+    .navbar{
+        background: greenyellow;
+    }
+}
 
 
 /* - - - - - - - - - - - - - - - - - - - - - LOGIN PAGE - - - - - - - - - - - - - - - - - - - - - */
@@ -1015,6 +1011,7 @@ p{
 
 #profile-streak-container{
     grid-area: 3 / 3 / 4 / 4;
+    min-height: 120px;
 }
 
 #streak-top-part{
@@ -1090,22 +1087,109 @@ p{
 
 /* Smartphones */
 @media (max-width: 480px) {
-
+    /* TODO */
 }
 
 /* Tablets / large smartphones */
 @media (min-width: 481px) {
-
+    #profile-content{
+        grid-template: 1fr 1fr 1fr 1fr 1fr 1fr 2fr 4fr / 1fr;
+    }
+    #profile-subjects-stats-container{
+        grid-area: 3 / 1 / 4 / 2;
+        max-width: none;
+    }
+    #profile-featured-achievements-container{
+        grid-area: 2 / 1 / 3 / 2;
+        max-width: none;
+    }
+    #profile-all-achievements-container{
+        grid-area: 7 / 1 / 8 / 2;
+        min-height: 500px;
+        max-width: none;
+    }
+    #profile-commit-container{
+        grid-area: 5 / 1 / 6 / 2;
+        min-height: 200px;
+        max-width: none;
+    }
+    #profile-streak-container{
+        grid-area: 4 / 1 / 5 / 2;
+        max-width: none;
+    }
+    #profile-showcase-container {
+        grid-area: 1 / 1 / 2 / 2;
+        flex-direction: row;
+        justify-content: space-evenly;
+        max-width: none;
+    }
+    #profile-skins-container{
+        grid-area: 6 / 1 / 7 / 2;
+        min-height: 150px;
+        max-width: none;
+    }
 }
 
 /* Laptops */
 @media (min-width: 769px) {
-
+    #profile-content{
+        grid-template: 1fr 1fr 1fr 4fr / 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+    #profile-subjects-stats-container{
+        grid-area: 2 / 1 / 3 / 4;
+    }
+    #profile-featured-achievements-container{
+        grid-area: 1 / 4 / 2 / 7;
+    }
+    #profile-all-achievements-container{
+        grid-area: 4 / 1 / 5 / 7;
+        min-height: 350px;
+        max-width: none;
+    }
+    #profile-commit-container{
+        grid-area: 3 / 1 / 4 / 5;
+    }
+    #profile-streak-container{
+        grid-area: 3 / 5 / 4 / 7;
+    }
+    #profile-showcase-container {
+        grid-area: 1 / 1 / 2 / 4;
+        justify-content: space-evenly;
+    }
+    #profile-skins-container{
+        grid-area: 2 / 4 / 3 / 7;
+    }
 }
 
 /* Large desktops */
 @media (min-width: 1280px) {
 
+    #profile-content{
+        grid-template: 35fr 33fr 21fr / 33fr 60fr 48fr 33fr;
+    }
+    #profile-subjects-stats-container{
+        grid-area: 1 / 1 / 2 / 2;
+    }
+    #profile-featured-achievements-container{
+        grid-area: 2 / 1 / 3 / 2;
+    }
+    #profile-all-achievements-container{
+        grid-area: 1 / 2 / 3 / 4;
+    }
+    #profile-commit-container{
+        grid-area: 3 / 1 / 4 / 3;
+    }
+    #profile-streak-container{
+        grid-area: 3 / 3 / 4 / 4;
+    }
+    #profile-showcase-container {
+        grid-area: 1 / 4 / 1 / 5;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+    #profile-skins-container{
+        grid-area: 2 / 4 / 4 / 5;
+    }
 }
 
 
