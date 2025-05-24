@@ -468,6 +468,101 @@ p{
     max-height: 375px;
 }
 
+#main-menu-events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 580px;
+}
+
+#main-menu-events-container h2 {
+    font-family: Roboto, Sans-Serif, serif;
+    font-size: 18px;
+    margin: 10px 10px;
+    text-align: center;
+}
+
+.event-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-family: Roboto, Sans-Serif, serif;
+    font-size: 14px;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(111, 111, 111, 0.23);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+
+.event-status {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4579F9;
+    border-radius: 5px;
+    margin-right: 10px;
+    padding: 0 20px;
+    font-family: Roboto, Sans-Serif, serif;
+    font-size: 14px;
+}
+
+.event-join-button {
+    width: 140px;
+    height: 40px;
+    background-color: #4579F9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.event-join-button.status-open:hover {
+    background-color: #6AAE6A;
+}
+
+.event-preview-button {
+    width: 140px;
+    height: 40px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.event-preview-button:hover {
+    background-color: #4e555b;
+}
+
+.status-open {
+    background-color: #7BD178;
+    color: #1A9E0E;
+    font-family: Roboto, Sans-Serif, serif;
+    font-weight: bold;
+}
+
+.status-closed {
+    background-color: #D17878;
+    color: #971414;
+    font-family: Roboto, Sans-Serif, serif;
+    font-weight: bold;
+}
+
+.status-finished {
+    background-color: #6F6F6F;
+    color: black;
+    font-family: Roboto, Sans-Serif, serif;
+    font-weight: bold;
+}
+
 /* Smartphones */
 @media (max-width: 480px) {
     /* TODO (not necessary unless using small devices) */
