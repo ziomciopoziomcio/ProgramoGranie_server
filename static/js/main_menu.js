@@ -27,3 +27,9 @@ document.querySelectorAll('.subject-info-button').forEach(btn => {
     hoverInfo.addEventListener('mouseenter', showInfo);
     hoverInfo.addEventListener('mouseleave', hideInfo);
 });
+
+document.querySelectorAll('.event-join-button.status-open').forEach(button => {
+    button.addEventListener('click', () => {
+        window.location.href = '/index/challenge';
+    });
+});

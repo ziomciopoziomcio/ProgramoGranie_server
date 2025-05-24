@@ -144,8 +144,10 @@
                 <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}" width="30" height="30" id="profile-dante-coin" alt="dante coin icon"><p id="profile-dante-coin">xx</p></div>
                 <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/fire_1.png') }}"  width="30" height="40" id="profile-joker-points" alt="joker point icon"><p id="profile-joker-points">xx</p></div>
             </div>
+
             <div id="main-menu-profile-achievements-container">
                 <h2>wyróznione osiągnięcia</h2>
+
                 <div id="main-menu-profile-achievements-grid">
                     <div class="main-menu-profile-grid-cell"><div class="main-menu-profile-achievement-slot"></div></div>
                     <div class="main-menu-profile-grid-cell"><div class="main-menu-profile-achievement-slot"></div></div>
@@ -163,8 +165,35 @@
 
 {# KAFELEK IGRZYSK #}
         <div class="container" id="main-menu-competition-container">
-            <img src="../static/assets/games_logo.png" alt="Logo" id="main-menu-competition-logo">
+          
+            <img src="../static/assets/logo_main_1.0.png" alt="Logo" id="main-menu-competition-logo">
+             <div id="main-menu-events-container">
+            <h2>Nadchodzące</h2>
+            <div class="event-container">
+                 <div class="event-status status-open">STATUS: OTWARTE</div>
+                <p>#3 Igrzyska pozostało 00:54:04</p>
+                <button class="event-join-button status-open">Dołącz</button>
+            </div>
+            <div class="event-container">
+                 <div class="event-status status-closed">STATUS: ZAMKNIĘTE</div>
+                 <p>#4 Igrzyska za 6d 23:05:54</p>
+                <button class="event-join-button status-closed">Dołącz</button>
+            </div>
+            <h2>Zakończone</h2>
+            <div class="event-container">
+                 <div class="event-status status-finished" >ZAKOŃCZONE</div>
+                 <p>#2 Igrzyska 7d 00:05:54 temu</p>
+                 <button class="event-preview-button status-finished">Podgląd</button>
+            </div>
+            <div class="event-container">
+                 <div class="event-status status-finished">ZAKOŃCZONE</div>
+                 <p>#1 Igrzyska 14d 00:05:54 temu</p>
+                <button class="event-preview-button status-finished">Podgląd</button>
+            </div>
+
         </div>
+
+</div>
 
     </div>
     <script src="{{ url_for('static', filename='js/main_menu.js') }}"></script>
