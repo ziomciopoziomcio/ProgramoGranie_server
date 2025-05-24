@@ -8,14 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/challenge_style.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
-{#  jQuery  #}
+    {#  jQuery  #}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Gra</title>
@@ -24,183 +25,198 @@
 <body>
 
 {# NAVBAR #}
-    <div class="navbar">
-        <a href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
-            <div class="breadcrumb">
-                {% for item in breadcrumb %}
-                    <a href="{{ item.url }}">{{ item.name }}</a>
-                    {% if not loop.last %} &gt;&nbsp; {% endif %}
-                {% endfor %}
-            </div>
-        </a>
-    </div>
+<div class="navbar">
+    <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+        <div class="breadcrumb">
+            {% for item in breadcrumb %}
+                <a href="{{ item.url }}">{{ item.name }}</a>
+                {% if not loop.last %} &gt;&nbsp; {% endif %}
+            {% endfor %}
+        </div>
+    </a>
+</div>
 
 {# MAIN CONTENT #}
-    <div class="main-content" id="game-main-content">
+<div class="main-content" id="game-main-content">
 
-{# POWRÓT DO WYZWANIA #}
-        <div class="container" id="game-label-container">
-            <img id="game-label-img" src="{{ url_for('static', filename='assets/games_logo_cropped.png') }}" alt="logo igrzysk">
-            <h1 class="game-header">Pozostało: xx:xx:xx</h1>
-            <button class="game-styled-button" id="back-button">POWRÓT</button>
-        </div>
-
-{# TABLICA WYNIKÓW #}
-        <div class="container" id="game-leaderboard-container">
-
-            <h1 class="game-header">Bierze udział: xxx</h1>
-            <h1 class="game-header">Ukończyło: x </h1>
-
-            <div id="podium-container">
-
-                <div class="podium" id="second">
-                    <div class="podium-user-icon">
-                        <div class="podium-user-icon-img">
-                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
-                        </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                    </div>
-
-                    <div class="podium-platform">
-                        <div class="podium-platform-icon">
-                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p></div>
-                            <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_silver.png') }}" alt="2nd place cup">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="podium-progress-bar">
-                        <p class="progress-bar-label">6/13</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
-                    </div>
-
-                </div>
-                <div class="podium" id="first">
-                    <div class="podium-user-icon">
-                        <div class="podium-user-icon-img">
-                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
-                        </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                    </div>
-
-                    <div class="podium-platform">
-                        <div class="podium-platform-icon">
-                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p></div>
-                            <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_golden.png') }}" alt="winner cup">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="podium-progress-bar">
-                        <p class="progress-bar-label">13/13</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
-                    </div>
-
-                </div>
-                <div class="podium" id="third">
-                    <div class="podium-user-icon">
-                        <div class="podium-user-icon-img">
-                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
-                        </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                    </div>
-
-                    <div class="podium-platform">
-                        <div class="podium-platform-icon">
-                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p></div>
-                            <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_bronze.png') }}" alt="3rd place cup">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="podium-progress-bar">
-                        <p class="progress-bar-label">2/13</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-{# FLAPPY DANTE #}
-        <div class="container" id="game-game-container">
-
-            <div id="game-container" style="width: 300px; height: 600px; border: 1px solid #ccc;">
-                <iframe src="{{ url_for('flappy_bird') }}" width="100%" height="100%" style="border: none;"></iframe>
-            </div>
-        </div>
-
-{# SKLEP #}
-        <div class="container" id="game-items-container">
-
-            <div class="game-sub-menu" id="user-equipment">
-
-                <button id="game-eq-sign">EKWIPUNEK</button>
-
-                <div id="game-currency-area">
-                    <img class="big-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin">
-                    <h1 class="game-header">23</h1>
-                </div>
-
-                <div id="switching-area">
-                    <div class="item-choice-area">
-                        <button class="game-styled-arrow-button arrow-left"></button>
-                        <img id="game-background-preview" src="{{ url_for('static', filename='assets/fb_bg_regular_1_preview.png') }}" alt="tło">
-                        <button class="game-styled-arrow-button arrow-right"></button>
-                    </div>
-
-                    <div class="item-choice-area">
-                        <button class="game-styled-arrow-button arrow-left"></button>
-                        <img id="game-skin-preview" src="{{ url_for('static', filename='assets/fb_skin_flametail.png') }}" alt="ptak">
-                        <button class="game-styled-arrow-button arrow-right"></button>
-                    </div>
-                </div>
-                <div id="game-eq-footer">
-                    <button class="game-styled-button">POTWIERDŹ</button>
-                </div>
-
-            </div>
-
-
-            <div class="game-sub-menu" id="item-shop">
-                <button id="game-shop-sign">SKLEP</button>
-
-                <div class="shop-pos">
-                    <img id="lock-img" src="{{ url_for('static', filename='assets/lock.png') }}" alt="kłódka">
-                    <div class="item-text">
-                        <h1 class="item-name">KLUCZ DO TESTU</h1>
-                        <p class="item-description">Podejrzyj zawartość dowolnego testu i zobacz, co dzieli cię od zwycięstwa nad innymi! </p>
-                    </div>
-                    <div class="purchase-area">
-                        <button class="game-styled-button purchase-button">10<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
-                    </div>
-                </div>
-
-                <div class="shop-pos">
-                    <img id="lightbulb-img" src="{{ url_for('static', filename='assets/lightbulb.png') }}" alt="lampka">
-                    <div class="item-text">
-                        <h1 class="item-name">PODPOWIEDŹ</h1>
-                        <p class="item-description">Uzyskaj podpowiedź napisaną przez autora zadania! (Max 3)</p>
-                    </div>
-                    <div class="purchase-area">
-                        <button class="game-styled-button purchase-button">25<img class="small-flappy-coin" src="{{ url_for('static', filename='assets/flappy_coin.png') }}" alt="flappy coin"></button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
+    {# POWRÓT DO WYZWANIA #}
+    <div class="container" id="game-label-container">
+        <img id="game-label-img" src="{{ url_for('static', filename='assets/game_assets/games_logo_cropped.png') }}"
+             alt="logo igrzysk">
+        <h1 class="game-header">Pozostało: xx:xx:xx</h1>
+        <button class="game-styled-button" id="back-button">POWRÓT</button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+    {# TABLICA WYNIKÓW #}
+    <div class="container" id="game-leaderboard-container">
+
+        <h1 class="game-header">Bierze udział: xxx</h1>
+        <h1 class="game-header">Ukończyło: x </h1>
+
+        <div id="podium-container">
+
+            <div class="podium" id="second">
+                <div class="podium-user-icon">
+                    <div class="podium-user-icon-img">
+                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
+                             alt="profile picture">
+                    </div>
+                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                </div>
+
+                <div class="podium-platform">
+                    <div class="podium-platform-icon">
+                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p>
+                        </div>
+                        <div class="podium-platform-icon-img">
+                            <img src="{{ url_for('static', filename='assets/game_assets/cup_silver.png') }}" alt="2nd place cup">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="podium-progress-bar">
+                    <p class="progress-bar-label">6/13</p>
+                    <div class="podium-progress-bar-done"></div>
+                    <div class="podium-progress-bar-base"></div>
+                </div>
+
+            </div>
+            <div class="podium" id="first">
+                <div class="podium-user-icon">
+                    <div class="podium-user-icon-img">
+                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
+                             alt="profile picture">
+                    </div>
+                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                </div>
+
+                <div class="podium-platform">
+                    <div class="podium-platform-icon">
+                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p>
+                        </div>
+                        <div class="podium-platform-icon-img">
+                            <img src="{{ url_for('static', filename='assets/game_assets/cup_golden.png') }}" alt="winner cup">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="podium-progress-bar">
+                    <p class="progress-bar-label">13/13</p>
+                    <div class="podium-progress-bar-done"></div>
+                    <div class="podium-progress-bar-base"></div>
+                </div>
+
+            </div>
+            <div class="podium" id="third">
+                <div class="podium-user-icon">
+                    <div class="podium-user-icon-img">
+                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
+                             alt="profile picture">
+                    </div>
+                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                </div>
+
+                <div class="podium-platform">
+                    <div class="podium-platform-icon">
+                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p>
+                        </div>
+                        <div class="podium-platform-icon-img">
+                            <img src="{{ url_for('static', filename='assets/game_assets/cup_bronze.png') }}" alt="3rd place cup">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="podium-progress-bar">
+                    <p class="progress-bar-label">2/13</p>
+                    <div class="podium-progress-bar-done"></div>
+                    <div class="podium-progress-bar-base"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    {# FLAPPY DANTE #}
+    <div class="container" id="game-game-container">
+
+        <div id="game-container" style="width: 300px; height: 600px; border: 1px solid #ccc;">
+            <iframe src="{{ url_for('flappy_bird') }}" width="100%" height="100%" style="border: none;"></iframe>
+        </div>
+    </div>
+
+    {# SKLEP #}
+    <div class="container" id="game-items-container">
+
+        <div class="game-sub-menu" id="user-equipment">
+
+            <button id="game-eq-sign">EKWIPUNEK</button>
+
+            <div id="game-currency-area">
+                <img class="big-flappy-coin" src="{{ url_for('static', filename='assets/game_assets/flappy_coin.png') }}"
+                     alt="flappy coin">
+                <h1 class="game-header">23</h1>
+            </div>
+
+            <div id="switching-area">
+                <div class="item-choice-area">
+                    <button class="game-styled-arrow-button arrow-left"></button>
+                    <img id="game-background-preview"
+                         src="{{ url_for('static', filename='assets/game_assets/fb_bg_regular_1_preview.png') }}" alt="tło">
+                    <button class="game-styled-arrow-button arrow-right"></button>
+                </div>
+
+                <div class="item-choice-area">
+                    <button class="game-styled-arrow-button arrow-left"></button>
+                    <img id="game-skin-preview" src="{{ url_for('static', filename='assets/game_assets/fb_skin_flametail.png') }}"
+                         alt="ptak">
+                    <button class="game-styled-arrow-button arrow-right"></button>
+                </div>
+            </div>
+            <div id="game-eq-footer">
+                <button class="game-styled-button">POTWIERDŹ</button>
+            </div>
+
+        </div>
+
+
+        <div class="game-sub-menu" id="item-shop">
+            <button id="game-shop-sign">SKLEP</button>
+
+            <div class="shop-pos">
+                <img id="lock-img" src="{{ url_for('static', filename='assets/lock.png') }}" alt="kłódka">
+                <div class="item-text">
+                    <h1 class="item-name">KLUCZ DO TESTU</h1>
+                    <p class="item-description">Podejrzyj zawartość dowolnego testu i zobacz, co dzieli cię od
+                        zwycięstwa nad innymi! </p>
+                </div>
+                <div class="purchase-area">
+                    <button class="game-styled-button purchase-button">10<img class="small-flappy-coin"
+                                                                              src="{{ url_for('static', filename='assets/game_assets/flappy_coin.png') }}"
+                                                                              alt="flappy coin"></button>
+                </div>
+            </div>
+
+            <div class="shop-pos">
+                <img id="lightbulb-img" src="{{ url_for('static', filename='assets/lightbulb.png') }}" alt="lampka">
+                <div class="item-text">
+                    <h1 class="item-name">PODPOWIEDŹ</h1>
+                    <p class="item-description">Uzyskaj podpowiedź napisaną przez autora zadania! (Max 3)</p>
+                </div>
+                <div class="purchase-area">
+                    <button class="game-styled-button purchase-button">25<img class="small-flappy-coin"
+                                                                              src="{{ url_for('static', filename='assets/game_assets/flappy_coin.png') }}"
+                                                                              alt="flappy coin"></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/game.js') }}"></script>
 </body>
 
 </html>

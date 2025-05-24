@@ -8,10 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
+            href="https://fonts.googleapis.com/css2?family=Freeman&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login_style.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
@@ -19,36 +20,37 @@
 </head>
 
 <body>
-    <div class="flash-messages">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash-message {{ category }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+<div class="flash-messages">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+<div class="navbar">
+    <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
+</div>
+
+<div class="main-content" id="login-page-content">
+
+    <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
+    <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp"
+         alt="Profile photo icon">
+
+    <div id="login-form">
+
+        <form action="{{ url_for('login') }}" method="POST">
+            <input type="email" name="email" placeholder="Login" required class="login-text-input">
+            <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
+            <button type="submit" id="login-submit-button">Zaloguj</button>
+        </form>
+
     </div>
-    <div class="navbar">
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
-    </div>
-
-    <div class="main-content" id="login-page-content">
-
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
-        <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
-
-        <div id="login-form">
-
-            <form action="{{ url_for('login') }}" method="POST">
-                <input type="email" name="email" placeholder="Login" required class="login-text-input">
-                <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
-                <button type="submit" id="login-submit-button">Zaloguj</button>
-            </form>
-
-        </div>
-    </div>
+</div>
 
 </body>
 

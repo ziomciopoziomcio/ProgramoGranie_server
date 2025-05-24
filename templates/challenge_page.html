@@ -12,6 +12,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/challenge_style.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
@@ -103,7 +104,7 @@
                         <div class="podium-platform-icon">
                             <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p></div>
                             <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_silver.png') }}" alt="2nd place cup">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_silver.png') }}" alt="2nd place cup">
                             </div>
                         </div>
                     </div>
@@ -127,7 +128,7 @@
                         <div class="podium-platform-icon">
                             <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p></div>
                             <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_golden.png') }}" alt="winner cup">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_golden.png') }}" alt="winner cup">
                             </div>
                         </div>
                     </div>
@@ -151,7 +152,7 @@
                         <div class="podium-platform-icon">
                             <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p></div>
                             <div class="podium-platform-icon-img">
-                                <img src="{{ url_for('static', filename='assets/cup_bronze.png') }}" alt="3rd place cup">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_bronze.png') }}" alt="3rd place cup">
                             </div>
                         </div>
                     </div>
@@ -169,7 +170,7 @@
 
 {# FLAPPY DANTE #}
         <div class="container" id="challenge-game-container">
-            <img src="{{ url_for('static', filename='assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
+            <img src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
             <button id="play-button">ZAGRAJ</button>
         </div>
 
