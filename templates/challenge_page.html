@@ -12,6 +12,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/challenge_style.css') }}">
 
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
@@ -21,6 +22,8 @@
 </head>
 
 <body>
+
+{# NAVBAR #}
     <div class="navbar">
         <a href="{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
@@ -35,29 +38,35 @@
 
     <div class="main-content" id="challenge-main-content">
 
+{# POLECENIE #}
         <div class="container" id="challenge-instruction-container">
-            <p>Tekst polecenia <br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar enim ac lorem mattis, porta pellentesque urna congue. Morbi et nunc risus. Quisque at accumsan nulla. Ut eu sodales nibh, et iaculis dolor. Pellentesque diam dolor, auctor quis congue lacinia, ultrices et erat. Cras tellus enim, posuere et hendrerit nec, condimentum eu magna. Nunc ac mollis risus. Phasellus sit amet mauris congue ante luctus suscipit ut sit amet nunc. Suspendisse vel diam non mi varius lobortis nec sed urna. Vestibulum in metus et quam feugiat tempus in ornare erat. </p>
+            <h1 class="challenge-header">Tekst polecenia</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar enim ac lorem mattis, porta pellentesque urna congue. Morbi et nunc risus. Quisque at accumsan nulla. Ut eu sodales nibh, et iaculis dolor. Pellentesque diam dolor, auctor quis congue lacinia, ultrices et erat. Cras tellus enim, posuere et hendrerit nec, condimentum eu magna. Nunc ac mollis risus. Phasellus sit amet mauris congue ante luctus suscipit ut sit amet nunc. Suspendisse vel diam non mi varius lobortis nec sed urna. Vestibulum in metus et quam feugiat tempus in ornare erat. </p>
         </div>
 
+{# WYBÓR PLIKÓW #}
         <div class="container" id="challenge-file-container">
-    <p>Upuść tutaj pliki źródłowe lub</p>
-    <div id="drag-drop-area" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
-        Przeciągnij i upuść pliki tutaj
-    </div>
-    <button id="choose-file-button">Wybierz je z dysku</button>
-    <input type="file" id="file-input" style="display: none;" multiple>
-    <ul id="file-list">
-        <!-- Uploaded files will be dynamically added here -->
-    </ul>
-</div>
 
-<div class="container" id="challenge-send-file-container">
-    <button type="submit" id="send-file-button">Prześlij</button>
-</div>
+            <div id="drag-drop-area" style="border: 2px dashed #ccc; padding: 20px; text-align: center;">
+                <p>Przeciągnij i upuść pliki tutaj lub</p>
+            </div>
+            <button id="choose-file-button">Wybierz je z dysku</button>
+            <input type="file" id="file-input" style="display: none;" multiple>
+            <ul id="file-list">
+                <!-- Uploaded files will be dynamically added here -->
+            </ul>
 
+        </div>
+
+{# SUBMIT #}
+        <div class="container" id="challenge-send-file-container">
+            <button type="submit" id="send-file-button">Prześlij</button>
+        </div>
+
+{# TESTY JEDNOSTKOWE #}
         <div class="container" id="challenge-unit-test-container">
 
-            <h1>Testy jednostkowe</h1>
+            <h1 class="challenge-header">Testy jednostkowe</h1>
 
             <div id="challenge-unit-test-list">
                 <div class="challenge-unit-test-bar" id="unit-test-1-bar"><p>TEST 1</p></div>
@@ -75,14 +84,99 @@
 
         </div>
 
-        <div class="container" id="challenge-leaderboard-container"></div>
+{# LEADERBOARD #}
+        <div class="container" id="challenge-leaderboard-container">
 
+            <h1 class="challenge-header">Bierze udział: xxx</h1>
+            <h1 class="challenge-header">Ukończyło: x </h1>
+
+            <div id="podium-container">
+
+                <div class="podium" id="second">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_silver.png') }}" alt="2nd place cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">6/13</p>
+                        <div class="podium-progress-bar-done"></div>
+                        <div class="podium-progress-bar-base"></div>
+                    </div>
+
+                </div>
+                <div class="podium" id="first">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_golden.png') }}" alt="winner cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">13/13</p>
+                        <div class="podium-progress-bar-done"></div>
+                        <div class="podium-progress-bar-base"></div>
+                    </div>
+
+                </div>
+                <div class="podium" id="third">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_bronze.png') }}" alt="3rd place cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">2/13</p>
+                        <div class="podium-progress-bar-done"></div>
+                        <div class="podium-progress-bar-base"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+{# FLAPPY DANTE #}
         <div class="container" id="challenge-game-container">
-            <img src="{{ url_for('static', filename='assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
+            <img src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
             <button id="play-button">ZAGRAJ</button>
         </div>
 
     </div>
+
+
     <script src="{{ url_for('static', filename='js/challenge.js') }}"></script>
 </body>
 
