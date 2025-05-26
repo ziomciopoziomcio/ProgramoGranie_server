@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('startButton');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.8, lift: -12, velocity: 0, maxFallSpeed: 10 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -9, velocity: 0, maxFallSpeed: 10 };
 let pipes = [];
 let frame = 0;
 let score = 0;
