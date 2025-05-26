@@ -81,10 +81,12 @@ function draw() {
         ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
     });
 
-    // Draw score
-    ctx.fillStyle = '#000';
-    ctx.font = '20px Arial';
-    ctx.fillText(`Score: ${score}`, 10, 20);
+    // Draw score only if the game is running
+    if (gameRunning) {
+        ctx.fillStyle = '#000';
+        ctx.font = '20px Arial';
+        ctx.fillText(`Score: ${score}`, 10, 20);
+    }
 }
 
 function resetGame() {
@@ -120,9 +122,34 @@ document.addEventListener('keydown', () => {
 });
 
 window.onload = () => {
-      canvas.style.display = 'block';
+    canvas.style.display = 'block';
     startButton.style.display = 'block';
     draw();
+
+    // Zmień tekst i styl przycisku
+    startButton.textContent = 'ZAGRAJ';
+    startButton.style.justifySelf = 'center';
+    startButton.style.width = '250px';
+    startButton.style.height = '100px';
+    startButton.style.backgroundImage = "url('/static/assets/game_assets/play_button.png')";
+    startButton.style.backgroundSize = 'cover';
+    startButton.style.backgroundPosition = 'center';
+    startButton.style.backgroundColor = 'transparent';
+    startButton.style.color = 'white';
+    startButton.style.border = 'none';
+    startButton.style.borderRadius = '12px';
+    startButton.style.fontFamily = 'Tiny5, fantasy';
+    startButton.style.fontSize = 'x-large';
+    startButton.style.cursor = 'pointer';
+    startButton.style.transition = 'opacity 0.3s';
+
+    // Dodaj efekt hover
+    startButton.addEventListener('mouseover', () => {
+        startButton.style.opacity = '0.8';
+    });
+    startButton.addEventListener('mouseout', () => {
+        startButton.style.opacity = '1';
+    });
 };
 
 // Start button event listener
@@ -143,3 +170,4 @@ function sendScoreToBackend(score) {
       .then(data => console.log('Score submitted:', data))
       .catch(error => console.error('Error submitting score:', error));
 }
+
