@@ -129,6 +129,10 @@ def challenge():
 def flappy_bird():
     return render_template('game/flappy_bird.html')
 
+@app.route('/admin')
+def admin_panel():
+    return render_template('admin_panel.html')
+
 
 def generate_breadcrumb():
     path = request.path.strip('/').split('/')
