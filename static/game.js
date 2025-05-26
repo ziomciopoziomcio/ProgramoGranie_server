@@ -97,10 +97,11 @@ function resetGame() {
 
 function endGame() {
     gameRunning = false;
-    canvas.style.display = 'none';
+    canvas.style.display = 'block';
     startButton.style.display = 'block';
     sendScoreToBackend(score);
     resetGame();
+    draw();
 }
 
 function gameLoop() {
@@ -117,6 +118,12 @@ document.addEventListener('keydown', () => {
         bird.velocity = bird.lift;
     }
 });
+
+window.onload = () => {
+      canvas.style.display = 'block';
+    startButton.style.display = 'block';
+    draw();
+};
 
 // Start button event listener
 startButton.addEventListener('click', () => {
