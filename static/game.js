@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('startButton');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.8, lift: -12, velocity: 0, maxFallSpeed: 10 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.8, lift: -12, velocity: 0, maxFallSpeed: 10 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -12,9 +12,9 @@ let gameRunning = false;
 
 // PNGs for bird and pipes
 const birdImg = new Image();
-birdImg.src = 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/5e0df231478aa0a331a4718d09dd91a2.png';
+birdImg.src = '/static/assets/game_assets/fb_skin_default.png';
 const pipeImg = new Image();
-pipeImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcrdUhqwM_JKKK2yacvaIJ0RpbrPQKLP3CuQ&s';
+pipeImg.src = '/static/assets/game_assets/fb_pipe_green.png';
 
 // Game loop
 function update() {
@@ -67,7 +67,12 @@ function draw() {
 
     // Draw pipes
     pipes.forEach(pipe => {
-        ctx.drawImage(pipeImg, pipe.x, pipe.y - 200, 50, 200); // Top pipe
+         // Top pipe with rotation
+        ctx.save();
+        ctx.translate(pipe.x + 25, pipe.y - 100); // Move to pipe center
+        ctx.rotate(Math.PI); // rotate 180 degrees
+        ctx.drawImage(pipeImg, -25, -100, 50, 200); // draw rotated top pipe
+        ctx.restore();
         ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
     });
 
