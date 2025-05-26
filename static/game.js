@@ -15,6 +15,8 @@ const birdImg = new Image();
 birdImg.src = '/static/assets/game_assets/fb_skin_default.png';
 const pipeImg = new Image();
 pipeImg.src = '/static/assets/game_assets/fb_pipe_green.png';
+const bgImg = new Image();
+bgImg.src = '/static/assets/game_assets/fb_bg_regular_1.png';
 
 // Game loop
 function update() {
@@ -61,6 +63,9 @@ function update() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw background
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
 
     // Draw bird
     ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
