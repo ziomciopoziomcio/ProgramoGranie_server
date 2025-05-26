@@ -72,13 +72,26 @@ function draw() {
 
     // Draw pipes
     pipes.forEach(pipe => {
-         // Top pipe with rotation
-        ctx.save();
-        ctx.translate(pipe.x + 25, pipe.y - 100); // Move to pipe center
-        ctx.rotate(Math.PI); // rotate 180 degrees
-        ctx.drawImage(pipeImg, -25, -100, 50, 200); // draw rotated top pipe
-        ctx.restore();
-        ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
+        // Top pipe (rotated)
+        for (let y = pipe.y - 200; y > -200; y -= 200) {
+            ctx.save();
+            ctx.translate(pipe.x + 25, y + 100); // Move to pipe center
+            ctx.rotate(Math.PI); // Rotate 180 degrees
+            ctx.drawImage(pipeImg, -25, -100, 50, 200); // Draw rotated pipe
+            ctx.restore();
+        }
+
+        // Bottom pipe
+        for (let y = pipe.y + pipeGap; y < canvas.height; y += 200) {
+            ctx.drawImage(pipeImg, pipe.x, y, 50, 200);
+        }
+        //  // Top pipe with rotation
+        // ctx.save();
+        // ctx.translate(pipe.x + 25, pipe.y - 100); // Move to pipe center
+        // ctx.rotate(Math.PI); // rotate 180 degrees
+        // ctx.drawImage(pipeImg, -25, -100, 50, 200); // draw rotated top pipe
+        // ctx.restore();
+        // ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
     });
 
     // Draw score only if the game is running
@@ -126,7 +139,7 @@ window.onload = () => {
     startButton.style.display = 'block';
     draw();
 
-    // Zmień tekst i styl przycisku
+    // Change start button styles
     startButton.textContent = 'ZAGRAJ';
     startButton.style.justifySelf = 'center';
     startButton.style.width = '250px';
@@ -143,7 +156,7 @@ window.onload = () => {
     startButton.style.cursor = 'pointer';
     startButton.style.transition = 'opacity 0.3s';
 
-    // Dodaj efekt hover
+    // Add hover effect
     startButton.addEventListener('mouseover', () => {
         startButton.style.opacity = '0.8';
     });
