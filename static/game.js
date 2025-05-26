@@ -84,8 +84,8 @@ function draw() {
     // Draw score only if the game is running
     if (gameRunning) {
         ctx.fillStyle = '#000';
-        ctx.font = '20px Arial';
-        ctx.fillText(`Score: ${score}`, 10, 20);
+        ctx.font = 'x-large Tiny5, fantasy';
+        ctx.fillText(`SCORE: ${score}`, 10, 20);
     }
 }
 
@@ -135,7 +135,7 @@ window.onload = () => {
     startButton.style.backgroundSize = 'cover';
     startButton.style.backgroundPosition = 'center';
     startButton.style.backgroundColor = 'transparent';
-    startButton.style.color = 'white';
+    startButton.style.color = 'black';
     startButton.style.border = 'none';
     startButton.style.borderRadius = '12px';
     startButton.style.fontFamily = 'Tiny5, fantasy';
