@@ -184,3 +184,21 @@ function sendScoreToBackend(score) {
       .catch(error => console.error('Error submitting score:', error));
 }
 
+window.addEventListener('load', () => {
+    const container = canvas.parentElement;
+
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+
+    canvas.style.display = 'block';
+    draw();
+});
+
+window.addEventListener('resize', () => {
+    const container = canvas.parentElement;
+
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    draw();
+
+});
