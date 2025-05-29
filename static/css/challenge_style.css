@@ -643,7 +643,7 @@
     #game-main-content {
         grid-template: 1fr 2fr 3fr / 1fr 1fr;
         display: grid;
-        height: fit-content;
+        height: 180vh;
     }
 
     #game-label-container {
@@ -674,6 +674,7 @@
     #game-main-content {
         grid-template: 1fr 2fr / 1fr 1fr 2fr;
         display: grid;
+        height: 89vh;
     }
 
     #game-label-container {
