@@ -28,38 +28,51 @@
         <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
     </div>
 
-    <div class="main-content" id="login-page-content">
-        <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
-        <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
+    <div class="main-content" id="register-page-content">
 
-        <!-- Zakładki -->
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('form-pracownik', this)">Pracownik</div>
-            <div class="tab" onclick="switchTab('form-student', this)">Student</div>
+        <div id="logo-login-container">
+            <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="login-main-logo" alt="Site logo">
         </div>
 
-        <!-- Formularze -->
-        <div class="form-container">
-            <form id="form-pracownik" class="form active">
-                <input type="text" name="imie" placeholder="Imię" required class="login-text-input">
-                <input type="text" name="nazwisko" placeholder="Nazwisko" required class="login-text-input">
-                <input type="email" name="email" placeholder="Email" required class="login-text-input">
-                <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
-                <input type="password" name="password" placeholder="Powtórz hasło" required class="login-text-input">
+        <div id="login-form-container">
 
-                <button type="submit" id="login-submit-button">Zarejestruj</button>
-            </form>
+            <div id="register-pfp-container">
+                <img src="{{ url_for('static', filename='assets/profile_photo.svg') }}" id="login-main-pfp" alt="Profile photo icon">
+            </div>
 
-            <form id="form-student" class="form">
-                <input type="text" name="imie" placeholder="Imię" required class="login-text-input">
-                <input type="text" name="nazwisko" placeholder="Nazwisko" required class="login-text-input">
-                <input type="text" name="indeks" placeholder="Numer indeksu" required class="login-text-input">
-                <input type="email" name="email" placeholder="Email" required class="login-text-input">
-                <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
-                <input type="password" name="password" placeholder="Powtórz hasło" required class="login-text-input">
-                <button type="submit" id="login-submit-button">Zarejestruj</button>
-            </form>
+
+            <!-- Zakładki -->
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('form-pracownik', this)">Pracownik</div>
+                <div class="tab" onclick="switchTab('form-student', this)">Student</div>
+            </div>
+
+            <!-- Formularze -->
+            <div class="form-container">
+                <form id="form-pracownik" class="form active">
+                    <input type="text" name="imie" placeholder="Imię" required class="login-text-input">
+                    <input type="text" name="nazwisko" placeholder="Nazwisko" required class="login-text-input">
+                    <input type="email" name="email" placeholder="Email" required class="login-text-input">
+                    <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
+                    <input type="password" name="password" placeholder="Powtórz hasło" required class="login-text-input">
+
+                    <button type="submit" id="login-submit-button">Zarejestruj</button>
+                </form>
+
+                <form id="form-student" class="form">
+                    <input type="text" name="imie" placeholder="Imię" required class="login-text-input">
+                    <input type="text" name="nazwisko" placeholder="Nazwisko" required class="login-text-input">
+                    <input type="text" name="indeks" placeholder="Numer indeksu" required class="login-text-input">
+                    <input type="email" name="email" placeholder="Email" required class="login-text-input">
+                    <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
+                    <input type="password" name="password" placeholder="Powtórz hasło" required class="login-text-input">
+                    <button type="submit" id="login-submit-button">Zarejestruj</button>
+                </form>
+            </div>
+
         </div>
+
+
     </div>
 
     <script src="{{ url_for('static', filename='js/register.js') }}"></script>

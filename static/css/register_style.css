@@ -1,5 +1,24 @@
 /* TODO: responive design */
 
+#register-page-content{
+    display: grid;
+    grid-template: 1fr / 3fr 2fr;
+}
+
+#logo-login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register-pfp-container{
+    display: flex;
+}
+
+#login-main-logo{
+    margin: 20px;
+}
+
 .tabs {
     display: flex;
     justify-content: center;
@@ -26,6 +45,7 @@
     border-radius: 0 0 12px 12px;
     padding: 20px 10%;
     margin-top: -1px;
+    min-width: 200px;
 }
 
 .form {
@@ -38,16 +58,50 @@
 
 /* Smartphones */
 @media (max-width: 480px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        display: none;
+    }
 }
 
 /* Tablets / large smartphones */
 @media (min-width: 481px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        display: none;
+    }
 }
 
 /* Laptops */
 @media (min-width: 769px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        width: 400px;
+        height: 200px;
+        display: block;
+
+        margin: 20px;
+    }
 }
 
 /* Large desktops */
 @media (min-width: 1280px) {
+    #register-page-content{
+        display: grid;
+        grid-template: 1fr / 3fr 2fr;
+    }
+    #login-main-logo{
+        width: 600px;
+        height: 300px;
+        display: block;
+    }
 }
