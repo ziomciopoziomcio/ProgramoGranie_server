@@ -1,0 +1,53 @@
+/* TODO: responive design */
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border-radius: 12px 12px 0 0;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.tab.active {
+    background-color: #ffffff;
+    border-bottom: 2px solid #1A9E0E;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 0 0 12px 12px;
+    padding: 20px 10%;
+    margin-top: -1px;
+}
+
+.form {
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+}
