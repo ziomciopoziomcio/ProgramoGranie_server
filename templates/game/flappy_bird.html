@@ -25,6 +25,7 @@
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            font-family: "Tiny5", fantasy;
         }
         #game-container{
             position: relative;
@@ -38,12 +39,47 @@
             z-index: 1;
             bottom: 20%;
         }
+
+        #game-logo {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+        }
+
+        #hearts-container {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1;
+            align-items: flex-end;
+        }
+
+        .heart_empty {
+            width: 75px;
+            height: 65px;
+        }
+
+        .heart_full {
+            width: 75px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
     <div id="game-container">
         <button id="startButton">Start Game</button>
         <canvas id="gameCanvas" style="display: none;"></canvas>
+        <img id="game-logo" src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" alt="Flappy Bird Logo">
+        <div id="hearts-container">
+            <img class="heart_empty" src="/static/assets/game_assets/fb_heart_empty.png" alt="Heart Empty">
+            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
+            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
+        </div>
     </div>
 
     <script src="{{ url_for('static', filename='game.js') }}"></script>

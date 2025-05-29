@@ -108,6 +108,8 @@ function resetGame() {
     pipes = [];
     frame = 0;
     score = 0;
+    document.getElementById('hearts-container').style.display = 'flex';
+    document.getElementById('game-logo').style.display = 'block';
 }
 
 function endGame() {
@@ -170,6 +172,8 @@ startButton.addEventListener('click', () => {
     startButton.style.display = 'none';
     canvas.style.display = 'block';
     gameRunning = true;
+    document.getElementById('hearts-container').style.display = 'none';
+    document.getElementById('game-logo').style.display = 'none';
     gameLoop();
 });
 
