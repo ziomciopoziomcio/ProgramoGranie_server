@@ -9,6 +9,7 @@ let frame = 0;
 let score = 0;
 const pipeGap = 150;
 let gameRunning = false;
+let lives = 3;
 
 // PNGs for bird and pipes
 const birdImg = new Image();
@@ -110,6 +111,7 @@ function resetGame() {
     score = 0;
     document.getElementById('hearts-container').style.display = 'flex';
     document.getElementById('game-logo').style.display = 'block';
+    updateHearts();
 }
 
 function endGame() {
@@ -117,6 +119,7 @@ function endGame() {
     canvas.style.display = 'block';
     startButton.style.display = 'block';
     sendScoreToBackend(score);
+    loseLife();
     resetGame();
     draw();
 }
@@ -129,6 +132,31 @@ function gameLoop() {
     }
 }
 
+function updateHearts(){
+    const hearts = document.querySelectorAll('#hearts-container img');
+    hearts.forEach((heart, index) => {
+        if (index < hearts.length - lives) {
+            heart.classList.remove('heart_full');
+            heart.classList.add('heart_empty');
+        } else {
+            heart.classList.remove('heart_empty');
+            heart.classList.add('heart_full');
+        }
+    });
+}
+
+function loseLife() {
+    if (lives > 0) {
+        lives--;
+        updateHearts();
+    }
+}
+
+function resetLives() {
+    lives = 3;
+    updateHearts();
+}
+
 // Controls
 document.addEventListener('keydown', () => {
     if (gameRunning) {
@@ -139,6 +167,7 @@ document.addEventListener('keydown', () => {
 window.onload = () => {
     canvas.style.display = 'block';
     startButton.style.display = 'block';
+    updateHearts();
     draw();
 
     // Change start button styles

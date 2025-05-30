@@ -62,11 +62,13 @@
         .heart_empty {
             width: 75px;
             height: 65px;
+            content: url('/static/assets/game_assets/fb_heart_empty.png');
         }
 
         .heart_full {
             width: 75px;
             height: 100px;
+            content: url('/static/assets/game_assets/fb_heart_full.png');
         }
     </style>
 </head>
@@ -76,7 +78,7 @@
         <canvas id="gameCanvas" style="display: none;"></canvas>
         <img id="game-logo" src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" alt="Flappy Bird Logo">
         <div id="hearts-container">
-            <img class="heart_empty" src="/static/assets/game_assets/fb_heart_empty.png" alt="Heart Empty">
+            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
             <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
             <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
         </div>
