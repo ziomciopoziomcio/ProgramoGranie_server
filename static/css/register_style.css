@@ -1,0 +1,107 @@
+/* TODO: responive design */
+
+#register-page-content{
+    display: grid;
+    grid-template: 1fr / 3fr 2fr;
+}
+
+#logo-login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#register-pfp-container{
+    display: flex;
+}
+
+#login-main-logo{
+    margin: 20px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    border-radius: 12px 12px 0 0;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.tab.active {
+    background-color: #ffffff;
+    border-bottom: 2px solid #1A9E0E;
+}
+
+.form-container {
+    background-color: white;
+    border-radius: 0 0 12px 12px;
+    padding: 20px 10%;
+    margin-top: -1px;
+    min-width: 200px;
+}
+
+.form {
+    display: none;
+}
+
+.form.active {
+    display: block;
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        display: none;
+    }
+}
+
+/* Tablets / large smartphones */
+@media (min-width: 481px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        display: none;
+    }
+}
+
+/* Laptops */
+@media (min-width: 769px) {
+    #register-page-content{
+        display: flex;
+        flex-direction: column;
+    }
+    #login-main-logo{
+        width: 400px;
+        height: 200px;
+        display: block;
+
+        margin: 20px;
+    }
+}
+
+/* Large desktops */
+@media (min-width: 1280px) {
+    #register-page-content{
+        display: grid;
+        grid-template: 1fr / 3fr 2fr;
+    }
+    #login-main-logo{
+        width: 600px;
+        height: 300px;
+        display: block;
+    }
+}

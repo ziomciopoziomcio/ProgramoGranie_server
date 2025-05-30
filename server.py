@@ -63,6 +63,10 @@ def login():
 
 # end of login page config
 
+@app.route('/register')
+def register():
+    return render_template('register_page.html')
+
 @app.route('/index')
 def index():
     return render_template('main_menu_page.html')

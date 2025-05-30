@@ -20,6 +20,7 @@
 </head>
 
 <body>
+
 <div class="flash-messages">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -31,6 +32,7 @@
         {% endif %}
     {% endwith %}
 </div>
+
 <div class="navbar">
     <img src="{{ url_for('static', filename='assets/dante_main_logo.png') }}" id="navbar-main-icon" alt="Site logo">
 </div>
@@ -47,6 +49,7 @@
             <input type="email" name="email" placeholder="Login" required class="login-text-input">
             <input type="password" name="password" placeholder="Hasło" required class="login-text-input">
             <button type="submit" id="login-submit-button">Zaloguj</button>
+            <p>Nie masz konta? <a href="{{ url_for('register') }}">Zarejestruj</a></p>
         </form>
 
     </div>
