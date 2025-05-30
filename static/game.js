@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('startButton');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.8, lift: -12, velocity: 0, maxFallSpeed: 10 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -9, velocity: 0, maxFallSpeed: 10 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -12,9 +12,11 @@ let gameRunning = false;
 
 // PNGs for bird and pipes
 const birdImg = new Image();
-birdImg.src = 'https://img.poki-cdn.com/cdn-cgi/image/quality=78,width=1200,height=1200,fit=cover,f=png/5e0df231478aa0a331a4718d09dd91a2.png';
+birdImg.src = '/static/assets/game_assets/fb_skin_default.png';
 const pipeImg = new Image();
-pipeImg.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcrdUhqwM_JKKK2yacvaIJ0RpbrPQKLP3CuQ&s';
+pipeImg.src = '/static/assets/game_assets/fb_pipe_green.png';
+const bgImg = new Image();
+bgImg.src = '/static/assets/game_assets/fb_bg_regular_1.png';
 
 // Game loop
 function update() {
@@ -62,19 +64,42 @@ function update() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Draw background
+    ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
     // Draw bird
     ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
     // Draw pipes
     pipes.forEach(pipe => {
-        ctx.drawImage(pipeImg, pipe.x, pipe.y - 200, 50, 200); // Top pipe
-        ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
+        // Top pipe (rotated)
+        for (let y = pipe.y - 200; y > -200; y -= 200) {
+            ctx.save();
+            ctx.translate(pipe.x + 25, y + 100); // Move to pipe center
+            ctx.rotate(Math.PI); // Rotate 180 degrees
+            ctx.drawImage(pipeImg, -25, -100, 50, 200); // Draw rotated pipe
+            ctx.restore();
+        }
+
+        // Bottom pipe
+        for (let y = pipe.y + pipeGap; y < canvas.height; y += 200) {
+            ctx.drawImage(pipeImg, pipe.x, y, 50, 200);
+        }
+        //  // Top pipe with rotation
+        // ctx.save();
+        // ctx.translate(pipe.x + 25, pipe.y - 100); // Move to pipe center
+        // ctx.rotate(Math.PI); // rotate 180 degrees
+        // ctx.drawImage(pipeImg, -25, -100, 50, 200); // draw rotated top pipe
+        // ctx.restore();
+        // ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
     });
 
-    // Draw score
-    ctx.fillStyle = '#000';
-    ctx.font = '20px Arial';
-    ctx.fillText(`Score: ${score}`, 10, 20);
+    // Draw score only if the game is running
+    if (gameRunning) {
+        ctx.fillStyle = '#000';
+        ctx.font = 'x-large Tiny5, fantasy';
+        ctx.fillText(`SCORE: ${score}`, 10, 20);
+    }
 }
 
 function resetGame() {
@@ -83,14 +108,17 @@ function resetGame() {
     pipes = [];
     frame = 0;
     score = 0;
+    document.getElementById('hearts-container').style.display = 'flex';
+    document.getElementById('game-logo').style.display = 'block';
 }
 
 function endGame() {
     gameRunning = false;
-    canvas.style.display = 'none';
+    canvas.style.display = 'block';
     startButton.style.display = 'block';
     sendScoreToBackend(score);
     resetGame();
+    draw();
 }
 
 function gameLoop() {
@@ -108,11 +136,44 @@ document.addEventListener('keydown', () => {
     }
 });
 
+window.onload = () => {
+    canvas.style.display = 'block';
+    startButton.style.display = 'block';
+    draw();
+
+    // Change start button styles
+    startButton.textContent = 'ZAGRAJ';
+    startButton.style.justifySelf = 'center';
+    startButton.style.width = '250px';
+    startButton.style.height = '100px';
+    startButton.style.backgroundImage = "url('/static/assets/game_assets/play_button.png')";
+    startButton.style.backgroundSize = 'cover';
+    startButton.style.backgroundPosition = 'center';
+    startButton.style.backgroundColor = 'transparent';
+    startButton.style.color = 'black';
+    startButton.style.border = 'none';
+    startButton.style.borderRadius = '12px';
+    startButton.style.fontFamily = 'Tiny5, fantasy';
+    startButton.style.fontSize = 'x-large';
+    startButton.style.cursor = 'pointer';
+    startButton.style.transition = 'opacity 0.3s';
+
+    // Add hover effect
+    startButton.addEventListener('mouseover', () => {
+        startButton.style.opacity = '0.8';
+    });
+    startButton.addEventListener('mouseout', () => {
+        startButton.style.opacity = '1';
+    });
+};
+
 // Start button event listener
 startButton.addEventListener('click', () => {
     startButton.style.display = 'none';
     canvas.style.display = 'block';
     gameRunning = true;
+    document.getElementById('hearts-container').style.display = 'none';
+    document.getElementById('game-logo').style.display = 'none';
     gameLoop();
 });
 
@@ -126,3 +187,22 @@ function sendScoreToBackend(score) {
       .then(data => console.log('Score submitted:', data))
       .catch(error => console.error('Error submitting score:', error));
 }
+
+window.addEventListener('load', () => {
+    const container = canvas.parentElement;
+
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+
+    canvas.style.display = 'block';
+    draw();
+});
+
+window.addEventListener('resize', () => {
+    const container = canvas.parentElement;
+
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+    draw();
+
+});
