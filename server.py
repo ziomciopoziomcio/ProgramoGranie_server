@@ -101,12 +101,24 @@ def pp1_stats():
 
         # Group achievements by name and calculate their progress
         achievement_count = {}
+        achievement_total_progress = {}
         for stat in stats:
             achievement_name = stat["achievement_name"]
             achievement_progress = stat["achievement_progress"]
             if achievement_name not in achievement_count:
                 achievement_count[achievement_name] = 0
-            achievement_count[achievement_name] += achievement_progress
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
+
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
 
         # Calculate completion percentage
         total_topics = len(stats)
@@ -121,7 +133,7 @@ def pp1_stats():
             "completed_topics": total_completed_topics,
             "total_topics": total_topics,
             "completion_percentage": completion_percentage,
-            "achievements": achievement_count,
+            "achievements": achievement_percentage,
             "average_progress": average_progress,
             "best_topic_progress": best_topic_progress,
             "topics_above_50": topics_above_50,
@@ -163,12 +175,24 @@ def pp2_stats():
 
         # Group achievements by name and calculate their progress
         achievement_count = {}
+        achievement_total_progress = {}
         for stat in stats:
             achievement_name = stat["achievement_name"]
             achievement_progress = stat["achievement_progress"]
             if achievement_name not in achievement_count:
                 achievement_count[achievement_name] = 0
-            achievement_count[achievement_name] += achievement_progress
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
+
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
 
         # Calculate completion percentage
         total_topics = len(stats)
@@ -183,7 +207,7 @@ def pp2_stats():
             "completed_topics": total_completed_topics,
             "total_topics": total_topics,
             "completion_percentage": completion_percentage,
-            "achievements": achievement_count,
+            "achievements": achievement_percentage,
             "average_progress": average_progress,
             "best_topic_progress": best_topic_progress,
             "topics_above_50": topics_above_50,
@@ -220,13 +244,24 @@ def so2_stats():
 
         # Group achievements by name and calculate their progress
         achievement_count = {}
+        achievement_total_progress = {}
         for stat in stats:
             achievement_name = stat["achievement_name"]
             achievement_progress = stat["achievement_progress"]
             if achievement_name not in achievement_count:
                 achievement_count[achievement_name] = 0
-            achievement_count[achievement_name] += achievement_progress
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
 
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
         # Calculate completion percentage
         total_topics = len(stats)
         completion_percentage = round((total_completed_topics / total_topics) * 100, 2) if total_topics > 0 else 0
@@ -240,7 +275,7 @@ def so2_stats():
             "completed_topics": total_completed_topics,
             "total_topics": total_topics,
             "completion_percentage": completion_percentage,
-            "achievements": achievement_count,
+            "achievements": achievement_percentage,
             "average_progress": average_progress,
             "best_topic_progress": best_topic_progress,
             "topics_above_50": topics_above_50,
