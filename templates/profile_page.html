@@ -39,6 +39,7 @@
 </div>
 
 {# GŁÓWNA ZAWARTOŚĆ #}
+
 <div class="main-content" id="profile-content">
     {# STATYSTYKI PRZEDMIOTÓW #}
     <div class="container" id="profile-subjects-stats-container">
@@ -47,10 +48,14 @@
         <div id="profile-subject-list">
 
             <div class="profile-subject-list-position">
-                <div class="profile-subject-code"><p>SO2<br>kod</p></div>
+                <div class="profile-subject-code">
+                    <p>SO2<br>kod</p>
+                </div>
                 <div class="profile-subject-content">
-                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}" alt="empty badge"
-                         class="subject-badge" id="main-menu-so2-badge-img">
+                    {% if subject_achievements['pp1'] %}
+                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['pp1']['image_path']) }}"
+                             alt="Achievement Image" class="subject-badge">
+                    {% endif %}
                     <a href="{{ url_for('so2_stats') }}">
                         <button class="subject-stats-button" id="so2-topics-button">Statystyki</button>
                     </a>
@@ -58,10 +63,14 @@
             </div>
 
             <div class="profile-subject-list-position">
-                <div class="profile-subject-code"><p>PP2<br>kod</p></div>
+                <div class="profile-subject-code">
+                    <p>PP2<br>kod</p>
+                </div>
                 <div class="profile-subject-content">
-                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}" alt="empty badge"
-                         class="subject-badge" id="main-menu-pp2-badge-img">
+                    {% if subject_achievements['pp2'] %}
+                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['pp2']['image_path']) }}"
+                             alt="Achievement Image" class="subject-badge">
+                    {% endif %}
                     <a href="{{ url_for('pp2_stats') }}">
                         <button class="subject-stats-button" id="pp2-topics-button">Statystyki</button>
                     </a>
@@ -69,18 +78,21 @@
             </div>
 
             <div class="profile-subject-list-position">
-                <div class="profile-subject-code"><p>PP1<br>kod</p></div>
+                <div class="profile-subject-code">
+                    <p>SO2<br>kod</p>
+                </div>
                 <div class="profile-subject-content">
-                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}" alt="empty badge"
-                         class="subject-badge" id="main-menu-pp1-badge-img">
-                    <a href="{{ url_for('pp1_stats') }}">
-                        <button class="subject-stats-button" id="pp1-topics-button">Statystyki</button>
+                    {% if subject_achievements['so2'] %}
+                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['so2']['image_path']) }}"
+                             alt="Achievement Image" class="subject-badge">
+                    {% endif %}
+                    <a href="{{ url_for('so2_stats') }}">
+                        <button class="subject-stats-button" id="so2-topics-button">Statystyki</button>
                     </a>
                 </div>
             </div>
 
         </div>
-
     </div>
     {# WYRÓŻNIONE OSIĄGNIĘCIA (GABLOTA) #}
     <div class="container" id="profile-featured-achievements-container">
@@ -128,69 +140,17 @@
         <h1 class="profile-header">Wszystkie osiągnięcia</h1>
         <div id="profile-all-achievements-list">
 
-            <div class="achievement-full" id="ach1">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_1" alt="achievement icon">
+            {% for achievement in achievements %}
+            <div class="achievement-full" id="ach{{ loop.index }}">
+                <img src="{{ url_for('static', filename=achievement.image_path) }}"
+                     class="all-achievement-icon" id="achievement_{{ loop.index }}" alt="achievement icon">
                 <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
+                    <div class="progress-bar-done" style="width: calc(100px * {{ achievement.unlock_status / 2 }})"></div>
                     <div class="progress-bar-all"></div>
                 </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
+                <div class="achievement-progress-stat"><p>{{ achievement.progress_percentage }}</p></div>
             </div>
-            <div class="achievement-full" id="ach2">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_2" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
-            <div class="achievement-full" id="ach3">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_3" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
-            <div class="achievement-full" id="ach4">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_4" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
-            <div class="achievement-full" id="ach5">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_5" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
-            <div class="achievement-full" id="ach6">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_6" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
-            <div class="achievement-full" id="ach7">
-                <img src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                     class="all-achievement-icon" id="achievement_7" alt="achievement icon">
-                <div class="achievement-progress-bar">
-                    <div class="progress-bar-done"></div>
-                    <div class="progress-bar-all"></div>
-                </div>
-                <div class="achievement-progress-stat"><p>1/2</p></div>
-            </div>
+            {% endfor %}
 
         </div>
     </div>
