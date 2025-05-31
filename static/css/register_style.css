@@ -1,4 +1,5 @@
-/* TODO: responive design */
+/* - - - - - - - - - - - - - - - - - - - - - LOGIN PAGE - - - - - - - - - - - - - - - - - - - - - */
+/* Style sheet related only to register_page (login-text-input in login_style.css) */
 
 #register-page-content{
     display: grid;
@@ -19,6 +20,17 @@
     margin: 20px;
 }
 
+#login-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .tabs {
     display: flex;
     justify-content: center;
@@ -37,7 +49,7 @@
 
 .tab.active {
     background-color: #ffffff;
-    border-bottom: 2px solid #1A9E0E;
+    border-bottom: 4px solid #1A9E0E;
 }
 
 .form-container {
@@ -45,16 +57,30 @@
     border-radius: 0 0 12px 12px;
     padding: 20px 10%;
     margin-top: -1px;
-    min-width: 200px;
+    min-width: 300px;
+    width: 100%;
 }
 
 .form {
     display: none;
 }
 
+.form > * {
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .form.active {
     display: block;
+    width: 75%;
 }
+
+
+
+#login-title-select {
+    cursor: pointer;
+}
+
 
 /* Smartphones */
 @media (max-width: 480px) {
