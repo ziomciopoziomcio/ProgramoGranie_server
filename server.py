@@ -51,7 +51,10 @@ def login():
                 # Login successful
                 session['user_id'] = user['id']
                 flash('Zalogowano pomyślnie!', 'success')
-                return redirect(url_for('index'))
+                if user['role'] == 'Administrator':
+                    return redirect(url_for('admin_panel'))
+                else:
+                    return redirect(url_for('index'))
             else:
                 flash('Nieprawidłowy email lub hasło.', 'danger')
         finally:
