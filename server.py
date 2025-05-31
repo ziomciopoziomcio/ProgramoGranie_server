@@ -50,6 +50,7 @@ def login():
             if user and bcrypt.checkpw(password.encode('utf-8'), user['password_hash'].encode('utf-8')):
                 # Login successful
                 session['user_id'] = user['id']
+                session['role'] = user['role']
                 flash('Zalogowano pomyślnie!', 'success')
                 if user['role'] == 'Administrator':
                     return redirect(url_for('admin_panel'))
@@ -136,9 +137,32 @@ def challenge():
 def flappy_bird():
     return render_template('game/flappy_bird.html')
 
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
-    return render_template('admin_panel.html')
+    # Check if the user is an administrator
+    if not session.get('role') == 'Administrator':
+        flash('Nie masz uprawnień do tej strony.', 'danger')
+        return redirect(url_for('index'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        if request.method == 'POST':
+            # Add a new challenge
+            description = request.form['challenge-description']
+            cursor.execute("INSERT INTO challenges (description) VALUES (%s)", (description,))
+            conn.commit()
+            flash('Polecenie zostało dodane.', 'success')
+
+        # Fetch all challenges
+        cursor.execute("SELECT * FROM challenges ORDER BY created_at DESC")
+        challenges = cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('admin_panel.html', challenges=challenges)
 
 
 def generate_breadcrumb():
