@@ -35,7 +35,7 @@
 <div class="main-content">
     <div class="container">
         <h1>Dodaj polecenie do wyzwania</h1>
-        <form action="/admin/add_challenge" method="POST">
+        <form action="/admin" method="POST">
             <textarea id="challenge-description" name="challenge-description" rows="7" required></textarea>
             <button type="submit">Dodaj polecenie</button>
         </form>
@@ -47,13 +47,10 @@
     <div class="container">
         <h1>Polecenia dostępne w bazie</h1>
         <div class="commands-list">
-        <!-- Przykładowe polecenia -->
-        <p>Polecenie 1</p>
-        <p>Polecenie 2</p>
-        <p>Polecenie 3</p>
-        <p>Polecenie 4</p>
-        <p>Polecenie 5</p>
-    </div>
+            {% for challenge in challenges %}
+                <p>{{ challenge.description }} (Dodano: {{ challenge.created_at }})</p>
+            {% endfor %}
+        </div>
     </div>
 </div>
 
