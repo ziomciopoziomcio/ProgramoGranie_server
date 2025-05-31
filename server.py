@@ -71,6 +71,7 @@ def login():
 def register():
     return render_template('register_page.html')
 
+
 @app.route('/index')
 def index():
     return render_template('main_menu_page.html')
@@ -83,7 +84,71 @@ def game():
 
 @app.route('/index/pp1')
 def pp1_stats():
-    return render_template('pp1_stats_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch statistics for the user
+        cursor.execute("""
+            SELECT topic_name, progress, overall_stat, completion_status, achievement_name, achievement_progress
+            FROM pp1_stats
+            WHERE user_id = %s
+        """, (user_id,))
+        stats = cursor.fetchall()
+
+        # Count completed topics
+        total_completed_topics = sum(1 for stat in stats if stat["completion_status"] == "Zaliczone")
+
+        # Group achievements by name and calculate their progress
+        achievement_count = {}
+        achievement_total_progress = {}
+        for stat in stats:
+            achievement_name = stat["achievement_name"]
+            achievement_progress = stat["achievement_progress"]
+            if achievement_name not in achievement_count:
+                achievement_count[achievement_name] = 0
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
+
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
+
+        # Calculate completion percentage
+        total_topics = len(stats)
+        completion_percentage = round((total_completed_topics / total_topics) * 100, 2) if total_topics > 0 else 0
+
+        # Calculate additional statistics
+        average_progress = round(sum(stat["progress"] for stat in stats) / total_topics, 2) if total_topics > 0 else 0
+        best_topic_progress = max(stat["progress"] for stat in stats) if stats else 0
+        topics_above_50 = sum(1 for stat in stats if stat["progress"] > 50)
+
+        overall_stats = {
+            "completed_topics": total_completed_topics,
+            "total_topics": total_topics,
+            "completion_percentage": completion_percentage,
+            "achievements": achievement_percentage,
+            "average_progress": average_progress,
+            "best_topic_progress": best_topic_progress,
+            "topics_above_50": topics_above_50,
+            "achievement_count": len(achievement_count),
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('pp1_stats_page.html', stats=stats, overall_stats=overall_stats)
 
 
 @app.route('/index/profile')
@@ -159,12 +224,140 @@ def profile():
 
 @app.route('/index/pp2')
 def pp2_stats():
-    return render_template('pp2_stats_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch statistics for the user
+        cursor.execute("""
+            SELECT topic_name, progress, completion_status, achievement_name, achievement_progress
+            FROM pp2_stats
+            WHERE user_id = %s
+        """, (user_id,))
+        stats = cursor.fetchall()
+
+        # Count completed topics
+        total_completed_topics = sum(1 for stat in stats if stat["completion_status"] == "Zaliczone")
+
+        # Group achievements by name and calculate their progress
+        achievement_count = {}
+        achievement_total_progress = {}
+        for stat in stats:
+            achievement_name = stat["achievement_name"]
+            achievement_progress = stat["achievement_progress"]
+            if achievement_name not in achievement_count:
+                achievement_count[achievement_name] = 0
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
+
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
+
+        # Calculate completion percentage
+        total_topics = len(stats)
+        completion_percentage = round((total_completed_topics / total_topics) * 100, 2) if total_topics > 0 else 0
+
+        # Calculate additional statistics
+        average_progress = round(sum(stat["progress"] for stat in stats) / total_topics, 2) if total_topics > 0 else 0
+        best_topic_progress = max(stat["progress"] for stat in stats) if stats else 0
+        topics_above_50 = sum(1 for stat in stats if stat["progress"] > 50)
+
+        overall_stats = {
+            "completed_topics": total_completed_topics,
+            "total_topics": total_topics,
+            "completion_percentage": completion_percentage,
+            "achievements": achievement_percentage,
+            "average_progress": average_progress,
+            "best_topic_progress": best_topic_progress,
+            "topics_above_50": topics_above_50,
+            "achievement_count": len(achievement_count),
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('pp2_stats_page.html', stats=stats, overall_stats=overall_stats)
 
 
 @app.route('/index/so2')
 def so2_stats():
-    return render_template('so2_stats_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch statistics for the user
+        cursor.execute("""
+            SELECT topic_name, progress, completion_status, achievement_name, achievement_progress
+            FROM so2_stats
+            WHERE user_id = %s
+        """, (user_id,))
+        stats = cursor.fetchall()
+
+        # Count completed topics
+        total_completed_topics = sum(1 for stat in stats if stat["completion_status"] == "Zaliczone")
+
+        # Group achievements by name and calculate their progress
+        achievement_count = {}
+        achievement_total_progress = {}
+        for stat in stats:
+            achievement_name = stat["achievement_name"]
+            achievement_progress = stat["achievement_progress"]
+            if achievement_name not in achievement_count:
+                achievement_count[achievement_name] = 0
+                achievement_total_progress[achievement_name] = 0
+            achievement_count[achievement_name] += 1
+            achievement_total_progress[achievement_name] += achievement_progress
+
+        # Convert achievement progress to percentage and format as string
+        achievement_percentage = {}
+        for achievement_name in achievement_total_progress:
+            max_progress = achievement_count[achievement_name] * 100
+            percentage = round(
+                (achievement_total_progress[achievement_name] / max_progress) * 100, 2
+            ) if max_progress > 0 else 0
+            achievement_percentage[achievement_name] = f"{percentage}%"
+        # Calculate completion percentage
+        total_topics = len(stats)
+        completion_percentage = round((total_completed_topics / total_topics) * 100, 2) if total_topics > 0 else 0
+
+        # Calculate additional statistics
+        average_progress = round(sum(stat["progress"] for stat in stats) / total_topics, 2) if total_topics > 0 else 0
+        best_topic_progress = max(stat["progress"] for stat in stats) if stats else 0
+        topics_above_50 = sum(1 for stat in stats if stat["progress"] > 50)
+
+        overall_stats = {
+            "completed_topics": total_completed_topics,
+            "total_topics": total_topics,
+            "completion_percentage": completion_percentage,
+            "achievements": achievement_percentage,
+            "average_progress": average_progress,
+            "best_topic_progress": best_topic_progress,
+            "topics_above_50": topics_above_50,
+            "achievement_count": len(achievement_count),
+        }
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('so2_stats_page.html', stats=stats, overall_stats=overall_stats)
+
 
 # FILE UPLOAD CONFIG
 # DO NOT TOUCH WITHOUT PERMISSION OF: ziomciopoziomcio pozderki
@@ -172,6 +365,7 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 24 * 1024 * 1024  # 24 MB limit
 if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
     os.makedirs(app.config['UPLOAD_FOLDER'])
+
 
 @app.route('/index/challenge', methods=['GET', 'POST'])
 def challenge():
@@ -197,12 +391,14 @@ def challenge():
 
     return render_template('challenge_page.html')
 
+
 # end of that stressful situation...
 
 @app.route('/game/flappy_bird')
 def flappy_bird():
     return render_template('game/flappy_bird.html')
 
+  
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
     # Check if the user is an administrator
