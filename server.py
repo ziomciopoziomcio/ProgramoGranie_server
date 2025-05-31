@@ -50,8 +50,12 @@ def login():
             if user and bcrypt.checkpw(password.encode('utf-8'), user['password_hash'].encode('utf-8')):
                 # Login successful
                 session['user_id'] = user['id']
+                session['role'] = user['role']
                 flash('Zalogowano pomyślnie!', 'success')
-                return redirect(url_for('index'))
+                if user['role'] == 'Administrator':
+                    return redirect(url_for('admin_panel'))
+                else:
+                    return redirect(url_for('index'))
             else:
                 flash('Nieprawidłowy email lub hasło.', 'danger')
         finally:
@@ -149,7 +153,73 @@ def pp1_stats():
 
 @app.route('/index/profile')
 def profile():
-    return render_template('profile_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć profil.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        subjects = ['pp1', 'pp2', 'so2']
+        subject_achievements = {}
+
+        for subject in subjects:
+            cursor.execute(f"""
+                SELECT achievement_name, achievement_progress
+                FROM {subject}_stats
+                WHERE user_id = %s
+            """, (user_id,))
+            rows = cursor.fetchall()
+
+            # Group achievements and calculate percentages
+            achievement_progress = {}
+            for row in rows:
+                name = row['achievement_name']
+                progress = row['achievement_progress']
+                if name not in achievement_progress:
+                    achievement_progress[name] = {'total_progress': 0, 'count': 0}
+                achievement_progress[name]['total_progress'] += progress
+                achievement_progress[name]['count'] += 1
+
+            # Calculate percentage for each achievement
+            for name, data in achievement_progress.items():
+                max_progress = data['count'] * 100
+                data['percentage'] = (data['total_progress'] / max_progress) * 100 if max_progress > 0 else 0
+
+            # Find the achievement with the highest percentage
+            if achievement_progress:
+                best_achievement = max(achievement_progress.items(), key=lambda x: x[1]['percentage'])
+                achievement_images = {
+                    'Achievement1': f'ach_{subject}_gold.png',
+                    'Achievement2': f'ach_{subject}_silver.png',
+                    'Achievement3': f'ach_{subject}_bronze.png',
+                }
+                best_achievement_image = achievement_images.get(best_achievement[0], 'default.png')
+            else:
+                best_achievement_image = 'default.png'
+
+            subject_achievements[subject] = {'image_path': best_achievement_image}
+
+            cursor.execute("""
+                        SELECT a.name AS achievement_name, s.unlock_status
+                        FROM achievements_stats s
+                        JOIN achievements a ON s.ID_ach = a.id
+                        WHERE s.user_ID = %s
+                    """, (user_id,))
+            achievements = cursor.fetchall()
+
+            # Prepare data for the template
+            for achievement in achievements:
+                achievement['image_path'] = f"assets/stats_assets/{achievement['achievement_name']}.png"
+                achievement['progress_percentage'] = f"{achievement['unlock_status']}/2"
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('profile_page.html', subject_achievements=subject_achievements, achievements=achievements)
 
 
 @app.route('/index/pp2')
@@ -328,10 +398,33 @@ def challenge():
 def flappy_bird():
     return render_template('game/flappy_bird.html')
 
-
-@app.route('/admin')
+  
+@app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
-    return render_template('admin_panel.html')
+    # Check if the user is an administrator
+    if not session.get('role') == 'Administrator':
+        flash('Nie masz uprawnień do tej strony.', 'danger')
+        return redirect(url_for('index'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        if request.method == 'POST':
+            # Add a new challenge
+            description = request.form['challenge-description']
+            cursor.execute("INSERT INTO challenges (description) VALUES (%s)", (description,))
+            conn.commit()
+            flash('Polecenie zostało dodane.', 'success')
+
+        # Fetch all challenges
+        cursor.execute("SELECT * FROM challenges ORDER BY created_at DESC")
+        challenges = cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('admin_panel.html', challenges=challenges)
 
 
 def generate_breadcrumb():
