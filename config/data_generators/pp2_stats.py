@@ -16,6 +16,7 @@ def get_db_connection():
         database=db_credentials['db_name']
     )
 
+
 conn = get_db_connection()
 cursor = conn.cursor(dictionary=True)
 user_id = input("Enter user ID for which to generate PP2 stats: ")
