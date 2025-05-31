@@ -25,12 +25,18 @@
 }
 
 .progressbar {
-    min-height: 5px;
-    max-height: 30px;
-    height: 40%;
     width: 100%;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    background: #1A9E0E;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4caf50; /* Default color */
+    transition: width 0.3s ease;
 }
 
 .topic p {
