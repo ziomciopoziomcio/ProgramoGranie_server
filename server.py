@@ -67,6 +67,7 @@ def login():
 def register():
     return render_template('register_page.html')
 
+
 @app.route('/index')
 def index():
     return render_template('main_menu_page.html')
@@ -287,12 +288,14 @@ def so2_stats():
 
     return render_template('so2_stats_page.html', stats=stats, overall_stats=overall_stats)
 
+
 # FILE UPLOAD CONFIG
 # DO NOT TOUCH WITHOUT PERMISSION OF: ziomciopoziomcio pozderki
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 24 * 1024 * 1024  # 24 MB limit
 if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
     os.makedirs(app.config['UPLOAD_FOLDER'])
+
 
 @app.route('/index/challenge', methods=['GET', 'POST'])
 def challenge():
@@ -318,11 +321,13 @@ def challenge():
 
     return render_template('challenge_page.html')
 
+
 # end of that stressful situation...
 
 @app.route('/game/flappy_bird')
 def flappy_bird():
     return render_template('game/flappy_bird.html')
+
 
 @app.route('/admin')
 def admin_panel():
