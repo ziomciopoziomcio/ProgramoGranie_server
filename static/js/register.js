@@ -5,4 +5,8 @@ function switchTab(formId, tabElement) {
 
     $('#' + formId).addClass('active');
     $(tabElement).addClass('active');
+
+    // Update the role value based on the selected tab
+    const role = formId === 'form-pracownik' ? 'Prowadzący' : 'Student';
+    $('#' + formId).find('input[name="role"]').val(role);
 }
