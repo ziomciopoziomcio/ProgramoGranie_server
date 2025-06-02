@@ -67,8 +67,41 @@ def login():
 
 # end of login page config
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('imie')
+        last_name = request.form.get('nazwisko')
+        index_number = request.form.get('indeks')  # Optional for students
+        email = request.form.get('email')
+        password = request.form.get('password')
+        role = request.form.get('role')
+        degree = request.form.get('stopien-naukowy')
+
+        if not first_name or not last_name or not email or not password or not role:
+            flash('Wszystkie wymagane pola muszą być wypełnione.', 'danger')
+            return render_template('register_page.html')
+
+        password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute("""
+                INSERT INTO users (first_name, last_name, index_number, email, password_hash, role, degree)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (first_name, last_name, index_number, email, password_hash, role, degree))
+            conn.commit()
+            flash('Rejestracja zakończona sukcesem!', 'success')
+            return redirect(url_for('login'))
+        except mysql.connector.Error as err:
+            flash(f'Błąd podczas rejestracji: {err}', 'danger')
+        finally:
+            cursor.close()
+            conn.close()
+
     return render_template('register_page.html')
 
 

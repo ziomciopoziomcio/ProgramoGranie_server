@@ -52,7 +52,8 @@ a:visited {
     border-radius: 12px;
     font-family: "Roboto", serif;
     font-size: medium;
-    width: 75%;
+    width: 100%;
+    box-sizing: border-box;
     height: 52px;
 }
 
