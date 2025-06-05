@@ -37,69 +37,61 @@
     {# STATYSTYKI TEMATÓW #}
     <div class="container stats-overall-topics-container" id="stats-so2-topics-container">
         <h1 class="stats-header">Statystyki tematów</h1>
-
+        {% for topic in stats %}
         <div class="topic">
-            <p>1. Zarządzanie pamięcią</p>
-            <div class="progressbar"></div>
+            <p>{{ topic.topic_name }}</p>
+            <div class="progressbar">
+                <div class="progress" style="width: {{ topic.progress }}%; background-color: #4caf50;"></div>
+            </div>
         </div>
-        <div class="topic">
-            <p>2. System plików FAT 12/16</p>
-            <div class="progressbar"></div>
-        </div>
-
-
+        {% endfor %}
     </div>
-    {# STATYSTYKI PRZEDMIOTU #}
+
+    {# STATYSTYKA PRZEDMIOTU #}
     <div class="container stats-overall-subject-container" id="stats-so2-subject-container">
         <h1 class="stats-header">Statystyka przedmiotu</h1>
-
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-        <div class="stats-overall-stat-item"><p>stat x</p></div>
-
-
+        <div class="stats-overall-stat-item"><p>Dostępne tematy: {{ overall_stats.total_topics }}</p></div>
+        <div class="stats-overall-stat-item"><p>Zaliczone tematy: {{ overall_stats.completed_topics }}</p></div>
+        <div class="stats-overall-stat-item"><p>Średni procent zaliczenia: {{ overall_stats.average_progress }}%</p></div>
+        <div class="stats-overall-stat-item"><p>Liczba osiągnięć: {{ overall_stats.achievement_count }}</p></div>
+        <div class="stats-overall-stat-item"><p>Najlepszy wynik w temacie: {{ overall_stats.best_topic_progress }}%</p></div>
+        <div class="stats-overall-stat-item"><p>Liczba tematów z postępem powyżej 50%: {{ overall_stats.topics_above_50 }}</p></div>
     </div>
+
     {# LABEL #}
     <div class="container stats-overall-subject-label-container" id="stats-so2-subject-label-container">
-        <h1 class="stats-header">Podstawy Programowania 2</h1>
+        <h1 class="stats-header">Systemy Operacyjne 2</h1>
     </div>
+
     {# STAN ZALICZENIA #}
     <div class="container stats-overall-completion-container" id="stats-so2-completion-container">
         <h1 class="stats-header">Stan zaliczenia</h1>
-        <div class="progressbar"></div>
-    </div>
-    {# OSIĄGNIĘCIA DO ZDOBYCIA #}
-    <div class="container stats-overall-achievements-container" id="stats-so2-achievements-container">
-        <h1 class="stats-header">Osiągnięcia do zdobycia</h1>
-
-        <div class="stats-achievement-list">
-            <div class="stats-achievement-position">
-                <div class="ach-img-container"><img class="ach-img"
-                                                    src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                                                    alt="Achievement"></div>
-                <div class="ach-desc-container"><p>Osiągnięcie1<br>postęp</p></div>
-            </div>
-
-            <div class="stats-achievement-position">
-                <div class="ach-img-container"><img class="ach-img"
-                                                    src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                                                    alt="Achievement"></div>
-                <div class="ach-desc-container"><p>Osiągnięcie2<br>postęp</p></div>
-            </div>
-
-            <div class="stats-achievement-position">
-                <div class="ach-img-container"><img class="ach-img"
-                                                    src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}"
-                                                    alt="Achievement"></div>
-                <div class="ach-desc-container"><p>Osiągnięcie3<br>postęp</p></div>
+        <div class="progressbar">
+            <div class="progress" style="width: {{ overall_stats.completion_percentage }}%; background-color: #4caf50; position: relative;">
+                <span style="position: absolute; left: 50%; transform: translateX(-50%); color: white; font-weight: bold;">
+                    {{ overall_stats.completion_percentage }}%
+                </span>
             </div>
         </div>
-
-
     </div>
+
+    {# OSIĄGNIĘCIA DO ZDOBYCIA #}
+    <div class="container stats-overall-achievements-container" id="stats-so2-achievements-container">
+    <h1 class="stats-header">Osiągnięcia do zdobycia</h1>
+        <div class="stats-achievement-list">
+            {% for achievement_name, progress in overall_stats.achievements.items() %}
+            <div class="stats-achievement-position">
+                <div class="ach-img-container">
+                    <img class="ach-img" src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}" alt="{{ achievement_name }}">
+                </div>
+                <div class="ach-desc-container">
+                    <p>{{ achievement_name }}: {{ progress }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
     {# COMMITY #}
     <div class="container stats-overall-commit-container" id="stats-so2-commit-container">
         <p>commit graph (TODO)</p>
@@ -111,4 +103,3 @@
 </body>
 
 </html>
-
