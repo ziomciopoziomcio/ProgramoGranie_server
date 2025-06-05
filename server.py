@@ -140,8 +140,28 @@ def flappy_bird():
     cursor = conn.cursor(dictionary=True)
 
     try:
+        # Sprawdź, czy wpis już istnieje
+        cursor.execute("""
+            SELECT lives_remaining
+            FROM player_challenges
+            WHERE user_id = %s AND challenge_id = %s
+        """, (user_id, challenge_id))
+        result = cursor.fetchone()
+
+        if not result:
+            # Jeśli wpis nie istnieje, wstaw domyślną wartość
+            cursor.execute("""
+                INSERT INTO player_challenges (user_id, challenge_id, lives_remaining)
+                VALUES (%s, %s, 3)
+            """, (user_id, challenge_id))
+            conn.commit()
+            lives_remaining = 3
+        else:
+            # Jeśli wpis istnieje, pobierz aktualną wartość
+            lives_remaining = result['lives_remaining']
+
         if request.method == 'POST':
-            # Decrease lives by 1
+            # Zmniejsz liczbę żyć o 1
             cursor.execute("""
                 UPDATE player_challenges
                 SET lives_remaining = lives_remaining - 1
@@ -149,7 +169,7 @@ def flappy_bird():
             """, (user_id, challenge_id))
             conn.commit()
 
-            # Fetch updated lives
+            # Pobierz zaktualizowaną liczbę żyć
             cursor.execute("""
                 SELECT lives_remaining
                 FROM player_challenges
@@ -159,23 +179,6 @@ def flappy_bird():
             if not result:
                 return jsonify({'error': 'Nie znaleziono wyzwania lub brak żyć.'}), 400
             return jsonify({'lives_remaining': result['lives_remaining']})
-
-        # Ensure the player has an entry in the table
-        cursor.execute("""
-            INSERT INTO player_challenges (user_id, challenge_id, lives_remaining)
-            VALUES (%s, %s, 3)
-            ON DUPLICATE KEY UPDATE lives_remaining = lives_remaining
-        """, (user_id, challenge_id))
-        conn.commit()
-
-        # Fetch lives for rendering the page
-        cursor.execute("""
-            SELECT lives_remaining
-            FROM player_challenges
-            WHERE user_id = %s AND challenge_id = %s
-        """, (user_id, challenge_id))
-        result = cursor.fetchone()
-        lives_remaining = result['lives_remaining'] if result else 3
 
     finally:
         cursor.close()
