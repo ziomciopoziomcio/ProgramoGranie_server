@@ -184,11 +184,15 @@ document.addEventListener('keydown', () => {
     }
 });
 
-window.onload = () => {
+window.onload = async () => {
     canvas.style.display = 'block';
     startButton.style.display = 'block';
-    fetchLives();
+    startButton.disabled = true;
+    await fetchLives();
+    startButton.disabled = false;
     draw();
+    // debug how many lives we have
+    console.log(`Current lives: ${lives}`);
 
     startButton.textContent = 'ZAGRAJ';
     startButton.style.justifySelf = 'center';
@@ -216,6 +220,10 @@ window.onload = () => {
 };
 
 startButton.addEventListener('click', () => {
+    if (lives < 1) {
+        alert('Nie masz już żyć!');
+        return;
+    }
     startButton.style.display = 'none';
     canvas.style.display = 'block';
     gameRunning = true;
