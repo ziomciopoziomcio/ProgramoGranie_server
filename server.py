@@ -129,10 +129,59 @@ def challenge():
 
 # end of that stressful situation...
 
-@app.route('/game/flappy_bird')
+@app.route('/game/flappy_bird', methods=['GET', 'POST'])
 def flappy_bird():
-    return render_template('game/flappy_bird.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Musisz być zalogowany, aby zagrać.'}), 401
 
+    challenge_id = request.args.get('challenge_id', 1)  # Default challenge ID
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        if request.method == 'POST':
+            # Decrease lives by 1
+            cursor.execute("""
+                UPDATE player_challenges
+                SET lives_remaining = lives_remaining - 1
+                WHERE user_id = %s AND challenge_id = %s AND lives_remaining > 0
+            """, (user_id, challenge_id))
+            conn.commit()
+
+            # Fetch updated lives
+            cursor.execute("""
+                SELECT lives_remaining
+                FROM player_challenges
+                WHERE user_id = %s AND challenge_id = %s
+            """, (user_id, challenge_id))
+            result = cursor.fetchone()
+            if not result:
+                return jsonify({'error': 'Nie znaleziono wyzwania lub brak żyć.'}), 400
+            return jsonify({'lives_remaining': result['lives_remaining']})
+
+        # Ensure the player has an entry in the table
+        cursor.execute("""
+            INSERT INTO player_challenges (user_id, challenge_id, lives_remaining)
+            VALUES (%s, %s, 3)
+            ON DUPLICATE KEY UPDATE lives_remaining = lives_remaining
+        """, (user_id, challenge_id))
+        conn.commit()
+
+        # Fetch lives for rendering the page
+        cursor.execute("""
+            SELECT lives_remaining
+            FROM player_challenges
+            WHERE user_id = %s AND challenge_id = %s
+        """, (user_id, challenge_id))
+        result = cursor.fetchone()
+        lives_remaining = result['lives_remaining'] if result else 3
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('game/flappy_bird.html', lives_remaining=lives_remaining)
 @app.route('/admin')
 def admin_panel():
     return render_template('admin_panel.html')
