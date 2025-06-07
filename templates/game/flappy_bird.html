@@ -78,9 +78,11 @@
         <canvas id="gameCanvas" style="display: none;"></canvas>
         <img id="game-logo" src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" alt="Flappy Bird Logo">
         <div id="hearts-container">
-            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
-            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
-            <img class="heart_full" src="/static/assets/game_assets/fb_heart_full.png" alt="Heart Full">
+            {% for i in range(3) %}
+                <img class="{{ 'heart_full' if i < lives_remaining else 'heart_empty' }}"
+                     src="{{ url_for('static', filename='assets/game_assets/fb_heart_full.png') if i < lives_remaining else url_for('static', filename='assets/game_assets/fb_heart_empty.png') }}"
+                     alt="Heart">
+            {% endfor %}
         </div>
     </div>
 
