@@ -262,7 +262,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedBackground) {
         bgImg.src = selectedBackground; // Ustaw tło gry
         console.log('Ustawiono tło:', selectedBackground);
-
+        // Jeśli tło to bg_hell, ustaw czerwone rury
+        if (selectedBackground.includes('bg_hell')) {
+            pipeImg.src = '/static/assets/game_assets/fb_pipe_red.png';
+            console.log('Ustawiono czerwone rury dla tła bg_hell');
+        }
     }
 
     // Zastosuj skórkę
