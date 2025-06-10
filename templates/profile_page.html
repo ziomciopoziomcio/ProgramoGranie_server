@@ -99,13 +99,19 @@
         <h1 class="profile-header">Wyróżnione osiągnięcia</h1>
         <div id="profile-featured-achievements-list">
             <div class="profile-featured-slot-frame">
-                <div class="profile-featured-slot"></div>
+                <div class="profile-featured-slot">
+                     <img src="{{ url_for('static', filename='assets/stats_assets/ach_win_igrzyska.png') }}" alt="Puchar">
+                </div>
             </div>
             <div class="profile-featured-slot-frame">
-                <div class="profile-featured-slot"></div>
+                <div class="profile-featured-slot">
+                    <img src="{{ url_for('static', filename='assets/stats_assets/ach_pp2_bronze.png') }}" alt="Medal pp2">
+                </div>
             </div>
             <div class="profile-featured-slot-frame">
-                <div class="profile-featured-slot"></div>
+                <div class="profile-featured-slot">
+                    <img src="{{ url_for('static', filename='assets/stats_assets/ach_pp1_gold.png') }}" alt="Medal pp1">
+                </div>
             </div>
             <div class="profile-featured-slot-frame">
                 <div class="profile-featured-slot"></div>
@@ -175,16 +181,16 @@
     <div class="container" id="profile-showcase-container">
         <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" width="80" height="80"
              id="profile-pfp" alt="Profile photo icon">
-        <div class="profile-showcase-line"><p id="profile-user-name">Jan Kowalski</p></div>
+        <div class="profile-showcase-line"><p id="profile-user-name">{{ first_name }} {{ last_name }}</p></div>
         <div id="profile-currency">
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}"
                                                     width="30" height="30" id="profile-dante-coin"
                                                     alt="dante coin icon">
-                <p id="profile-dante-coin">xx</p></div>
+                <p id="profile-dante-coin">300</p></div>
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/fire_1.png') }}"
                                                     width="30" height="40" id="profile-joker-points"
                                                     alt="joker point icon">
-                <p id="profile-joker-points">xx</p></div>
+                <p id="profile-joker-points">12</p></div>
 
         </div>
 
