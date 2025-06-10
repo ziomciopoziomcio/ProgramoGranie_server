@@ -3,31 +3,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const chooseFileButton = document.getElementById('choose-file-button');
     const dragDropArea = document.getElementById('drag-drop-area');
     const fileList = document.getElementById('file-list');
+    const playButton = document.getElementById('play-button');
     let selectedFile = null; // To track the single selected file
 
     // Trigger file input when "Wybierz je z dysku" button is clicked
-    chooseFileButton.addEventListener('click', (event) => {
+    chooseFileButton?.addEventListener('click', (event) => {
         event.preventDefault(); // Prevent default behavior
         fileInput.click();
     });
 
     // Handle file selection
-    fileInput.addEventListener('change', (event) => {
+    fileInput?.addEventListener('change', (event) => {
         addFile(event.target.files[0]);
         fileInput.value = ''; // Clear input to allow re-selection of the same file
     });
 
     // Handle drag-and-drop functionality
-    dragDropArea.addEventListener('dragover', (event) => {
+    dragDropArea?.addEventListener('dragover', (event) => {
         event.preventDefault();
         dragDropArea.style.borderColor = 'blue';
     });
 
-    dragDropArea.addEventListener('dragleave', () => {
+    dragDropArea?.addEventListener('dragleave', () => {
         dragDropArea.style.borderColor = '#ccc';
     });
 
-    dragDropArea.addEventListener('drop', (event) => {
+    dragDropArea?.addEventListener('drop', (event) => {
         event.preventDefault();
         dragDropArea.style.borderColor = '#ccc';
         addFile(event.dataTransfer.files[0]);
@@ -46,14 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
         li.textContent = file.name;
         fileList.appendChild(li);
     }
-});
 
-// play button navigates to the game page
-document.addEventListener('DOMContentLoaded', () => {
-    const playButton = document.getElementById('play-button');
-    if (playButton) {
-        playButton.addEventListener('click', () => {
-            window.location.href = '/index/game';
-        });
-    }
+    // Play button navigates to the game page
+    playButton?.addEventListener('click', () => {
+        window.location.href = '/index/game';
+    });
 });
