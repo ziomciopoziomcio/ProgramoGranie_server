@@ -49,12 +49,12 @@
 
             <div class="profile-subject-list-position">
                 <div class="profile-subject-code">
-                    <p>SO2<br>kod</p>
+                    <p>PP1<br>23D</p>
                 </div>
                 <div class="profile-subject-content">
                     {% if subject_achievements['pp1'] %}
-                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['pp1']['image_path']) }}"
-                             alt="Achievement Image" class="subject-badge">
+                         <img src="{{ url_for('static', filename='assets/stats_assets/medal_pp1_gold.png') }}"
+                        alt="Achievement Image" class="subject-badge">
                     {% endif %}
                     <a href="{{ url_for('so2_stats') }}">
                         <button class="subject-stats-button" id="so2-topics-button">Statystyki</button>
@@ -64,12 +64,12 @@
 
             <div class="profile-subject-list-position">
                 <div class="profile-subject-code">
-                    <p>PP2<br>kod</p>
+                    <p>PP2<br>24D</p>
                 </div>
                 <div class="profile-subject-content">
                     {% if subject_achievements['pp2'] %}
-                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['pp2']['image_path']) }}"
-                             alt="Achievement Image" class="subject-badge">
+                        <img src="{{ url_for('static', filename='assets/stats_assets/medal_pp2_bronze.png') }}"
+                        alt="Achievement Image" class="subject-badge">
                     {% endif %}
                     <a href="{{ url_for('pp2_stats') }}">
                         <button class="subject-stats-button" id="pp2-topics-button">Statystyki</button>
@@ -79,12 +79,12 @@
 
             <div class="profile-subject-list-position">
                 <div class="profile-subject-code">
-                    <p>SO2<br>kod</p>
+                    <p>SO2<br>24D</p>
                 </div>
                 <div class="profile-subject-content">
                     {% if subject_achievements['so2'] %}
-                        <img src="{{ url_for('static', filename='assets/stats_assets/' + subject_achievements['so2']['image_path']) }}"
-                             alt="Achievement Image" class="subject-badge">
+                         <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}"
+                        alt="Achievement Image" class="subject-badge">
                     {% endif %}
                     <a href="{{ url_for('so2_stats') }}">
                         <button class="subject-stats-button" id="so2-topics-button">Statystyki</button>

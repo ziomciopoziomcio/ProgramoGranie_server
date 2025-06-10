@@ -34,7 +34,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     border-radius: 12px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    padding: 0;
+    line-height: 1;
 }
 
 
