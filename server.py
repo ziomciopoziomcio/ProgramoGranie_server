@@ -254,9 +254,9 @@ def profile():
             if achievement_progress:
                 best_achievement = max(achievement_progress.items(), key=lambda x: x[1]['percentage'])
                 achievement_images = {
-                    'Achievement1': f'ach_{subject}_gold.png',
-                    'Achievement2': f'ach_{subject}_silver.png',
-                    'Achievement3': f'ach_{subject}_bronze.png',
+                    'Achievement1': f'medal_{subject}_gold.png',
+                    'Achievement2': f'medal_{subject}_silver.png',
+                    'Achievement3': f'medal_{subject}_bronze.png',
                 }
                 best_achievement_image = achievement_images.get(best_achievement[0], 'default.png')
             else:
