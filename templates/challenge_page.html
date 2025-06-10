@@ -88,13 +88,13 @@
             <h1 class="challenge-header">Ukończyło: {{ completed_count }}</h1>
 
             <div id="podium-container">
-
+                {% if leaderboard|length >= 2 %}
                 <div class="podium" id="second">
                     <div class="podium-user-icon">
                         <div class="podium-user-icon-img">
                             <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
                         </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                        <div class="podium-user-icon-name"><p class="podium-label">2. {{ leaderboard[1].first_name }} {{ leaderboard[1].last_name }}</p></div>
                     </div>
 
                     <div class="podium-platform">
@@ -113,12 +113,14 @@
                     </div>
 
                 </div>
+                {% endif %}
+                {% if leaderboard|length >= 1 %}
                 <div class="podium" id="first">
                     <div class="podium-user-icon">
                         <div class="podium-user-icon-img">
                             <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
                         </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                        <div class="podium-user-icon-name"><p class="podium-label">1. {{ leaderboard[0].first_name }} {{ leaderboard[0].last_name }}</p></div>
                     </div>
 
                     <div class="podium-platform">
@@ -137,12 +139,14 @@
                     </div>
 
                 </div>
+                {% endif %}
+                {% if leaderboard|length >= 3 %}
                 <div class="podium" id="third">
                     <div class="podium-user-icon">
                         <div class="podium-user-icon-img">
                             <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
                         </div>
-                        <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
+                        <div class="podium-user-icon-name"><p class="podium-label">3. {{ leaderboard[2].first_name }} {{ leaderboard[2].last_name }}</p></div>
                     </div>
 
                     <div class="podium-platform">
@@ -161,6 +165,7 @@
                     </div>
 
                 </div>
+                {% endif %}
 
             </div>
         </div>
