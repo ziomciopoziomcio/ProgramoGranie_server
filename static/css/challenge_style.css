@@ -75,16 +75,6 @@
     grid-area: 2 / 2 / 4 / 3;
 }
 
-.test-failed {
-    background-color: red;
-    color: white;
-}
-
-.test-passed {
-    background-color: green;
-    color: white;
-}
-
 #challenge-unit-test-list {
     display: flex;
     height: 90%;
@@ -92,8 +82,14 @@
     justify-content: space-evenly;
 }
 
-.challenge-unit-test-bar {
+.challenge-unit-test-bar.test-passed {
     background-color: #1A9E0E;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.challenge-unit-test-bar.test-failed {
+    background-color: #F44336; 
     padding: 0 5px;
     border-radius: 5px;
 }

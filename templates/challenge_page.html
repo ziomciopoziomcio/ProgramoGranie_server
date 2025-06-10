@@ -74,7 +74,7 @@
             <div id="challenge-unit-test-list">
                 {% for test, result in test_results.items() %}
                     <div class="challenge-unit-test-bar {% if result == 0 %}test-failed{% else %}test-passed{% endif %}">
-                        <p>{{ test }}: {% if result == 0 %}Nieudany{% else %}Udany{% endif %}</p>
+                        <p>{{ test.replace('_', ' ') }}</p>
                     </div>
                 {% endfor %}
             </div>
