@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
         fileList.appendChild(li);
     }
 
-    // Play button navigates to the game page
-    playButton?.addEventListener('click', () => {
-        window.location.href = '/index/game';
-    });
+    // // Play button navigates to the game page
+    // playButton?.addEventListener('click', () => {
+    //     window.location.href = '/index/game';
+    // });
 });
