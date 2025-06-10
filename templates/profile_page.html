@@ -175,13 +175,9 @@
     {# COMMITY #}
     <div class="container" id="profile-commit-container">
          <div class="commit-graph">
-{#             {% set colors = ['#1A9E0E', '#6BC563', '#FFFFFF', '#9FCD9B', '#0B5C04'] %}#}
-{#            {% for i in range(110) %}#}
-{#                <div class="commit-square" style="background-color: {{ colors|random }};"></div>#}
-{#            {% endfor %}#}
              {% for color in colors %}
-        <div class="commit-square" style="background-color: {{ color }};"></div>
-    {% endfor %}
+                 <div class="commit-square" style="background-color: {{ color }};"></div>
+             {% endfor %}
         </div>
     </div>
 

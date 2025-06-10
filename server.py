@@ -206,6 +206,7 @@ def pp1_stats():
         flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
         return redirect(url_for('login'))
 
+    colors = generate_user_colors(user_id, rows=4, cols=25)
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -265,7 +266,7 @@ def pp1_stats():
         cursor.close()
         conn.close()
 
-    return render_template('pp1_stats_page.html', stats=stats, overall_stats=overall_stats)
+    return render_template('pp1_stats_page.html', stats=stats, overall_stats=overall_stats, colors=colors)
 
 
 @app.route('/index/profile')
@@ -275,7 +276,7 @@ def profile():
         flash('Musisz być zalogowany, aby zobaczyć profil.', 'danger')
         return redirect(url_for('login'))
 
-    colors = generate_user_colors(user_id)
+    colors = generate_user_colors(user_id, rows=5, cols=22)
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -363,6 +364,7 @@ def pp2_stats():
         flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
         return redirect(url_for('login'))
 
+    colors = generate_user_colors(user_id, rows=4, cols=25)
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -422,7 +424,7 @@ def pp2_stats():
         cursor.close()
         conn.close()
 
-    return render_template('pp2_stats_page.html', stats=stats, overall_stats=overall_stats)
+    return render_template('pp2_stats_page.html', stats=stats, overall_stats=overall_stats, colors=colors)
 
 
 @app.route('/index/so2')
@@ -432,6 +434,7 @@ def so2_stats():
         flash('Musisz być zalogowany, aby zobaczyć statystyki.', 'danger')
         return redirect(url_for('login'))
 
+    colors = generate_user_colors(user_id, rows=4, cols=25)
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -490,7 +493,7 @@ def so2_stats():
         cursor.close()
         conn.close()
 
-    return render_template('so2_stats_page.html', stats=stats, overall_stats=overall_stats)
+    return render_template('so2_stats_page.html', stats=stats, overall_stats=overall_stats, colors=colors)
 
 
 # FILE UPLOAD CONFIG
@@ -741,10 +744,12 @@ def generate_breadcrumb():
     return breadcrumb
 
 
-def generate_user_colors(user_id, num_colors=110):
-    palette = ['#1A9E0E', '#6BC563', '#FFFFFF', '#9FCD9B', '#0B5C04']
-    user_id_str = str(user_id)  # Konwersja user_id na string
-    random.seed(int(hashlib.sha256(user_id_str.encode()).hexdigest(), 16))  # Ustalony seed na podstawie user_id
+def generate_user_colors(user_id, rows, cols, palette=None):
+    if palette is None:
+        palette = ['#1A9E0E', '#6BC563', '#FFFFFF', '#9FCD9B', '#0B5C04']
+    user_id_str = str(user_id)
+    random.seed(int(hashlib.sha256(user_id_str.encode()).hexdigest(), 16))
+    num_colors = rows * cols
     return [random.choice(palette) for _ in range(num_colors)]
 
 
