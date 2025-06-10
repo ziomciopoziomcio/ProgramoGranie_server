@@ -4,7 +4,7 @@ const startButton = document.getElementById('startButton');
 const heartsContainer = document.getElementById('hearts-container');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -12, velocity: 0, maxFallSpeed: 9 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -10, velocity: 0, maxFallSpeed: 9 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -144,7 +144,7 @@ function draw() {
     });
 
     if (gameRunning) {
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = '#FFF';
         ctx.font = 'x-large Tiny5, fantasy';
         ctx.fillText(`SCORE: ${score}`, 10, 20);
     }
@@ -182,7 +182,8 @@ function gameLoop() {
 // Controls
 document.addEventListener('keydown', () => {
     if (gameRunning) {
-        bird.velocity += bird.lift;
+        // bird.velocity += bird.lift;
+        bird.velocity = Math.max(bird.velocity + bird.lift * 1.5, -bird.maxFallSpeed);
     }
 });
 
