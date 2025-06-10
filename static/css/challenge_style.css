@@ -162,29 +162,20 @@
 }
 
 .podium-progress-bar {
-    position: relative;
-    height: 10px;
     width: 100%;
-    margin-top: 2px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
 }
 
 .podium-progress-bar-done {
-    position: absolute;
-    z-index: 2;
-    background-color: #1A9E0E;
-    height: 20px;
-    width: 60%;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
-
-.podium-progress-bar-base {
-    position: absolute;
-    z-index: 1;
-    background-color: red;
-    height: 20px;
-    width: 100%;
-    border-radius: 5px;
+    height: 100%;
+    background: linear-gradient(to right, #1A9E0E var(--progress), #F44336 var(--progress));
+    transition: width 0.3s ease;
+    width: 100%; /* Pasek zawsze pełny, gradient symuluje postęp */
 }
 
 .progress-bar-label {

@@ -108,8 +108,9 @@
 
                     <div class="podium-progress-bar">
                         <p class="progress-bar-label">{{ leaderboard[1].passed_tests }}/10</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[1].passed_tests / 10) * 100 }}%;">
+                        </div>
                     </div>
 
                 </div>
@@ -134,8 +135,9 @@
 
                     <div class="podium-progress-bar">
                         <p class="progress-bar-label">{{ leaderboard[0].passed_tests }}/10</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[0].passed_tests / 10) * 100 }}%;">
+                        </div>
                     </div>
 
                 </div>
@@ -160,8 +162,9 @@
 
                     <div class="podium-progress-bar">
                         <p class="progress-bar-label">{{ leaderboard[2].passed_tests }}/10</p>
-                        <div class="podium-progress-bar-done"></div>
-                        <div class="podium-progress-bar-base"></div>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[2].passed_tests / 10) * 100 }}%;">
+                        </div>
                     </div>
 
                 </div>
