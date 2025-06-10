@@ -67,8 +67,41 @@ def login():
 
 # end of login page config
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    if request.method == 'POST':
+        # Get form data
+        first_name = request.form.get('imie')
+        last_name = request.form.get('nazwisko')
+        index_number = request.form.get('indeks')  # Optional for students
+        email = request.form.get('email')
+        password = request.form.get('password')
+        role = request.form.get('role')
+        degree = request.form.get('stopien-naukowy')
+
+        if not first_name or not last_name or not email or not password or not role:
+            flash('Wszystkie wymagane pola muszą być wypełnione.', 'danger')
+            return render_template('register_page.html')
+
+        password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute("""
+                INSERT INTO users (first_name, last_name, index_number, email, password_hash, role, degree)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (first_name, last_name, index_number, email, password_hash, role, degree))
+            conn.commit()
+            flash('Rejestracja zakończona sukcesem!', 'success')
+            return redirect(url_for('login'))
+        except mysql.connector.Error as err:
+            flash(f'Błąd podczas rejestracji: {err}', 'danger')
+        finally:
+            cursor.close()
+            conn.close()
+
     return render_template('register_page.html')
 
 
@@ -370,35 +403,70 @@ if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
 @app.route('/index/challenge', methods=['GET', 'POST'])
 def challenge():
     if request.method == 'POST':
-        if 'file' not in request.files:
-            return jsonify({'error': 'Nie wybrano pliku'}), 400
-        files = request.files.getlist('file')  # Get all files with the key 'file'
-        if not files:
-            return jsonify({'error': 'Nie wybrano plików'}), 400
-
-        uploaded_files = []
-        for file in files:
-            if file.filename == '':
-                continue
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            file.save(file_path)
-            uploaded_files.append(file.filename)
-
-        if not uploaded_files:
-            return jsonify({'error': 'Nie zapisano żadnych plików'}), 400
-
-        return jsonify(uploaded_files)  # Return the list of uploaded files
-
+        # Tymczasowo nie przetwarzaj plików, tylko odśwież stronę
+        return redirect(url_for('challenge'))
     return render_template('challenge_page.html')
 
 
 # end of that stressful situation...
 
-@app.route('/game/flappy_bird')
+@app.route('/game/flappy_bird', methods=['GET', 'POST'])
 def flappy_bird():
-    return render_template('game/flappy_bird.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'Musisz być zalogowany, aby zagrać.'}), 401
 
-  
+    challenge_id = request.args.get('challenge_id', 1)  # Default challenge ID
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Sprawdź, czy wpis już istnieje
+        cursor.execute("""
+            SELECT lives_remaining
+            FROM player_challenges
+            WHERE user_id = %s AND challenge_id = %s
+        """, (user_id, challenge_id))
+        result = cursor.fetchone()
+
+        if not result:
+            # Jeśli wpis nie istnieje, wstaw domyślną wartość
+            cursor.execute("""
+                INSERT INTO player_challenges (user_id, challenge_id, lives_remaining)
+                VALUES (%s, %s, 3)
+            """, (user_id, challenge_id))
+            conn.commit()
+            lives_remaining = 3
+        else:
+            # Jeśli wpis istnieje, pobierz aktualną wartość
+            lives_remaining = result['lives_remaining']
+
+        if request.method == 'POST':
+            # Zmniejsz liczbę żyć o 1
+            cursor.execute("""
+                UPDATE player_challenges
+                SET lives_remaining = lives_remaining - 1
+                WHERE user_id = %s AND challenge_id = %s AND lives_remaining > 0
+            """, (user_id, challenge_id))
+            conn.commit()
+
+            # Pobierz zaktualizowaną liczbę żyć
+            cursor.execute("""
+                SELECT lives_remaining
+                FROM player_challenges
+                WHERE user_id = %s AND challenge_id = %s
+            """, (user_id, challenge_id))
+            result = cursor.fetchone()
+            if not result:
+                return jsonify({'error': 'Nie znaleziono wyzwania lub brak żyć.'}), 400
+            return jsonify({'lives_remaining': result['lives_remaining']})
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('game/flappy_bird.html', lives_remaining=lives_remaining)
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
     # Check if the user is an administrator

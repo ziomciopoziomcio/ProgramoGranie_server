@@ -1,9 +1,10 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('startButton');
+const heartsContainer = document.getElementById('hearts-container');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -9, velocity: 0, maxFallSpeed: 10 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -12, velocity: 0, maxFallSpeed: 9 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -19,25 +20,88 @@ pipeImg.src = '/static/assets/game_assets/fb_pipe_green.png';
 const bgImg = new Image();
 bgImg.src = '/static/assets/game_assets/fb_bg_regular_1.png';
 
+// Update hearts display
+function updateHearts() {
+    heartsContainer.innerHTML = '';
+    for (let i = 0; i < 3; i++) {
+        const heart = document.createElement('img');
+        heart.className = i < lives ? 'heart_full' : 'heart_empty';
+        heartsContainer.appendChild(heart);
+    }
+}
+
+// Decrease lives
+// Decrease lives on the server
+async function loseLife() {
+    try {
+        const response = await fetch('/game/flappy_bird', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            if (data.lives_remaining !== undefined) {
+                lives = data.lives_remaining;
+                updateHearts();
+            } else {
+                console.error('Error updating lives:', data.error);
+            }
+        } else {
+            console.error('Failed to update lives:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error during loseLife request:', error);
+    }
+}
+
+// Reset lives
+function resetLives() {
+    lives = 3;
+    updateHearts();
+}
+
+// Fetch lives from the server
+async function fetchLives() {
+    try {
+        const response = await fetch(`/game/flappy_bird?challenge_id=1`);
+        const data = await response.json();
+        if (data.lives_remaining !== undefined) {
+            lives = data.lives_remaining;
+            updateHearts();
+        } else {
+            console.error('Error fetching lives:', data.error);
+        }
+    } catch (error) {
+        console.error('Error fetching lives:', error);
+    }
+}
+
+// Send score to backend
+function sendScoreToBackend(score) {
+    fetch('/submit_score', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ score }),
+    }).catch(error => console.error('Error sending score:', error));
+}
+
 // Game loop
 function update() {
     frame++;
     bird.velocity += bird.gravity;
-    if (bird.velocity > bird.maxFallSpeed) bird.velocity = bird.maxFallSpeed; // Limit falling speed
+    if (bird.velocity > bird.maxFallSpeed) bird.velocity = bird.maxFallSpeed;
+    if (bird.velocity < bird.lift) bird.velocity = bird.lift;
     bird.y += bird.velocity;
 
-
-    if (frame % 120 === 0) { // PIPE SPAWN RATE!!!
+    if (frame % 120 === 0) {
         const pipeHeight = Math.random() * (canvas.height / 2);
         pipes.push({ x: canvas.width, y: pipeHeight, scored: false });
     }
 
-    // Move pipes
     pipes.forEach(pipe => pipe.x -= 2);
 
-    // Collision detection and scoring
     pipes.forEach(pipe => {
-        // Check for collision
         if (
             bird.x < pipe.x + 50 &&
             bird.x + bird.width > pipe.x &&
@@ -46,17 +110,14 @@ function update() {
             endGame();
         }
 
-        // Check if bird passes the pipe
         if (!pipe.scored && bird.x > pipe.x + 50) {
             score++;
             pipe.scored = true;
         }
     });
 
-    // Remove off-screen pipes
     pipes = pipes.filter(pipe => pipe.x + 50 > 0);
 
-    // Check game borders
     if (bird.y + bird.height > canvas.height || bird.y < 0) {
         endGame();
     }
@@ -64,38 +125,23 @@ function update() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw background
     ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
-
-    // Draw bird
     ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
-    // Draw pipes
     pipes.forEach(pipe => {
-        // Top pipe (rotated)
         for (let y = pipe.y - 200; y > -200; y -= 200) {
             ctx.save();
-            ctx.translate(pipe.x + 25, y + 100); // Move to pipe center
-            ctx.rotate(Math.PI); // Rotate 180 degrees
-            ctx.drawImage(pipeImg, -25, -100, 50, 200); // Draw rotated pipe
+            ctx.translate(pipe.x + 25, y + 100);
+            ctx.rotate(Math.PI);
+            ctx.drawImage(pipeImg, -25, -100, 50, 200);
             ctx.restore();
         }
 
-        // Bottom pipe
         for (let y = pipe.y + pipeGap; y < canvas.height; y += 200) {
             ctx.drawImage(pipeImg, pipe.x, y, 50, 200);
         }
-        //  // Top pipe with rotation
-        // ctx.save();
-        // ctx.translate(pipe.x + 25, pipe.y - 100); // Move to pipe center
-        // ctx.rotate(Math.PI); // rotate 180 degrees
-        // ctx.drawImage(pipeImg, -25, -100, 50, 200); // draw rotated top pipe
-        // ctx.restore();
-        // ctx.drawImage(pipeImg, pipe.x, pipe.y + pipeGap, 50, 200); // Bottom pipe
     });
 
-    // Draw score only if the game is running
     if (gameRunning) {
         ctx.fillStyle = '#000';
         ctx.font = 'x-large Tiny5, fantasy';
@@ -132,45 +178,23 @@ function gameLoop() {
     }
 }
 
-function updateHearts(){
-    const hearts = document.querySelectorAll('#hearts-container img');
-    hearts.forEach((heart, index) => {
-        if (index < hearts.length - lives) {
-            heart.classList.remove('heart_full');
-            heart.classList.add('heart_empty');
-        } else {
-            heart.classList.remove('heart_empty');
-            heart.classList.add('heart_full');
-        }
-    });
-}
-
-function loseLife() {
-    if (lives > 0) {
-        lives--;
-        updateHearts();
-    }
-}
-
-function resetLives() {
-    lives = 3;
-    updateHearts();
-}
-
 // Controls
 document.addEventListener('keydown', () => {
     if (gameRunning) {
-        bird.velocity = bird.lift;
+        bird.velocity += bird.lift;
     }
 });
 
-window.onload = () => {
+window.onload = async () => {
     canvas.style.display = 'block';
     startButton.style.display = 'block';
-    updateHearts();
+    startButton.disabled = true;
+    await fetchLives();
+    startButton.disabled = false;
     draw();
+    // debug how many lives we have
+    console.log(`Current lives: ${lives}`);
 
-    // Change start button styles
     startButton.textContent = 'ZAGRAJ';
     startButton.style.justifySelf = 'center';
     startButton.style.width = '250px';
@@ -187,17 +211,20 @@ window.onload = () => {
     startButton.style.cursor = 'pointer';
     startButton.style.transition = 'opacity 0.3s';
 
-    // Add hover effect
     startButton.addEventListener('mouseover', () => {
         startButton.style.opacity = '0.8';
     });
+
     startButton.addEventListener('mouseout', () => {
         startButton.style.opacity = '1';
     });
 };
 
-// Start button event listener
 startButton.addEventListener('click', () => {
+    if (lives < 1) {
+        alert('Nie masz już żyć!');
+        return;
+    }
     startButton.style.display = 'none';
     canvas.style.display = 'block';
     gameRunning = true;
@@ -206,30 +233,15 @@ startButton.addEventListener('click', () => {
     gameLoop();
 });
 
-// Send score to backend (JSON)
-function sendScoreToBackend(score) {
-    fetch('/submit_score', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ score: score })
-    }).then(response => response.json())
-      .then(data => console.log('Score submitted:', data))
-      .catch(error => console.error('Error submitting score:', error));
-}
-
 window.addEventListener('load', () => {
     const container = canvas.parentElement;
-
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
-
-    canvas.style.display = 'block';
     draw();
 });
 
 window.addEventListener('resize', () => {
     const container = canvas.parentElement;
-
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
     draw();
@@ -257,6 +269,5 @@ document.addEventListener('DOMContentLoaded', () => {
         birdImg.src = selectedSkin; // Ustaw skórkę gracza
         console.log('Ustawiono skórkę:', selectedSkin);
     }
-
 
 });
