@@ -5,6 +5,7 @@ import os
 from flask import Flask, request, jsonify, render_template, url_for, redirect, session, flash
 import mysql.connector
 import bcrypt
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'bardzo_bezpieczny_klucz'  # tylko na potrzeby testowe
@@ -107,7 +108,30 @@ def register():
 
 @app.route('/index')
 def index():
-    return render_template('main_menu_page.html')
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch all challenges
+        cursor.execute("SELECT id, description, start_date, end_date FROM challenges ORDER BY start_date ASC")
+        challenges = cursor.fetchall()
+
+        # Determine the status of each challenge
+        current_time = datetime.now()
+        for challenge in challenges:
+            start_date = challenge['start_date']
+            end_date = challenge['end_date']
+            if start_date > current_time:
+                challenge['status'] = 'closed'
+            elif start_date <= current_time <= end_date:
+                challenge['status'] = 'open'
+            else:
+                challenge['status'] = 'finished'
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('main_menu_page.html', challenges=challenges)
 
 
 @app.route('/index/game')
@@ -398,6 +422,47 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 24 * 1024 * 1024  # 24 MB limit
 if os.path.exists(app.config['UPLOAD_FOLDER']) is False:
     os.makedirs(app.config['UPLOAD_FOLDER'])
+
+@app.route('/join_challenge/<int:challenge_id>', methods=['GET'])
+def join_challenge(challenge_id):
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby dołączyć do wyzwania.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Sprawdź, czy wyzwanie istnieje
+        cursor.execute("SELECT * FROM challenges WHERE id = %s", (challenge_id,))
+        challenge = cursor.fetchone()
+        if not challenge:
+            flash('Wyzwanie nie istnieje.', 'danger')
+            return redirect(url_for('index'))
+
+        # Sprawdź, czy użytkownik już dołączył
+        cursor.execute("""
+            SELECT * FROM player_challenges WHERE user_id = %s AND challenge_id = %s
+        """, (user_id, challenge_id))
+        existing_entry = cursor.fetchone()
+
+        if not existing_entry:
+            # Dodaj użytkownika do wyzwania
+            cursor.execute("""
+                INSERT INTO player_challenges (user_id, challenge_id, lives_remaining)
+                VALUES (%s, %s, 3)
+            """, (user_id, challenge_id))
+            conn.commit()
+            flash('Dołączyłeś do wyzwania!', 'success')
+        else:
+            flash('Już dołączyłeś do tego wyzwania.', 'info')
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return redirect(url_for('challenge', challenge_id=challenge_id))
 
 
 @app.route('/index/challenge', methods=['GET', 'POST'])
