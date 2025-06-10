@@ -33,11 +33,12 @@ function updateHearts() {
 // Decrease lives
 // Decrease lives on the server
 async function loseLife() {
+    console.log(challengeId);
     try {
-        const response = await fetch('/game/flappy_bird', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        });
+        const response = await fetch(`/game/flappy_bird?challenge_id=${challengeId}&action=lose_life`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
 
         if (response.ok) {
             const data = await response.json();

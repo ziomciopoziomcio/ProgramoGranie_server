@@ -624,11 +624,22 @@ def flappy_bird():
     if not user_id:
         return jsonify({'error': 'Musisz być zalogowany, aby zagrać.'}), 401
 
-    challenge_id = request.args.get('challenge_id', 1)  # Default challenge ID
+    # Pobierz challenge_id z parametrów URL
+    challenge_id = request.args.get('challenge_id')
+    if not challenge_id:
+        return jsonify({'error': 'Brak ID wyzwania w parametrze URL.'}), 400
+
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
+
     try:
+        # Sprawdź, czy wyzwanie istnieje
+        cursor.execute("SELECT * FROM challenges WHERE id = %s", (challenge_id,))
+        challenge = cursor.fetchone()
+        if not challenge:
+            return jsonify({'error': 'Nie znaleziono wyzwania o podanym ID.'}), 404
+
         # Sprawdź, czy wpis już istnieje
         cursor.execute("""
             SELECT lives_remaining
@@ -650,6 +661,7 @@ def flappy_bird():
             lives_remaining = result['lives_remaining']
 
         if request.method == 'POST':
+            print("POST request received for Flappy Bird game")
             # Zmniejsz liczbę żyć o 1
             cursor.execute("""
                 UPDATE player_challenges
@@ -673,7 +685,8 @@ def flappy_bird():
         cursor.close()
         conn.close()
 
-    return render_template('game/flappy_bird.html', lives_remaining=lives_remaining)
+    # Pass the challenge object to the template
+    return render_template('game/flappy_bird.html', lives_remaining=lives_remaining, challenge=challenge)
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_panel():
