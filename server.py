@@ -107,7 +107,26 @@ def register():
 
 @app.route('/index')
 def index():
-    return render_template('main_menu_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć tę stronę.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Pobierz dane użytkownika
+        cursor.execute("SELECT first_name, last_name FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            flash('Nie znaleziono użytkownika.', 'danger')
+            return redirect(url_for('login'))
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('main_menu_page.html', first_name=user['first_name'], last_name=user['last_name'])
 
 
 @app.route('/index/game')
@@ -195,6 +214,16 @@ def profile():
     cursor = conn.cursor(dictionary=True)
 
     try:
+        # Pobierz dane użytkownika
+        cursor.execute("SELECT first_name, last_name FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            flash('Nie znaleziono użytkownika.', 'danger')
+            return redirect(url_for('login'))
+
+        first_name = user['first_name']
+        last_name = user['last_name']
+
         subjects = ['pp1', 'pp2', 'so2']
         subject_achievements = {}
 
@@ -252,8 +281,13 @@ def profile():
         cursor.close()
         conn.close()
 
-    return render_template('profile_page.html', subject_achievements=subject_achievements, achievements=achievements)
-
+    return render_template(
+        'profile_page.html',
+        first_name=first_name,
+        last_name=last_name,
+        subject_achievements=subject_achievements,
+        achievements=achievements
+    )
 
 @app.route('/index/pp2')
 def pp2_stats():

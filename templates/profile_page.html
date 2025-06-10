@@ -175,7 +175,7 @@
     <div class="container" id="profile-showcase-container">
         <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" width="80" height="80"
              id="profile-pfp" alt="Profile photo icon">
-        <div class="profile-showcase-line"><p id="profile-user-name">Jan Kowalski</p></div>
+        <div class="profile-showcase-line"><p id="profile-user-name">{{ first_name }} {{ last_name }}</p></div>
         <div id="profile-currency">
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}"
                                                     width="30" height="30" id="profile-dante-coin"

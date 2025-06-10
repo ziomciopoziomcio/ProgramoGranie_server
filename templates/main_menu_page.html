@@ -145,7 +145,7 @@
     <div class="container" id="main-menu-profile-container">
         <a href="{{ url_for('profile') }}" class="page-link"></a>
         <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
-        <h1>Jan Kowalski</h1>
+        <h1>{{ first_name }} {{ last_name }}</h1>
         <div id="main-menu-profile-currency-container">
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}"
                                                     width="30" height="30" id="profile-dante-coin"
