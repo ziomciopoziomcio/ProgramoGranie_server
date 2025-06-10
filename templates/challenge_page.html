@@ -175,9 +175,11 @@
 
 {# FLAPPY DANTE #}
         <div class="container" id="challenge-game-container">
-            <img src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
-            <button id="play-button">ZAGRAJ</button>
-        </div>
+    <img src="{{ url_for('static', filename='assets/game_assets/fb_logo.png') }}" id="game-logo" alt="Game logo">
+    <a href="{{ url_for('game') }}?challenge_id={{ challenge.id }}">
+        <button id="play-button">ZAGRAJ</button>
+    </a>
+</div>
 
     </div>
 
