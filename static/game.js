@@ -4,7 +4,7 @@ const startButton = document.getElementById('startButton');
 const heartsContainer = document.getElementById('hearts-container');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -9, velocity: 0, maxFallSpeed: 10 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -12, velocity: 0, maxFallSpeed: 9 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -91,6 +91,7 @@ function update() {
     frame++;
     bird.velocity += bird.gravity;
     if (bird.velocity > bird.maxFallSpeed) bird.velocity = bird.maxFallSpeed;
+    if (bird.velocity < bird.lift) bird.velocity = bird.lift;
     bird.y += bird.velocity;
 
     if (frame % 120 === 0) {
