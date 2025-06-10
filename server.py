@@ -479,13 +479,24 @@ def admin_panel():
 
     try:
         if request.method == 'POST':
-            # Add a new challenge
-            description = request.form['challenge-description']
-            cursor.execute("INSERT INTO challenges (description) VALUES (%s)", (description,))
-            conn.commit()
-            flash('Polecenie zostało dodane.', 'success')
+            # Pobierz dane z formularza
+            description = request.form.get('challenge-description')
+            start_date = request.form.get('challenge-start')
+            end_date = request.form.get('challenge-end')
 
-        # Fetch all challenges
+            if not description or not start_date or not end_date:
+                flash('Wszystkie pola muszą być wypełnione.', 'danger')
+                return redirect(url_for('admin_panel'))
+
+            # Dodaj nowe wyzwanie do tabeli challenges
+            cursor.execute("""
+                INSERT INTO challenges (description, start_date, end_date, created_at)
+                VALUES (%s, %s, %s, NOW())
+            """, (description, start_date, end_date))
+            conn.commit()
+            flash('Nowe wyzwanie zostało dodane.', 'success')
+
+        # Pobierz wszystkie wyzwania do wyświetlenia na stronie
         cursor.execute("SELECT * FROM challenges ORDER BY created_at DESC")
         challenges = cursor.fetchall()
     finally:
