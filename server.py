@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify, render_template, url_for, redirect, s
 import mysql.connector
 import bcrypt
 from datetime import datetime
+import random
 
 app = Flask(__name__)
 app.secret_key = 'bardzo_bezpieczny_klucz'  # tylko na potrzeby testowe
@@ -467,10 +468,41 @@ def join_challenge(challenge_id):
 
 @app.route('/index/challenge', methods=['GET', 'POST'])
 def challenge():
-    if request.method == 'POST':
-        # Tymczasowo nie przetwarzaj plików, tylko odśwież stronę
-        return redirect(url_for('challenge'))
-    return render_template('challenge_page.html')
+    challenge_id = request.args.get('challenge_id')  # Get challenge_id from query string
+    if not challenge_id:
+        flash('Brak ID wyzwania w adresie URL.', 'danger')
+        return redirect(url_for('index'))
+
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć wyzwanie.', 'danger')
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Fetch challenge details
+        cursor.execute("SELECT * FROM challenges WHERE id = %s", (challenge_id,))
+        challenge = cursor.fetchone()
+
+        if not challenge:
+            flash('Nie znaleziono wyzwania o podanym ID.', 'danger')
+            return redirect(url_for('index'))
+
+        # Fetch test results for the user
+        cursor.execute("""
+            SELECT test_1, test_2, test_3, test_4, test_5, test_6, test_7, test_8, test_9, test_10
+            FROM player_challenges
+            WHERE user_id = %s AND challenge_id = %s
+        """, (user_id, challenge_id))
+        test_results = cursor.fetchone()
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('challenge_page.html', challenge=challenge, test_results=test_results)
 
 
 # end of that stressful situation...
@@ -594,6 +626,42 @@ def generate_breadcrumb():
             })
     return breadcrumb
 
+
+@app.route('/submit_tests', methods=['POST'])
+def submit_tests():
+    user_id = session.get('user_id')
+    challenge_id = request.form.get('challenge_id')  # Pobierz challenge_id z formularza
+
+    if not user_id or not challenge_id:
+        flash('Brak ID użytkownika lub wyzwania.', 'danger')
+        return redirect(url_for('challenge', challenge_id=challenge_id))
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    try:
+        # Losuj wartości true/false dla każdego testu
+        test_results = {f'test_{i}': random.choice([True, False]) for i in range(1, 11)}
+
+        # Aktualizuj tabelę player_challenges
+        update_query = """
+            UPDATE player_challenges
+            SET test_1 = %(test_1)s, test_2 = %(test_2)s, test_3 = %(test_3)s, test_4 = %(test_4)s,
+                test_5 = %(test_5)s, test_6 = %(test_6)s, test_7 = %(test_7)s, test_8 = %(test_8)s,
+                test_9 = %(test_9)s, test_10 = %(test_10)s
+            WHERE user_id = %(user_id)s AND challenge_id = %(challenge_id)s
+        """
+        cursor.execute(update_query, {**test_results, 'user_id': user_id, 'challenge_id': challenge_id})
+        conn.commit()
+
+        flash('Testy zostały przesłane i zaktualizowane.', 'success')
+    except Exception as e:
+        flash(f'Błąd podczas aktualizacji testów: {e}', 'danger')
+    finally:
+        cursor.close()
+        conn.close()
+
+    return redirect(url_for('challenge', challenge_id=challenge_id))
 
 @app.context_processor
 def inject_breadcrumb():
