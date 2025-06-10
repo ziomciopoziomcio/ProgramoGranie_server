@@ -172,11 +172,30 @@ def game():
             ORDER BY passed_tests DESC;
         """, (challenge_id,))  # Pass challenge_id as a tuple
         leaderboard = cursor.fetchall()
+        # Count participants
+        cursor.execute("""
+                    SELECT COUNT(*) AS participants_count
+                    FROM player_challenges
+                    WHERE challenge_id = %s
+                """, (challenge_id,))
+        participants_count = cursor.fetchone()['participants_count']
+
+        # Count completed users
+        cursor.execute("""
+                    SELECT COUNT(*) AS completed_count
+                    FROM player_challenges
+                    WHERE challenge_id = %s AND 
+                          test_1 = 1 AND test_2 = 1 AND test_3 = 1 AND test_4 = 1 AND 
+                          test_5 = 1 AND test_6 = 1 AND test_7 = 1 AND test_8 = 1 AND 
+                          test_9 = 1 AND test_10 = 1
+                """, (challenge_id,))
+        completed_count = cursor.fetchone()['completed_count']
+
     finally:
         cursor.close()
         conn.close()
 
-    return render_template('game_page.html', leaderboard=leaderboard)
+    return render_template('game_page.html', leaderboard=leaderboard, participants_count=participants_count, completed_count=completed_count, challenge_id=challenge_id)
 
 
 @app.route('/index/pp1')
