@@ -20,6 +20,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Gra</title>
+    <script>
+        // Funkcja do pobrania parametrów URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Pobierz challenge_id
+        const challengeId = getQueryParam('challenge_id');
+        console.log('Challenge ID:', challengeId);
+
+        // Możesz użyć challengeId w dalszej logice
+    </script>
 </head>
 
 <body>
@@ -44,98 +57,100 @@
     <div class="container" id="game-label-container">
         <img id="game-label-img" src="{{ url_for('static', filename='assets/game_assets/games_logo_cropped.png') }}"
              alt="logo igrzysk">
-        <h1 class="game-header">Pozostało: xx:xx:xx</h1>
+
         <button class="game-styled-button" id="back-button">POWRÓT</button>
     </div>
 
     {# TABLICA WYNIKÓW #}
     <div class="container" id="game-leaderboard-container">
 
-        <h1 class="game-header">Bierze udział: xxx</h1>
-        <h1 class="game-header">Ukończyło: x </h1>
+        <h1 class="challenge-header">Bierze udział: {{ participants_count }}</h1>
+            <h1 class="challenge-header">Ukończyło: {{ completed_count }}</h1>
 
         <div id="podium-container">
-
-            <div class="podium" id="second">
-                <div class="podium-user-icon">
-                    <div class="podium-user-icon-img">
-                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
-                             alt="profile picture">
-                    </div>
-                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                </div>
-
-                <div class="podium-platform">
-                    <div class="podium-platform-icon">
-                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p>
+                {% if leaderboard|length >= 2 %}
+                <div class="podium" id="second">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
                         </div>
-                        <div class="podium-platform-icon-img">
-                            <img src="{{ url_for('static', filename='assets/game_assets/cup_silver.png') }}" alt="2nd place cup">
+                        <div class="podium-user-icon-name"><p class="podium-label">2. {{ leaderboard[1].first_name }} {{ leaderboard[1].last_name }}</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">2.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_silver.png') }}" alt="2nd place cup">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="podium-progress-bar">
-                    <p class="progress-bar-label">6/13</p>
-                    <div class="podium-progress-bar-done"></div>
-                    <div class="podium-progress-bar-base"></div>
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">{{ leaderboard[1].passed_tests }}/10</p>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[1].passed_tests / 10) * 100 }}%;">
+                        </div>
+                    </div>
+
                 </div>
+                {% endif %}
+                {% if leaderboard|length >= 1 %}
+                <div class="podium" id="first">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">1. {{ leaderboard[0].first_name }} {{ leaderboard[0].last_name }}</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_golden.png') }}" alt="winner cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">{{ leaderboard[0].passed_tests }}/10</p>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[0].passed_tests / 10) * 100 }}%;">
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+                {% if leaderboard|length >= 3 %}
+                <div class="podium" id="third">
+                    <div class="podium-user-icon">
+                        <div class="podium-user-icon-img">
+                            <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
+                        </div>
+                        <div class="podium-user-icon-name"><p class="podium-label">3. {{ leaderboard[2].first_name }} {{ leaderboard[2].last_name }}</p></div>
+                    </div>
+
+                    <div class="podium-platform">
+                        <div class="podium-platform-icon">
+                            <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p></div>
+                            <div class="podium-platform-icon-img">
+                                <img src="{{ url_for('static', filename='assets/game_assets/cup_bronze.png') }}" alt="3rd place cup">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="podium-progress-bar">
+                        <p class="progress-bar-label">{{ leaderboard[2].passed_tests }}/10</p>
+                        <div class="podium-progress-bar-done"
+                             style="--progress: {{ (leaderboard[2].passed_tests / 10) * 100 }}%;">
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
 
             </div>
-            <div class="podium" id="first">
-                <div class="podium-user-icon">
-                    <div class="podium-user-icon-img">
-                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
-                             alt="profile picture">
-                    </div>
-                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                </div>
-
-                <div class="podium-platform">
-                    <div class="podium-platform-icon">
-                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">1.</p>
-                        </div>
-                        <div class="podium-platform-icon-img">
-                            <img src="{{ url_for('static', filename='assets/game_assets/cup_golden.png') }}" alt="winner cup">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podium-progress-bar">
-                    <p class="progress-bar-label">13/13</p>
-                    <div class="podium-progress-bar-done"></div>
-                    <div class="podium-progress-bar-base"></div>
-                </div>
-
-            </div>
-            <div class="podium" id="third">
-                <div class="podium-user-icon">
-                    <div class="podium-user-icon-img">
-                        <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}"
-                             alt="profile picture">
-                    </div>
-                    <div class="podium-user-icon-name"><p class="podium-label">user_name</p></div>
-                </div>
-
-                <div class="podium-platform">
-                    <div class="podium-platform-icon">
-                        <div class="podium-platform-icon-place"><p class="podium-label" id="player-ranking-num">3.</p>
-                        </div>
-                        <div class="podium-platform-icon-img">
-                            <img src="{{ url_for('static', filename='assets/game_assets/cup_bronze.png') }}" alt="3rd place cup">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="podium-progress-bar">
-                    <p class="progress-bar-label">2/13</p>
-                    <div class="podium-progress-bar-done"></div>
-                    <div class="podium-progress-bar-base"></div>
-                </div>
-
-            </div>
-
-        </div>
     </div>
 
     {# FLAPPY DANTE #}
