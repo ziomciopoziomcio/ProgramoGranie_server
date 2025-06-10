@@ -231,6 +231,13 @@
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
 }
 
+.main-menu-profile-achievement-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Dopasowanie obrazka bez przycinania */
+    display: block; /* Usuwa ewentualne odstępy */
+}
+
 #main-menu-competition-container {
     grid-area: 3 / 2 / 5 / 3;
 
