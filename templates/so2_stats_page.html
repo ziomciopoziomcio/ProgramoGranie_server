@@ -86,7 +86,15 @@
             {% for achievement_name, progress in overall_stats.achievements.items() %}
             <div class="stats-achievement-position">
                 <div class="ach-img-container">
-                    <img class="ach-img" src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}" alt="{{ achievement_name }}">
+                    <img class="ach-img"
+                         src="{% if loop.index0 == 0 %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_alokator_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% elif loop.index0 == 1 %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_fat_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% else %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_so2_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% endif %}"
+                         alt="{{ achievement_name }}">
                 </div>
                 <div class="ach-desc-container">
                     <p>{{ achievement_name }}: {{ progress }}</p>
