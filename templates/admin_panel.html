@@ -17,8 +17,9 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/fire_1.png') }}">
 
     <title>Admin</title>
-</head>
 
+</head>
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
 <body>
 <div class="navbar">
     <a href="{{ url_for('index') }}">
@@ -34,27 +35,36 @@
 
 <div class="main-content">
     <div class="container">
-        <h1>Dodaj polecenie do wyzwania</h1>
+        <h1>Dodaj wyzwanie</h1>
         <form action="/admin" method="POST">
             <textarea id="challenge-description" name="challenge-description" rows="7" required></textarea>
-            <button type="submit">Dodaj polecenie</button>
+
+
+            <label for="challenge-start">Data i godzina rozpoczęcia:</label>
+            <input type="datetime-local" id="challenge-start" name="challenge-start" required>
+
+            <label for="challenge-end">Data i godzina zakończenia:</label>
+            <input type="datetime-local" id="challenge-end" name="challenge-end" required>
+
+           <div class="custom-file-input">
+                <button type="submit" id="select-file-button" class="custom-button">Wybierz plik z testami</button>
+            </div>
+            <button type="submit">Dodaj nowe wyzwanie</button>
         </form>
     </div>
-    <div class="bottom-containers">
-   <div class="container">
-        <img src="{{ url_for('static', filename='assets/games_logo.png') }}" alt="Games Logo" class="logo-image">
-    </div>
-    <div class="container">
-        <h1>Polecenia dostępne w bazie</h1>
-        <div class="commands-list">
-            {% for challenge in challenges %}
-                <p>{{ challenge.description }} (Dodano: {{ challenge.created_at }})</p>
-            {% endfor %}
+    <div class="left-containers">
+        <div class="container">
+            <img src="{{ url_for('static', filename='assets/games_logo.png') }}" alt="Games Logo" class="logo-image">
+        </div>
+        <div class="container">
+            <h1>Zakończone wyzwania</h1>
+            <div class="commands-list">
+                {% for challenge in challenges %}
+                    <p>{{ challenge.description }} (Dodano: {{ challenge.created_at }})</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-
-</div>
 
 </body>
 
