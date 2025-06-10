@@ -130,6 +130,19 @@
     min-height: 50px;
 }
 
+.commit-graph {
+    display: grid;
+    grid-template-columns: repeat(25, 30px);
+    grid-gap: 5px;
+}
+
+.commit-square {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 /* Smartphones */
 @media (max-width: 480px) {
     /* TODO (not necessary unless using small devices) */

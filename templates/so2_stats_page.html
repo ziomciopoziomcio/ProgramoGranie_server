@@ -107,7 +107,11 @@
 
     {# COMMITY #}
     <div class="container stats-overall-commit-container" id="stats-so2-commit-container">
-        <p>commit graph (TODO)</p>
+        <div class="commit-graph">
+             {% for color in colors %}
+                 <div class="commit-square" style="background-color: {{ color }};"></div>
+             {% endfor %}
+        </div>
     </div>
 
 </div>
