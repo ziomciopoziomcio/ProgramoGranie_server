@@ -7,6 +7,7 @@ import mysql.connector
 import bcrypt
 from datetime import datetime
 import random
+import hashlib
 
 app = Flask(__name__)
 app.secret_key = 'bardzo_bezpieczny_klucz'  # tylko na potrzeby testowe
@@ -274,6 +275,7 @@ def profile():
         flash('Musisz być zalogowany, aby zobaczyć profil.', 'danger')
         return redirect(url_for('login'))
 
+    colors = generate_user_colors(user_id)
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -349,6 +351,7 @@ def profile():
         'profile_page.html',
         first_name=first_name,
         last_name=last_name,
+        colors=colors,
         subject_achievements=subject_achievements,
         achievements=achievements
     )
@@ -736,6 +739,13 @@ def generate_breadcrumb():
                 'url': '/' + '/'.join(path[:i + 1])
             })
     return breadcrumb
+
+
+def generate_user_colors(user_id, num_colors=110):
+    palette = ['#1A9E0E', '#6BC563', '#FFFFFF', '#9FCD9B', '#0B5C04']
+    user_id_str = str(user_id)  # Konwersja user_id na string
+    random.seed(int(hashlib.sha256(user_id_str.encode()).hexdigest(), 16))  # Ustalony seed na podstawie user_id
+    return [random.choice(palette) for _ in range(num_colors)]
 
 
 @app.route('/submit_tests', methods=['POST'])

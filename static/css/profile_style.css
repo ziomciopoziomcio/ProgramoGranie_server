@@ -218,6 +218,19 @@
     grid-area: 3 / 1 / 4 / 3;
 }
 
+.commit-graph {
+    display: grid;
+    grid-template-columns: repeat(22, 30px);
+    grid-gap: 5px;
+}
+
+.commit-square {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
 #profile-showcase-container {
     grid-area: 1 / 4 / 1 / 5;
     min-height: 200px;
