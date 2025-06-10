@@ -517,6 +517,18 @@ def challenge():
         """, (challenge_id,))
         completed_count = cursor.fetchone()['completed_count']
 
+        # Fetch leaderboard data
+        cursor.execute("""
+            SELECT u.first_name, u.last_name,
+                   (test_1 + test_2 + test_3 + test_4 + test_5 +
+                    test_6 + test_7 + test_8 + test_9 + test_10) AS passed_tests
+            FROM player_challenges pc
+            JOIN users u ON pc.user_id = u.id
+            WHERE pc.challenge_id = %s
+            ORDER BY passed_tests DESC
+        """, (challenge_id,))
+        leaderboard = cursor.fetchall()
+
     finally:
         cursor.close()
         conn.close()
@@ -526,7 +538,8 @@ def challenge():
         challenge=challenge,
         test_results=test_results,
         participants_count=participants_count,
-        completed_count=completed_count
+        completed_count=completed_count,
+        leaderboard=leaderboard
     )
 
 
