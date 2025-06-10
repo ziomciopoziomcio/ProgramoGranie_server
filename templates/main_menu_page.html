@@ -198,7 +198,7 @@
             {% for challenge in challenges if challenge.status == 'closed' %}
             <div class="event-container">
                 <div class="event-status status-closed">STATUS: ZAMKNIĘTE</div>
-                <p>{{ challenge.description }} ({{ challenge.start_date }})</p>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.start_date }})</p>
             </div>
             {% endfor %}
 
@@ -206,7 +206,7 @@
             {% for challenge in challenges if challenge.status == 'open' %}
             <div class="event-container">
                 <div class="event-status status-open">STATUS: OTWARTE</div>
-                <p>{{ challenge.description }} ({{ challenge.start_date }} - {{ challenge.end_date }})</p>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.start_date }} - {{ challenge.end_date }})</p>
                 <a href="{{ url_for('join_challenge', challenge_id=challenge.id) }}">
                     <button class="event-join-button status-open">Dołącz</button>
                 </a>
@@ -217,7 +217,7 @@
             {% for challenge in challenges if challenge.status == 'finished' %}
             <div class="event-container">
                 <div class="event-status status-finished">ZAKOŃCZONE</div>
-                <p>{{ challenge.description }} ({{ challenge.end_date }})</p>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.end_date }})</p>
                 <button class="event-preview-button status-finished">Podgląd</button>
             </div>
             {% endfor %}
