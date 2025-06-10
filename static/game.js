@@ -235,3 +235,28 @@ window.addEventListener('resize', () => {
     draw();
 
 });
+
+
+// Inicjalizacja gry
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedBackground = localStorage.getItem('selectedBackground');
+    const selectedSkin = localStorage.getItem('selectedSkin');
+
+
+    console.log('Odczytano z localStorage:', { selectedBackground, selectedSkin });
+
+    // Zastosuj tło
+    if (selectedBackground) {
+        bgImg.src = selectedBackground; // Ustaw tło gry
+        console.log('Ustawiono tło:', selectedBackground);
+
+    }
+
+    // Zastosuj skórkę
+    if (selectedSkin) {
+        birdImg.src = selectedSkin; // Ustaw skórkę gracza
+        console.log('Ustawiono skórkę:', selectedSkin);
+    }
+
+
+});
