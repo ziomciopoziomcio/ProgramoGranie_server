@@ -147,7 +147,36 @@ def index():
 
 @app.route('/index/game')
 def game():
-    return render_template('game_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zagrać.', 'danger')
+        return redirect(url_for('login'))
+
+    challenge_id = request.args.get('challenge_id')  # Retrieve challenge_id from query parameters
+    if not challenge_id:
+        flash('Brak ID wyzwania.', 'danger')
+        return redirect(url_for('index'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Pobierz dane do tablicy wyników
+        cursor.execute("""
+            SELECT u.first_name, u.last_name,
+                   (test_1 + test_2 + test_3 + test_4 + test_5 +
+                    test_6 + test_7 + test_8 + test_9 + test_10) AS passed_tests
+            FROM player_challenges pc
+            JOIN users u ON pc.user_id = u.id
+            WHERE pc.challenge_id = %s
+            ORDER BY passed_tests DESC;
+        """, (challenge_id,))  # Pass challenge_id as a tuple
+        leaderboard = cursor.fetchall()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('game_page.html', leaderboard=leaderboard)
 
 
 @app.route('/index/pp1')
