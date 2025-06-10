@@ -30,7 +30,7 @@ document.getElementById('background-arrow-right').addEventListener('click', () =
 
 // Obsługa przycisku "POTWIERDŹ"
 document.querySelector('#game-eq-footer .game-styled-button').addEventListener('click', () => {
-    alert(`Wybrano tło: ${backgrounds[currentBackgroundIndex]}`);
+    /*alert(`Wybrano tło: ${backgrounds[currentBackgroundIndex]}`);*/
     // Możesz tutaj wysłać dane do backendu, np.:
     // fetch('/save-background', { method: 'POST', body: JSON.stringify({ background: backgrounds[currentBackgroundIndex] }) });
 });
@@ -58,7 +58,37 @@ document.getElementById('skin-arrow-right').addEventListener('click', () => {
 
 // Obsługa przycisku "POTWIERDŹ" dla skórek
 document.querySelector('#game-eq-footer .game-styled-button').addEventListener('click', () => {
-    alert(`Wybrano skórkę: ${skins[currentSkinIndex]}`);
+    /*alert(`Wybrano skórkę: ${skins[currentSkinIndex]}`);*/
     // Możesz tutaj wysłać dane do backendu, np.:
     // fetch('/save-skin', { method: 'POST', body: JSON.stringify({ skin: skins[currentSkinIndex] }) });
+});
+
+// Obsługa przycisku "POTWIERDŹ"
+document.querySelector('#game-eq-footer .game-styled-button').addEventListener('click', () => {
+    localStorage.setItem('selectedBackground', backgrounds[currentBackgroundIndex]);
+    localStorage.setItem('selectedSkin', skins[currentSkinIndex]);
+
+    console.log('Zapisano w localStorage:', {
+        background: backgrounds[currentBackgroundIndex],
+        skin: skins[currentSkinIndex]
+    });
+
+    /*alert(`Wybrano tło: ${backgrounds[currentBackgroundIndex]} i skórkę: ${skins[currentSkinIndex]}`);*/
+
+    location.reload();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const selectedBackground = localStorage.getItem('selectedBackground');
+    const selectedSkin = localStorage.getItem('selectedSkin');
+
+    if (selectedBackground) {
+        backgroundPreview.src = selectedBackground; // Ustaw podgląd tła
+        bgImg.src = selectedBackground; // Ustaw tło gry
+    }
+
+    if (selectedSkin) {
+        skinPreview.src = selectedSkin; // Ustaw podgląd skórki
+        birdImg.src = selectedSkin; // Ustaw skórkę gracza
+    }
 });
