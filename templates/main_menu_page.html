@@ -197,31 +197,36 @@
 
     {# KAFELEK IGRZYSK #}
     <div class="container" id="main-menu-competition-container">
-        <img src="../static/assets/games_logo.png" alt="Logo" id="main-menu-competition-logo">
+        <img src="{{ url_for('static', filename='assets/games_logo.png') }}" alt="Logo" id="main-menu-competition-logo">
 
         <div id="main-menu-events-container">
             <h2>Nadchodzące</h2>
+            {% for challenge in challenges if challenge.status == 'closed' %}
             <div class="event-container">
-                 <div class="event-status status-open">STATUS: OTWARTE</div>
-                <p>#3 Igrzyska pozostało 00:54:04</p>
-                <button class="event-join-button status-open">Dołącz</button>
+                <div class="event-status status-closed">STATUS: ZAMKNIĘTE</div>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.start_date }})</p>
             </div>
+            {% endfor %}
+
+            <h2>Otwarte</h2>
+            {% for challenge in challenges if challenge.status == 'open' %}
             <div class="event-container">
-                 <div class="event-status status-closed">STATUS: ZAMKNIĘTE</div>
-                 <p>#4 Igrzyska za 6d 23:05:54</p>
-                <button class="event-join-button status-closed">Dołącz</button>
+                <div class="event-status status-open">STATUS: OTWARTE</div>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.start_date }} - {{ challenge.end_date }})</p>
+                <a href="{{ url_for('join_challenge', challenge_id=challenge.id) }}">
+                    <button class="event-join-button status-open">Dołącz</button>
+                </a>
             </div>
+            {% endfor %}
+
             <h2>Zakończone</h2>
+            {% for challenge in challenges if challenge.status == 'finished' %}
             <div class="event-container">
-                 <div class="event-status status-finished" >ZAKOŃCZONE</div>
-                 <p>#2 Igrzyska 7d 00:05:54 temu</p>
-                 <button class="event-preview-button status-finished">Podgląd</button>
-            </div>
-            <div class="event-container">
-                 <div class="event-status status-finished">ZAKOŃCZONE</div>
-                 <p>#1 Igrzyska 14d 00:05:54 temu</p>
+                <div class="event-status status-finished">ZAKOŃCZONE</div>
+                <p>Wyzwanie #{{ challenge.id }} ({{ challenge.end_date }})</p>
                 <button class="event-preview-button status-finished">Podgląd</button>
             </div>
+            {% endfor %}
         </div>
     </div>
 

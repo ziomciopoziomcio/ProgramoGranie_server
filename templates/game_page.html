@@ -147,6 +147,19 @@
     </div>
 
     {# SKLEP #}
+    <script>
+    const backgrounds = [
+        "{{ url_for('static', filename='assets/game_assets/fb_bg_regular_1_preview.png') }}",
+        "{{ url_for('static', filename='assets/game_assets/fb_bg_regular_2_preview.png') }}",
+        "{{ url_for('static', filename='assets/game_assets/fb_bg_hell_1_preview.png') }}",
+        "{{ url_for('static', filename='assets/game_assets/fb_bg_hell_2_preview.png') }}"
+    ];
+    const skins = [
+        "{{ url_for('static', filename='assets/game_assets/fb_skin_flametail.png') }}",
+        "{{ url_for('static', filename='assets/game_assets/fb_skin_dantebird.png') }}",
+        "{{ url_for('static', filename='assets/game_assets/fb_skin_default.png') }}"
+    ];
+    </script>
     <div class="container" id="game-items-container">
 
         <div class="game-sub-menu" id="user-equipment">
@@ -161,17 +174,16 @@
 
             <div id="switching-area">
                 <div class="item-choice-area">
-                    <button class="game-styled-arrow-button arrow-left"></button>
+                    <button id="background-arrow-left" class="game-styled-arrow-button arrow-left"></button>
                     <img id="game-background-preview"
                          src="{{ url_for('static', filename='assets/game_assets/fb_bg_regular_1_preview.png') }}" alt="tło">
-                    <button class="game-styled-arrow-button arrow-right"></button>
+                    <button id="background-arrow-right" class="game-styled-arrow-button arrow-right"></button>
                 </div>
 
                 <div class="item-choice-area">
-                    <button class="game-styled-arrow-button arrow-left"></button>
-                    <img id="game-skin-preview" src="{{ url_for('static', filename='assets/game_assets/fb_skin_flametail.png') }}"
-                         alt="ptak">
-                    <button class="game-styled-arrow-button arrow-right"></button>
+                    <button class="game-styled-arrow-button arrow-left" id="skin-arrow-left"></button>
+                    <img id="game-skin-preview" src="{{ url_for('static', filename='assets/game_assets/fb_skin_flametail.png') }}" alt="ptak">
+                    <button class="game-styled-arrow-button arrow-right" id="skin-arrow-right"></button>
                 </div>
             </div>
             <div id="game-eq-footer">
