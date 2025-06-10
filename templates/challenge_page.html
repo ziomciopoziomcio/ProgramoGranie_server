@@ -40,8 +40,8 @@
 
 {# POLECENIE #}
         <div class="container" id="challenge-instruction-container">
-            <h1 class="challenge-header">Tekst polecenia</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pulvinar enim ac lorem mattis, porta pellentesque urna congue. Morbi et nunc risus. Quisque at accumsan nulla. Ut eu sodales nibh, et iaculis dolor. Pellentesque diam dolor, auctor quis congue lacinia, ultrices et erat. Cras tellus enim, posuere et hendrerit nec, condimentum eu magna. Nunc ac mollis risus. Phasellus sit amet mauris congue ante luctus suscipit ut sit amet nunc. Suspendisse vel diam non mi varius lobortis nec sed urna. Vestibulum in metus et quam feugiat tempus in ornare erat. </p>
+            <h1 class="challenge-header">Polecenie Wyzwania</h1>
+            <p>{{ challenge.description }}</p>
         </div>
 
 {# WYBÓR PLIKÓW #}
@@ -60,7 +60,10 @@
 
 {# SUBMIT #}
         <div class="container" id="challenge-send-file-container">
-            <button type="submit" id="send-file-button">Prześlij</button>
+            <form method="POST" action="{{ url_for('submit_tests') }}">
+                <input type="hidden" name="challenge_id" value="{{ challenge.id }}">
+                <button type="submit" id="send-file-button">Prześlij</button>
+            </form>
         </div>
 
 {# TESTY JEDNOSTKOWE #}
@@ -69,17 +72,11 @@
             <h1 class="challenge-header">Testy jednostkowe</h1>
 
             <div id="challenge-unit-test-list">
-                <div class="challenge-unit-test-bar" id="unit-test-1-bar"><p>TEST 1</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-2-bar"><p>TEST 2</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-3-bar"><p>TEST 3</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-4-bar"><p>TEST 4</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-5-bar"><p>TEST 5</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-6-bar"><p>TEST 6</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-7-bar"><p>TEST 7</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 8</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 9</p></div>
-                <div class="challenge-unit-test-bar" id="unit-test-8-bar"><p>TEST 10</p></div>
-
+                {% for test, result in test_results.items() %}
+                    <div class="challenge-unit-test-bar {% if result == 0 %}test-failed{% else %}test-passed{% endif %}">
+                        <p>{{ test }}: {% if result == 0 %}Nieudany{% else %}Udany{% endif %}</p>
+                    </div>
+                {% endfor %}
             </div>
 
         </div>
