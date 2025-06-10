@@ -38,7 +38,7 @@
     <div class="container subject-container" id="main-menu-subject-so2-container">
 
         <div class="main-menu-subject-code-container">
-            <div class="subject-code"><p>kod</p></div>
+            <div class="subject-code"><p>SO2</p></div>
         </div>
 
         <div class="main-menu-subject-name"><h2>Systemy operacyjne 2</h2></div>
@@ -74,7 +74,7 @@
     <div class="container subject-container" id="main-menu-subject-pp2-container">
 
         <div class="main-menu-subject-code-container">
-            <div class="subject-code"><p>kod</p></div>
+            <div class="subject-code"><p>PP2</p></div>
         </div>
 
         <div class="main-menu-subject-name"><h2>Podstawy programowania 2</h2></div>
@@ -89,13 +89,13 @@
         <div class="main-menu-subject-completion-container">
             <div class="main-menu-subject-badge-container">
                 <div class="main-menu-subject-badge">
-                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}" alt="empty badge"
+                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_pp2_bronze.png') }}" alt="empty badge"
                          id="main-menu-pp2-badge-img">
                 </div>
             </div>
 
-            <div class="main-menu-points-container" id="main-menu-pp2-p1"><p>.../20</p></div>
-            <div class="main-menu-points-container" id="main-menu-pp2-p2"><p>.../150</p></div>
+<!--            <div class="main-menu-points-container" id="main-menu-pp2-p1"><p>.../20</p></div>-->
+<!--            <div class="main-menu-points-container" id="main-menu-pp2-p2"><p>.../150</p></div>-->
         </div>
         <div class="subject-hover-info">
             <p><b>Grupa:</b> 3I.02, Piątek, 10:15-12:00</p>
@@ -110,7 +110,7 @@
     <div class="container subject-container" id="main-menu-subject-pp1-container">
 
         <div class="main-menu-subject-code-container">
-            <div class="subject-code"><p>kod</p></div>
+            <div class="subject-code"><p>PP1</p></div>
         </div>
 
         <div class="main-menu-subject-name"><h2>Podstawy programowania 1</h2></div>
@@ -125,12 +125,12 @@
         <div class="main-menu-subject-completion-container">
             <div class="main-menu-subject-badge-container">
                 <div class="main-menu-subject-badge">
-                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_empty.png') }}" alt="empty badge"
+                    <img src="{{ url_for('static', filename='assets/stats_assets/medal_pp1_gold.png') }}" alt="empty badge"
                          id="main-menu-pp1-badge-img">
                 </div>
             </div>
 
-            <div class="main-menu-points-container" id="main-menu-pp1-p2"><p>.../154</p></div>
+            <!--<div class="main-menu-points-container" id="main-menu-pp1-p2"><p>.../154</p></div>-->
         </div>
         <div class="subject-hover-info">
             <p><b>Grupa:</b> 3I.02, Środa, 12:15-14:00</p>
@@ -145,28 +145,34 @@
     <div class="container" id="main-menu-profile-container">
         <a href="{{ url_for('profile') }}" class="page-link"></a>
         <img src="{{ url_for('static', filename='assets/profile_photo_white.svg') }}" alt="profile picture">
-        <h1>Jan Kowalski</h1>
+        <h1>{{ first_name }} {{ last_name }}</h1>
         <div id="main-menu-profile-currency-container">
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/dante_coin.png') }}"
                                                     width="30" height="30" id="profile-dante-coin"
                                                     alt="dante coin icon">
-                <p id="profile-dante-coin">xx</p></div>
+                <p id="profile-dante-coin">300</p></div>
             <div class="profile-showcase-line"><img src="{{ url_for('static', filename='assets/fire_1.png') }}"
                                                     width="30" height="40" id="profile-joker-points"
                                                     alt="joker point icon">
-                <p id="profile-joker-points">xx</p></div>
+                <p id="profile-joker-points">12</p></div>
         </div>
         <div id="main-menu-profile-achievements-container">
             <h2>wyróznione osiągnięcia</h2>
             <div id="main-menu-profile-achievements-grid">
                 <div class="main-menu-profile-grid-cell">
-                    <div class="main-menu-profile-achievement-slot"></div>
+                    <div class="main-menu-profile-achievement-slot">
+                        <img src="{{ url_for('static', filename='assets/stats_assets/ach_win_igrzyska.png') }}" alt="Puchar">
+                    </div>
                 </div>
                 <div class="main-menu-profile-grid-cell">
-                    <div class="main-menu-profile-achievement-slot"></div>
+                    <div class="main-menu-profile-achievement-slot">
+                        <img src="{{ url_for('static', filename='assets/stats_assets/ach_pp2_bronze.png') }}" alt="Medal pp2">
+                    </div>
                 </div>
                 <div class="main-menu-profile-grid-cell">
-                    <div class="main-menu-profile-achievement-slot"></div>
+                    <div class="main-menu-profile-achievement-slot">
+                         <img src="{{ url_for('static', filename='assets/stats_assets/ach_pp1_gold.png') }}" alt="Medal pp1">
+                    </div>
                 </div>
                 <div class="main-menu-profile-grid-cell">
                     <div class="main-menu-profile-achievement-slot"></div>

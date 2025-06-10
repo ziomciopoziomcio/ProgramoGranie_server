@@ -109,10 +109,20 @@ def register():
 
 @app.route('/index')
 def index():
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zobaczyć tę stronę.', 'danger')
+        return redirect(url_for('login'))
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
     try:
+        # Pobierz dane użytkownika
+        cursor.execute("SELECT first_name, last_name FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            flash('Nie znaleziono użytkownika.', 'danger')
+            return redirect(url_for('login'))
         # Fetch all challenges
         cursor.execute("SELECT id, description, start_date, end_date FROM challenges ORDER BY start_date ASC")
         challenges = cursor.fetchall()
@@ -132,7 +142,7 @@ def index():
         cursor.close()
         conn.close()
 
-    return render_template('main_menu_page.html', challenges=challenges)
+    return render_template('main_menu_page.html', first_name=user['first_name'], last_name=user['last_name'], challenges=challenges)
 
 
 @app.route('/index/game')
@@ -220,6 +230,16 @@ def profile():
     cursor = conn.cursor(dictionary=True)
 
     try:
+        # Pobierz dane użytkownika
+        cursor.execute("SELECT first_name, last_name FROM users WHERE id = %s", (user_id,))
+        user = cursor.fetchone()
+        if not user:
+            flash('Nie znaleziono użytkownika.', 'danger')
+            return redirect(url_for('login'))
+
+        first_name = user['first_name']
+        last_name = user['last_name']
+
         subjects = ['pp1', 'pp2', 'so2']
         subject_achievements = {}
 
@@ -250,9 +270,9 @@ def profile():
             if achievement_progress:
                 best_achievement = max(achievement_progress.items(), key=lambda x: x[1]['percentage'])
                 achievement_images = {
-                    'Achievement1': f'ach_{subject}_gold.png',
-                    'Achievement2': f'ach_{subject}_silver.png',
-                    'Achievement3': f'ach_{subject}_bronze.png',
+                    'Achievement1': f'medal_{subject}_gold.png',
+                    'Achievement2': f'medal_{subject}_silver.png',
+                    'Achievement3': f'medal_{subject}_bronze.png',
                 }
                 best_achievement_image = achievement_images.get(best_achievement[0], 'default.png')
             else:
@@ -277,8 +297,13 @@ def profile():
         cursor.close()
         conn.close()
 
-    return render_template('profile_page.html', subject_achievements=subject_achievements, achievements=achievements)
-
+    return render_template(
+        'profile_page.html',
+        first_name=first_name,
+        last_name=last_name,
+        subject_achievements=subject_achievements,
+        achievements=achievements
+    )
 
 @app.route('/index/pp2')
 def pp2_stats():
