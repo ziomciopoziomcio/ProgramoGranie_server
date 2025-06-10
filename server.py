@@ -147,7 +147,55 @@ def index():
 
 @app.route('/index/game')
 def game():
-    return render_template('game_page.html')
+    user_id = session.get('user_id')
+    if not user_id:
+        flash('Musisz być zalogowany, aby zagrać.', 'danger')
+        return redirect(url_for('login'))
+
+    challenge_id = request.args.get('challenge_id')  # Retrieve challenge_id from query parameters
+    if not challenge_id:
+        flash('Brak ID wyzwania.', 'danger')
+        return redirect(url_for('index'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    try:
+        # Pobierz dane do tablicy wyników
+        cursor.execute("""
+            SELECT u.first_name, u.last_name,
+                   (test_1 + test_2 + test_3 + test_4 + test_5 +
+                    test_6 + test_7 + test_8 + test_9 + test_10) AS passed_tests
+            FROM player_challenges pc
+            JOIN users u ON pc.user_id = u.id
+            WHERE pc.challenge_id = %s
+            ORDER BY passed_tests DESC;
+        """, (challenge_id,))  # Pass challenge_id as a tuple
+        leaderboard = cursor.fetchall()
+        # Count participants
+        cursor.execute("""
+                    SELECT COUNT(*) AS participants_count
+                    FROM player_challenges
+                    WHERE challenge_id = %s
+                """, (challenge_id,))
+        participants_count = cursor.fetchone()['participants_count']
+
+        # Count completed users
+        cursor.execute("""
+                    SELECT COUNT(*) AS completed_count
+                    FROM player_challenges
+                    WHERE challenge_id = %s AND 
+                          test_1 = 1 AND test_2 = 1 AND test_3 = 1 AND test_4 = 1 AND 
+                          test_5 = 1 AND test_6 = 1 AND test_7 = 1 AND test_8 = 1 AND 
+                          test_9 = 1 AND test_10 = 1
+                """, (challenge_id,))
+        completed_count = cursor.fetchone()['completed_count']
+
+    finally:
+        cursor.close()
+        conn.close()
+
+    return render_template('game_page.html', leaderboard=leaderboard, participants_count=participants_count, completed_count=completed_count, challenge_id=challenge_id)
 
 
 @app.route('/index/pp1')
