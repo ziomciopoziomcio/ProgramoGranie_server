@@ -75,6 +75,16 @@
     grid-area: 2 / 2 / 4 / 3;
 }
 
+.test-failed {
+    background-color: red;
+    color: white;
+}
+
+.test-passed {
+    background-color: green;
+    color: white;
+}
+
 #challenge-unit-test-list {
     display: flex;
     height: 90%;
