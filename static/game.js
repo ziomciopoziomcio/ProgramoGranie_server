@@ -20,6 +20,12 @@ pipeImg.src = '/static/assets/game_assets/fb_pipe_green.png';
 const bgImg = new Image();
 bgImg.src = '/static/assets/game_assets/fb_bg_regular_1.png';
 
+const gameSoundtrack = new Audio('/static/assets/game_assets/audio/soundtrack_flappy_dante.mp3');
+gameSoundtrack.loop = true; // Zapętlenie audio
+
+const jumpSound = new Audio('/static/assets/game_assets/audio/skok.mp3');
+const gameOverSound = new Audio('/static/assets/game_assets/audio/przegrana.mp3');
+
 // Update hearts display
 function updateHearts() {
     heartsContainer.innerHTML = '';
@@ -168,6 +174,10 @@ function endGame() {
     sendScoreToBackend(score);
     loseLife();
     resetGame();
+    gameSoundtrack.pause();
+    gameSoundtrack.currentTime = 0; // Reset soundtrack to start
+    gameOverSound.currentTime = 0; // Reset game over sound to start
+    gameOverSound.play();
     draw();
 }
 
@@ -182,6 +192,8 @@ function gameLoop() {
 // Controls
 document.addEventListener('keydown', () => {
     if (gameRunning) {
+        jumpSound.currentTime = 0;
+        jumpSound.play();
         bird.velocity += bird.lift;
     }
 });
@@ -231,6 +243,7 @@ startButton.addEventListener('click', () => {
     gameRunning = true;
     document.getElementById('hearts-container').style.display = 'none';
     document.getElementById('game-logo').style.display = 'none';
+    gameSoundtrack.play();
     gameLoop();
 });
 
