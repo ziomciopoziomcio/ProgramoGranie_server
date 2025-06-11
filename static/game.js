@@ -4,7 +4,7 @@ const startButton = document.getElementById('startButton');
 const heartsContainer = document.getElementById('hearts-container');
 
 // Game variables
-let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -12, velocity: 0, maxFallSpeed: 9 };
+let bird = { x: 50, y: 150, width: 30, height: 20, gravity: 0.5, lift: -10, velocity: 0, maxFallSpeed: 9 };
 let pipes = [];
 let frame = 0;
 let score = 0;
@@ -33,11 +33,12 @@ function updateHearts() {
 // Decrease lives
 // Decrease lives on the server
 async function loseLife() {
+    console.log(challengeId);
     try {
-        const response = await fetch('/game/flappy_bird', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-        });
+        const response = await fetch(`/game/flappy_bird?challenge_id=${challengeId}&action=lose_life`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+    });
 
         if (response.ok) {
             const data = await response.json();
@@ -143,7 +144,7 @@ function draw() {
     });
 
     if (gameRunning) {
-        ctx.fillStyle = '#000';
+        ctx.fillStyle = '#FFF';
         ctx.font = 'x-large Tiny5, fantasy';
         ctx.fillText(`SCORE: ${score}`, 10, 20);
     }
@@ -181,7 +182,8 @@ function gameLoop() {
 // Controls
 document.addEventListener('keydown', () => {
     if (gameRunning) {
-        bird.velocity += bird.lift;
+        // bird.velocity += bird.lift;
+        bird.velocity = Math.max(bird.velocity + bird.lift * 1.5, -bird.maxFallSpeed);
     }
 });
 
@@ -261,7 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedBackground) {
         bgImg.src = selectedBackground; // Ustaw tło gry
         console.log('Ustawiono tło:', selectedBackground);
-
+        // Jeśli tło to bg_hell, ustaw czerwone rury
+        if (selectedBackground.includes('bg_hell')) {
+            pipeImg.src = '/static/assets/game_assets/fb_pipe_red.png';
+            console.log('Ustawiono czerwone rury dla tła bg_hell');
+        }
     }
 
     // Zastosuj skórkę
