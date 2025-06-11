@@ -24,6 +24,8 @@ const gameSoundtrack = new Audio('/static/assets/game_assets/audio/soundtrack_fl
 gameSoundtrack.loop = true; // Zapętlenie audio
 
 const jumpSound = new Audio('/static/assets/game_assets/audio/skok.mp3');
+jumpSound.volume = 0.1;
+
 const gameOverSound = new Audio('/static/assets/game_assets/audio/przegrana.mp3');
 
 // Update hearts display
