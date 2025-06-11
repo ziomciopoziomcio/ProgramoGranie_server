@@ -746,14 +746,31 @@ def generate_breadcrumb():
         'game': 'Gra',
         'flappy_bird': 'Flappy Bird'
     }
+
     breadcrumb = [{'name': 'Menu główne', 'url': url_for('index')}]
+
+    # Mapowanie hierarchii
+    hierarchy = {
+        'game': 'challenge',
+        'flappy_bird': 'game'
+    }
+
     for i in range(len(path)):
-        if path[i] and path[i] != 'index':  # Skip 'index'
-            name = custom_labels.get(path[i], path[i].capitalize())
+        segment = path[i]
+        if segment and segment != 'index':  # Pomijamy puste segmenty i 'index'
+            # Sprawdź, czy segment ma nadrzędny element w hierarchii
+            parent = hierarchy.get(segment)
+            if parent and not any(b['name'] == custom_labels[parent] for b in breadcrumb):
+                breadcrumb.append({
+                    'name': custom_labels[parent],
+                    'url': '/' + '/'.join(path[:i])  # Dodaj URL nadrzędnego elementu
+                })
+            name = custom_labels.get(segment, segment.capitalize())
             breadcrumb.append({
                 'name': name,
                 'url': '/' + '/'.join(path[:i + 1])
             })
+
     return breadcrumb
 
 

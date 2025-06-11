@@ -307,6 +307,10 @@
     #profile-streak-container {
         grid-area: 4 / 1 / 5 / 2;
         max-width: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
     }
 
     #profile-showcase-container {

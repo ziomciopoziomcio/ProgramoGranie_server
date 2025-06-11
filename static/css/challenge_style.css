@@ -163,7 +163,7 @@
 
 .podium-progress-bar {
     width: 100%;
-    background-color: #f3f3f3;
+    background-color: red;
     border: 1px solid #ccc;
     border-radius: 5px;
     height: 20px;
@@ -173,9 +173,8 @@
 
 .podium-progress-bar-done {
     height: 100%;
-    background: linear-gradient(to right, #1A9E0E var(--progress), #F44336 var(--progress));
+    background-color: #1A9E0E; /* Jednolity kolor */
     transition: width 0.3s ease;
-    width: 100%; /* Pasek zawsze pełny, gradient symuluje postęp */
 }
 
 .progress-bar-label {
@@ -193,8 +192,6 @@
 
 #first .podium-progress-bar-done {
     width: calc((13 / 13) * 100%);
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
     /*  TODO: AUTOMATE WITH A SCRIPT ACTIVATING BORDER RADIUS WHEN BAR COMPLETE  */
 }
 
