@@ -41,7 +41,11 @@
         <div class="topic">
             <p>{{ topic.topic_name }}</p>
             <div class="progressbar">
-                <div class="progress" style="width: {{ topic.progress }}%; background-color: #4caf50;"></div>
+                <div class="progress" style="width: {{ topic.progress }}%; background-color: #4caf50;">
+                    <span style="position: absolute; left: 50%; transform: translateX(-50%); color: white; font-weight: bold;">
+                        {{ topic.progress }}%
+                    </span>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -60,6 +64,7 @@
 
     {# LABEL #}
     <div class="container stats-overall-subject-label-container" id="stats-so2-subject-label-container">
+        <div class="subject-code">SO2</div>
         <h1 class="stats-header">Systemy Operacyjne 2</h1>
     </div>
 
@@ -82,7 +87,15 @@
             {% for achievement_name, progress in overall_stats.achievements.items() %}
             <div class="stats-achievement-position">
                 <div class="ach-img-container">
-                    <img class="ach-img" src="{{ url_for('static', filename='assets/stats_assets/achievement_placeholder.png') }}" alt="{{ achievement_name }}">
+                    <img class="ach-img"
+                         src="{% if loop.index0 == 0 %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_alokator_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% elif loop.index0 == 1 %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_fat_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% else %}
+                                  {{ url_for('static', filename='assets/stats_assets/ach_so2_' + ['bronze', 'silver', 'gold'][loop.index0 % 3] + '.png') }}
+                              {% endif %}"
+                         alt="{{ achievement_name }}">
                 </div>
                 <div class="ach-desc-container">
                     <p>{{ achievement_name }}: {{ progress }}</p>
@@ -94,7 +107,11 @@
 
     {# COMMITY #}
     <div class="container stats-overall-commit-container" id="stats-so2-commit-container">
-        <p>commit graph (TODO)</p>
+        <div class="commit-graph">
+             {% for color in colors %}
+                 <div class="commit-square" style="background-color: {{ color }};"></div>
+             {% endfor %}
+        </div>
     </div>
 
 </div>
