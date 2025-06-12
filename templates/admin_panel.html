@@ -51,7 +51,7 @@
             <img src="{{ url_for('static', filename='assets/games_logo.png') }}" alt="Games Logo" class="logo-image">
         </div>
         <div class="container">
-            <h1>Zakończone wyzwania</h1>
+            <h1>Dodane wyzwania</h1>
             <div class="commands-list">
                 {% for challenge in challenges %}
                     <p>{{ challenge.description }} (Dodano: {{ challenge.created_at }})</p>
